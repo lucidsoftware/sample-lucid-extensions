@@ -1,0 +1,30 @@
+{
+    "name": "asana-data-connector",
+    "version": "0.0.1",
+    "description": "",
+    "keywords": [],
+    "author": "Lucid Software",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "@types/asana": "^0.18.10",
+        "@types/express": "^4.17.13",
+        "@types/jasmine": "4.3.0",
+        "@types/node": "^16.11.11",
+        "nodemon": "^2.0.19",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.7.4"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@types/asana": "^0.18.10",
+        "asana": "^1.0.0",
+        "axios": "^0.27.2",
+        "express": "^4.18.1",
+        "lucid-extension-sdk": "^0.0.147"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
+}

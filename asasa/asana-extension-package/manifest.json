@@ -1,0 +1,38 @@
+{
+    "id": "2711b10f-08af-46a6-accc-3a612aebd627",
+    "version": "1.0.0",
+    "extensions": [
+        {
+            "name": "asana",
+            "title": "Asana",
+            "products": ["spark"],
+            "codePath": "editorextensions/asana/bin/extension.js",
+            "scopes": ["READ", "WRITE", "DOWNLOAD", "SHOW_MODAL", "CUSTOM_UI", "NETWORK"]
+        }
+    ],
+    "shapeLibraries": [],
+    "oauthProviders": [
+        {
+            "name": "asana",
+            "title": "Asana",
+            "authorizationUrl": "https://app.asana.com/-/oauth_authorize",
+            "tokenUrl": "https://app.asana.com/-/oauth_token",
+            "scopes": ["default"],
+            "domainWhitelist": ["https://app.asana.com"],
+            "clientAuthentication": "clientParameters",
+            "faviconUrl": "https://cdn-cashy-static-assets.lucidchart.com/extensibility/packages/asana/Asana-Logo-for-card.svg"
+        }
+    ],
+    "dataConnectors": [
+        {
+            "name": "asana",
+            "oauthProviderName": "asana",
+            "callbackBaseUrl": "http://localhost:3001/?kind=action",
+            "dataActions": {
+                "Import": "",
+                "Patch": "",
+                "HardRefresh": ""
+            }
+        }
+    ]
+}
