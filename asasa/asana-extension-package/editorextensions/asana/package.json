@@ -6,6 +6,6 @@
         "webpack": "^5.64.4"
     },
     "dependencies": {
-        "lucid-extension-sdk": "^0.0.147"
+        "lucid-extension-sdk": "^0.0.149"
     }
 }
