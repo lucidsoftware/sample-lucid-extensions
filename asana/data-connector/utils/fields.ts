@@ -1,11 +1,9 @@
 import {Client as AsanaClient, resources} from 'asana';
-import {
-    FieldConstraintType,
-    FieldDefinition,
-    isDefAndNotNull,
-    ScalarFieldTypeEnum,
-    SerializedIsoDateObject,
-} from 'lucid-extension-sdk';
+import {isDefAndNotNull} from 'lucid-extension-sdk/core/checks';
+import {ScalarFieldTypeEnum} from 'lucid-extension-sdk/core/data/fieldtypedefinition/scalarfieldtype';
+import {FieldConstraintType} from 'lucid-extension-sdk/core/data/serializedfield/serializedfielddefinition';
+import {SerializedIsoDateObject} from 'lucid-extension-sdk/core/data/serializedfield/serializedfields';
+import {FieldDefinition} from 'lucid-extension-sdk/data/schemadefinition';
 import {DefaultFieldNames} from '../../common/fields';
 import {TaskItemType} from '../collections/taskcollection';
 import {asanaDate, getFormattedDateOrTime, getFormattedTime, getFormattedTimeOptional} from './date';

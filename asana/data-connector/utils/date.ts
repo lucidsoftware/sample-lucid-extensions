@@ -1,4 +1,7 @@
-import {SerializedIsoDateObject, SerializedLucidDateObject} from 'lucid-extension-sdk';
+import {
+    SerializedIsoDateObject,
+    SerializedLucidDateObject,
+} from 'lucid-extension-sdk/core/data/serializedfield/serializedfields';
 
 export function getFormattedDateOrTime(rawDate: string | null, rawTime: string | null): SerializedIsoDateObject | null {
     if (rawTime) {

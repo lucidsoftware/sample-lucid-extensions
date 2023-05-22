@@ -1,5 +1,6 @@
 import {Client as AsanaClient, resources} from 'asana';
-import {CollectionEnumFieldNames, DataSourceClient, FieldTypeArray, ItemType} from 'lucid-extension-sdk';
+import {CollectionEnumFieldNames} from 'lucid-extension-sdk/core/data/fieldtypedefinition/collectionenumfieldtype';
+import {DataSourceClient} from 'lucid-extension-sdk/dataconnector/datasourceclient';
 import {TaskCollectionName} from '../../common/constants';
 import {ProjectItemType, projectSchema} from '../collections/projectcollection';
 import {SectionItemType, sectionSchema} from '../collections/sectioncollection';

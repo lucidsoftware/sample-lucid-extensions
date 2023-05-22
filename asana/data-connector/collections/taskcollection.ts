@@ -1,13 +1,10 @@
-import {
-    CollectionEnumFieldType,
-    declareSchema,
-    FieldConstraintType,
-    FieldTypeArray,
-    FieldTypeDefinition,
-    ItemType,
-    ScalarFieldTypeEnum,
-    SemanticKind,
-} from 'lucid-extension-sdk';
+import {declareSchema, ItemType} from 'lucid-extension-sdk/core/data/fieldspecification';
+import {CollectionEnumFieldType} from 'lucid-extension-sdk/core/data/fieldtypedefinition/collectionenumfieldtype';
+import {FieldTypeArray} from 'lucid-extension-sdk/core/data/fieldtypedefinition/fieldtypearray';
+import {FieldTypeDefinition} from 'lucid-extension-sdk/core/data/fieldtypedefinition/fieldtypedefinition';
+import {ScalarFieldTypeEnum} from 'lucid-extension-sdk/core/data/fieldtypedefinition/scalarfieldtype';
+import {SemanticKind} from 'lucid-extension-sdk/core/data/fieldtypedefinition/semantickind';
+import {FieldConstraintType} from 'lucid-extension-sdk/core/data/serializedfield/serializedfielddefinition';
 import {DefaultFieldNames} from '../../common/fields';
 
 const nullable = <T extends FieldTypeDefinition>(type: T) => {

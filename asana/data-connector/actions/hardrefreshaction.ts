@@ -1,4 +1,6 @@
-import {DataConnectorAsynchronousAction, DataConnectorRunError, isString} from 'lucid-extension-sdk';
+import {isString} from 'lucid-extension-sdk/core/checks';
+import {DataConnectorAsynchronousAction} from 'lucid-extension-sdk/dataconnector/actions/action';
+import {DataConnectorRunError} from 'lucid-extension-sdk/dataconnector/dataconnector';
 import {importTasks} from '../utils/importtasks';
 import {uploadTasks} from '../utils/uploadtasks';
 import {AsanaAction} from './asanaaction';

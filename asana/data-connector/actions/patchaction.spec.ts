@@ -1,5 +1,4 @@
-import 'jasmine';
-import {ActionTester, cleanModuleId} from '../utils/helper.spec';
+import {ActionTester, cleanModuleId} from '../utils/helper.test';
 
 describe(cleanModuleId(module.id), () => {
     it('applies a patch', async () => {

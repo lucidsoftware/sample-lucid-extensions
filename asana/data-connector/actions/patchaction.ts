@@ -1,4 +1,6 @@
-import {DataConnectorPatchAction, DataConnectorRunError, PatchChange} from 'lucid-extension-sdk';
+import {DataConnectorPatchAction} from 'lucid-extension-sdk/dataconnector/actions/action';
+import {PatchChange} from 'lucid-extension-sdk/dataconnector/actions/patchresponsebody';
+import {DataConnectorRunError} from 'lucid-extension-sdk/dataconnector/dataconnector';
 import {getFormattedTask, lucidToAsanaCreationData, lucidToAsanaUpdateData} from '../utils/fields';
 import {AsanaAction} from './asanaaction';
 

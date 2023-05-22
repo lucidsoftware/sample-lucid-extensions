@@ -1,12 +1,8 @@
-import {Client as AsanaClient} from 'asana';
-import {
-    DataConnector,
-    DataConnectorAction,
-    DataConnectorClient,
-    DataConnectorRunError,
-    isNumber,
-    isObject,
-} from 'lucid-extension-sdk';
+import type {Client as AsanaClient} from 'asana';
+import {isNumber, isObject} from 'lucid-extension-sdk/core/checks';
+import {DataConnectorAction} from 'lucid-extension-sdk/dataconnector/actions/action';
+import {DataConnector, DataConnectorRunError} from 'lucid-extension-sdk/dataconnector/dataconnector';
+import {DataConnectorClient} from 'lucid-extension-sdk/dataconnector/dataconnectorclient';
 import {AsanaActionArgs} from './actions/asanaaction';
 import {hardRefreshAction} from './actions/hardrefreshaction';
 import {importAction} from './actions/importaction';

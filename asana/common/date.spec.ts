@@ -1,4 +1,3 @@
-import 'jasmine';
 import {convertDueAtToDateonly} from './date';
 
 describe('Import modal', () => {

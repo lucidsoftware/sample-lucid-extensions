@@ -32,7 +32,6 @@ export const asanaApiEnables = [
 
 export function defaultClientCreator(credential: string | {access_token: string; refresh_token: string}): Client {
     const client = Client.create({
-        'asanaBaseUrl': process.env['MOCKED_BEHAVIOR'] && process.env['MOCKED_BEHAVIOR'] + 'app.asana.com/',
         'defaultHeaders': {'asana-enable': asanaApiEnables.join(',')},
     });
     return client.useOauth({

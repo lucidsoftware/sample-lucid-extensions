@@ -1,19 +1,15 @@
 import {Client as AsanaClient} from 'asana';
-import 'jasmine';
-import {
-    CollectionEnumFieldType,
-    CollectionPatch,
-    DataSourceRequest,
-    DataUpdateFilterType,
-    FieldConstraintDefinition,
-    FieldConstraintType,
-    FieldTypeArray,
-    MockDataConnectorClient,
-    ScalarFieldTypeEnum,
-    SchemaDefinition,
-    SemanticKind,
-    SerializedFields,
-} from 'lucid-extension-sdk';
+import {CollectionEnumFieldType} from 'lucid-extension-sdk/core/data/fieldtypedefinition/collectionenumfieldtype';
+import {FieldTypeArray} from 'lucid-extension-sdk/core/data/fieldtypedefinition/fieldtypearray';
+import {ScalarFieldTypeEnum} from 'lucid-extension-sdk/core/data/fieldtypedefinition/scalarfieldtype';
+import {SemanticKind} from 'lucid-extension-sdk/core/data/fieldtypedefinition/semantickind';
+import {FieldConstraintType} from 'lucid-extension-sdk/core/data/serializedfield/serializedfielddefinition';
+import {SerializedFields} from 'lucid-extension-sdk/core/data/serializedfield/serializedfields';
+import {DataUpdateFilterType} from 'lucid-extension-sdk/data/dataupdatefiltertype';
+import {FieldConstraintDefinition, SchemaDefinition} from 'lucid-extension-sdk/data/schemadefinition';
+import {MockDataConnectorClient} from 'lucid-extension-sdk/dataconnector/dataconnectorclient';
+import {CollectionPatch, DataSourceRequest} from 'lucid-extension-sdk/dataconnector/datasourceupdatetypes';
+
 import {makeDataConnector} from '../index';
 
 export function cleanModuleId(module: string) {

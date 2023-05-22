@@ -1,5 +1,5 @@
-import 'jasmine';
-import {ActionTester, cleanModuleId, getAsanaStructuredData, RequestCollections} from '../utils/helper.spec';
+import "jasmine";
+import {ActionTester, cleanModuleId, getAsanaStructuredData, RequestCollections} from '../utils/helper.test';
 import {optFields} from '../utils/importtasks';
 
 describe(cleanModuleId(module.id), () => {

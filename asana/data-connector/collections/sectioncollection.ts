@@ -1,10 +1,9 @@
+import {declareSchema, ItemType} from 'lucid-extension-sdk/core/data/fieldspecification';
 import {
     CollectionEnumFieldNames,
     CollectionEnumFieldType,
-    declareSchema,
-    ItemType,
-    ScalarFieldTypeEnum,
-} from 'lucid-extension-sdk';
+} from 'lucid-extension-sdk/core/data/fieldtypedefinition/collectionenumfieldtype';
+import {ScalarFieldTypeEnum} from 'lucid-extension-sdk/core/data/fieldtypedefinition/scalarfieldtype';
 
 export const sectionSchema = declareSchema({
     primaryKey: [CollectionEnumFieldNames.Id],
