@@ -1,0 +1,38 @@
+{
+  "id": "!!REPLACE THIS WITH YOUR PACKAGE ID!!",
+  "version": "1.0.0",
+  "extensions": [
+      {
+          "name": "example-card-integration",
+          "title": "example-card-integration",
+          "products": ["spark"],
+          "codePath": "editorextensions/example-card-integration/bin/extension.js",
+          "scopes": ["READ", "WRITE", "DOWNLOAD", "SHOW_MODAL", "CUSTOM_UI", "NETWORK"]
+      }
+  ],
+  "shapeLibraries": [],
+  "__comment__": "Even though the data connector doesn't link to actual data we still need to configure an OAuth provider for the data connector to work.",
+  "oauthProviders": [
+      {
+          "name": "smartsheet",
+          "title": "Smartsheet",
+          "authorizationUrl": "https://app.smartsheet.com/b/authorize",
+          "tokenUrl": "https://api.smartsheet.com/2.0/token",
+          "scopes": ["WRITE_SHEETS"],
+          "domainWhitelist": ["https://api.smartsheet.com", "https://app.smartsheet.com"],
+          "clientAuthentication": "clientParameters",
+          "faviconUrl": "https://www.smartsheet.com/sites/default/files/smartsheet-logo-blue-new.svg"
+      }
+  ],
+  "dataConnectors": [
+      {
+          "name": "example-data-connector",
+          "oauthProviderName": "smartsheet",
+          "callbackBaseUrl": "!!REPLACE THIS WITH YOUR DATA CONNECTOR URL!!",
+          "dataActions": {
+              "Import": "Import",
+              "Patch": "Patch"
+          }
+      }
+  ]
+}
