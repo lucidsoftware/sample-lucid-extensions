@@ -47,7 +47,7 @@ export class ExampleCardIntegerationTaskCreator {
             collection = await this.client.awaitDataImport(DataConnecorName, DataSourceName, CollectionName, [], 1);
         } catch {
             // No collection exists yet. Ask the data connector to perform an import of an empty list of tasks,
-            // ust to get the collection created along with whatever other metadata you might need to set up there.
+            // just to get the collection created along with whatever other metadata you might need to set up there.
             await this.client.performDataAction({
                 dataConnectorName: DataConnecorName,
                 syncDataSourceIdNonce: DataSourceName,
