@@ -8,9 +8,7 @@ export const importAction: (action: DataConnectorAsynchronousAction) => Promise<
     action,
 ) => {
     const primaryKeys = (action.data as any).taskIds as string[];
-    const itemsToAdd: ExampleTaskType[] = getTaskData(primaryKeys).filter((item) =>
-        primaryKeys.some((key) => JSON.stringify(item.id) === key),
-    );
+    const itemsToAdd: ExampleTaskType[] = getTaskData(primaryKeys);
 
     action.client.update({
         dataSourceName: DataSourceName,
