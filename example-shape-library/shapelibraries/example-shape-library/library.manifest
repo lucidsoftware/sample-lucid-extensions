@@ -1,0 +1,106 @@
+{
+    "name": "Example Shape Library",
+    "shapes": [
+        {
+            "shape": "CenterGrowingProgressBar",
+            "name": "Center-Growing Progress Bar",
+            "defaults": {
+                "height": 100,
+                "width": 500
+            }
+        },
+        {
+            "shape": "Conditional",
+            "name": "Conditional Appearance Shape",
+            "defaults": {
+                "height": 300,
+                "width": 300
+            }
+        },
+        {
+            "shape": "CustomData",
+            "name": "Custom Data Shape",
+            "defaults": {
+                "height": 300,
+                "width": 300
+            }
+        },
+        {
+            "shape": "Greeting",
+            "name": "Greeting Shape",
+            "defaults": {
+                "height": 300,
+                "width": 300
+            }
+        },
+        {
+            "shape": "GroupedShapes",
+            "name": "Grouped Shapes",
+            "defaults": {
+                "height": 300,
+                "width": 300
+            }
+        },
+        {   
+            "shape": "Image",
+            "name": "Image Shape",
+            "defaults": {
+                "height": 145,
+                "width": 585
+            }
+        },
+        {
+            "shape": "Multiplexer",
+            "name": "Multiplexer",
+            "defaults": {
+                "height": 300,
+                "width": 300,
+                "rounding": 0
+            }
+        },
+        {
+            "shape": "Picklist",
+            "name": "Picklist",
+            "defaults": {
+                "height": 300,
+                "width": 300
+            }
+        },
+        {
+            "shape": "Rectangle",
+            "name": "Rectangle",
+            "defaults": {
+                "height": 100,
+                "width": 200
+            }
+        },
+        {
+            "shape": "RoundedProgressBar",
+            "name": "Rounded Progress Bar",
+            "defaults": {
+                "height": 100,
+                "width": 300,
+                "fillColor": "#0066cc"
+            }
+        },
+        {
+            "shape": "SignalStrength",
+            "name": "Signal Strength",
+            "defaults": {
+                "height": 300,
+                "width": 500,
+                "fillColor": "#0066cc"
+            }
+        },
+        {
+            "shape": "StarRating",
+            "name": "Star Rating",
+            "defaults": {
+                "height": 100,
+                "width": 500,
+                "fillColor": "#0066cc",
+                "rounding": 0
+            }
+        }
+    ]
+}

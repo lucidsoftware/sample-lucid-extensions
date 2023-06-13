@@ -1,0 +1,123 @@
+{
+    "properties": [
+        {
+            "name": "In",
+            "label": "In",
+            "type": "number",
+            "default": 5,
+            "constraints": [
+                {
+                    "condition": "=@In > 0",
+                    "resolution": 1,
+                    "message": "Must be greater than 0."
+                }
+            ]
+        },
+        {
+            "name": "Out",
+            "label": "Out",
+            "type": "number",
+            "default": 3,
+            "constraints": [
+                {
+                    "condition": "=@Out > 0",
+                    "resolution": 1,
+                    "message": "Must be greater than 0."
+                }
+            ]
+        }
+    ],
+    "style": {
+        "fill": {
+            "type": "color",
+            "color": "#f5f5f5"
+        },
+        "stroke": {
+            "color": "#999999",
+            "width": 2
+        }
+    },
+    "shapes": [
+        {
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ]
+        },
+        {
+            "repeat": {
+                "type": "for",
+                "index": "i",
+                "min": 1,
+                "max": "=@In",
+                "step": 1
+            },
+            "bounds": {
+                "x": "=@i / (@In + 1)",
+                "y": 0,
+                "w": "=1 / (@In + 1)",
+                "h": 0.2,
+                "anchor": "top"
+            },
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#cccccc"
+                },
+                "stroke": {
+                    "color": "#999999",
+                    "width": 2
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ],
+            "linkpoints": [
+                {
+                    "x": 0.5,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "repeat": {
+                "type": "for",
+                "index": "i",
+                "min": 1,
+                "max": "=@Out",
+                "step": 1
+            },
+            "bounds": {
+                "x": "=@i / (@Out + 1)",
+                "y": 1,
+                "w": "=1 / (@Out + 1)",
+                "h": 0.2,
+                "anchor": "bottom"
+            },
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#cccccc"
+                },
+                "stroke": {
+                    "color": "#999999",
+                    "width": 2
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ],
+            "linkpoints": [
+                {
+                    "x": 0.5,
+                    "y": 1
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,151 @@
+{
+    "defs": [
+        {
+            "name": "titleText",
+            "type": "text",
+            "value": "This shape has custom data. Click on it to manage the data."
+        }
+    ],
+    "properties": [
+        {
+            "name": "RegularField",
+            "default": "Default value",
+            "label": "regularField",
+            "type": "string"
+        },
+        {
+            "name": "ReadonlyField",
+            "default": "Readonly value",
+            "label": "readonlyField",
+            "type": "output"
+        },
+        {
+            "name": "FormulaField",
+            "default": "=SUM(1, 2, 3)",
+            "label": "formulaField",
+            "type": "formula"
+        }
+    ],
+    "geometry": [
+        {
+            "type": "rect"
+        }
+    ],
+    "style": {
+        "order": "geometry",
+        "fill": {
+            "type": "color",
+            "color": "#ffffff"
+        },
+        "stroke": {
+            "width": 1,
+            "color": "#000000"
+        }
+    },
+    "shapes": [
+        {
+            "style": {
+                "stroke": {
+                    "width": 0,
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": true,
+                "h": "=@height / 5 - 10",
+                "w": "=@width - 10",
+                "x": "5",
+                "y": "10"
+            },
+            "textarea": {
+                "name": "title",
+                "text": "{{=@titleText}}",
+                "align": "center",
+                "style": {
+                    "bold": true,
+                    "size": 18
+                },
+                "editable": false
+            }
+        },
+        {
+            "style": {
+                "stroke": {
+                    "width": 0,
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": true,
+                "h": "=@height / 5 - 10",
+                "w": "=@width - 10",
+                "x": "5",
+                "y": "=@height / 5 + 10"
+            },
+            "textarea": {
+                "name": "regular",
+                "text": "Regular Field: {{=@RegularField}}",
+                "align": "center",
+                "style": {
+                    "bold": false,
+                    "size": 18
+                },
+                "editable": false
+            }
+        },
+        {
+            "style": {
+                "stroke": {
+                    "width": 0,
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": true,
+                "h": "=@height / 5 - 10",
+                "w": "=@width - 10",
+                "x": "5",
+                "y": "=2 * @height / 5 + 10"
+            },
+            "textarea": {
+                "name": "readonly",
+                "text": "Readonly Field: {{=@ReadonlyField}}",
+                "align": "center",
+                "style": {
+                    "bold": false,
+                    "size": 18
+                },
+                "editable": false
+            }
+        },
+        {
+            "style": {
+                "stroke": {
+                    "width": 0,
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": true,
+                "h": "=@height / 5 - 10",
+                "w": "=@width - 10",
+                "x": "5",
+                "y": "=3 * @height / 5 + 10"
+            },
+            "textarea": {
+                "name": "formula",
+                "text": "Formula Field: {{=@FormulaField}}",
+                "align": "center",
+                "style": {
+                    "bold": false,
+                    "size": 18
+                },
+                "editable": false
+            }
+        }
+    ]
+}

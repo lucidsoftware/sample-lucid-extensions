@@ -1,0 +1,13 @@
+{
+  "id": "!!REPLACE THIS WITH YOUR PACKAGE ID!!",
+  "version": "1.0.0",
+  "extensions": [],
+  "shapeLibraries": [
+    {
+      "name": "example-shape-library",
+      "product": "chart",
+      "lcszPath": "shapelibraries/example-shape-library.lcsz"
+    }
+  ],
+  "oauthProviders": []
+}
