@@ -1,0 +1,25 @@
+{
+  "id": "!!REPLACE THIS WITH YOUR PACKAGE ID!!",
+  "version": "1.0.0",
+  "extensions": [
+    {
+      "name": "in-a-circle",
+      "title": "In a Circle",
+      "products": [
+        "chart",
+        "spark"
+      ],
+      "codePath": "editorextensions/in-a-circle/bin/extension.js",
+      "scopes": [
+        "READ",
+        "WRITE",
+        "DOWNLOAD",
+        "SHOW_MODAL",
+        "CUSTOM_UI",
+        "NETWORK"
+      ]
+    }
+  ],
+  "shapeLibraries": [],
+  "oauthProviders": []
+}
