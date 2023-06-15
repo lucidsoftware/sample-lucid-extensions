@@ -1,0 +1,2 @@
+Images used in the shape library should be placed in this directory.
+File paths referenced by shapes in the library are relative to this location.

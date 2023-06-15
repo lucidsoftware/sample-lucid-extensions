@@ -1,0 +1,133 @@
+{
+    "properties": [
+        {
+            "name": "Min",
+            "label": "Min",
+            "type": "number",
+            "default": 0,
+            "constraints": [
+                {
+                    "condition": "=@Min < @Max",
+                    "message": "Max must be larger than Min"
+                }
+            ]
+        },
+        {
+            "name": "Max",
+            "label": "Max",
+            "type": "number",
+            "default": 100,
+            "constraints": [
+                {
+                    "condition": "=@Max > @Min",
+                    "message": "Max must be larger than Min"
+                }
+            ]
+        },
+        {
+            "name": "Value",
+            "label": "Value",
+            "type": "number",
+            "default": 70,
+            "constraints": [
+                {
+                    "condition": "=@Value >= @Min",
+                    "resolution": "=@Min",
+                    "message": "Value must be greater or equal to Min"
+                },
+                {
+                    "condition": "=@Value <= @Max",
+                    "resolution": "=@Max",
+                    "message": "Value must be less or equal to Max"
+                }
+            ]
+        },
+        {
+            "name": "Foreground",
+            "label": "Foreground",
+            "type": "color",
+            "default": "=fillColor()"
+        },
+        {
+            "name": "Background",
+            "label": "Background",
+            "type": "color",
+            "default": "#D7E9FF"
+        }
+    ],
+    "shapes": [
+        {
+            // Outer Path
+            "shapes": [
+                {
+                    "style": {
+                        "fill": {
+                            "type": "color",
+                            "color": "=@Background"
+                        }
+                    },
+                    "geometry": [
+                        {
+                            "type": "rect"
+                        }
+                    ]
+                },
+                // Inner Path
+                {
+                    "style": {
+                        "fill": {
+                            "type": "color",
+                            "color": "=@Foreground"
+                        }
+                    },
+                    "geometry": [
+                        {
+                            "type": "rect",
+                            "w": "=(@Value - @Min) / (@Max - @Min)"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "clip": {
+        "geometry": [
+            {
+                "type": "intersection",
+                "geometry": [
+                    // Triangle Path
+                    {
+                        "type": "path",
+                        "path": "M 0,1 L 1,0 L 1,1 Z"
+                    },
+                    // Bars
+                    {
+                        "type": "union",
+                        "geometry": [
+                            {
+                                "type": "rect",
+                                "x": 0,
+                                "w": 0.233
+                            },
+                            {
+                                "type": "rect",
+                                "x": 0.256,
+                                "w": 0.233
+                            },
+                            {
+                                "type": "rect",
+                                "x": 0.512,
+                                "w": 0.233
+                            },
+                            {
+                                "type": "rect",
+                                "x": 0.767,
+                                "w": 0.233
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

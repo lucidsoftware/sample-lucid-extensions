@@ -1,0 +1,25 @@
+{
+    "images": {
+        "logo": {
+            "type": "file",
+            "path": "logo.png"
+        }
+    },
+    "style": {
+        "fill": {
+            "type": "image",
+            "ref": "logo",
+            "mode": "stretch"
+        },
+        "stroke": {
+            "color": "#00000000",
+            "width": 1
+        },
+        "rounding": 0
+    },
+    "geometry": [
+        {
+            "type": "rect"
+        }
+    ]
+}

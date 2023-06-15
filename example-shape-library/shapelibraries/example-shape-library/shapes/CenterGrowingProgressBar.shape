@@ -1,0 +1,85 @@
+{
+    "properties": [
+        {
+            "name": "PositiveColor",
+            "label": "Positive Color",
+            "type": "color",
+            "default": "#0066cc"
+        },
+        {
+            "name": "NegativeColor",
+            "label": "Negative Color",
+            "type": "color",
+            "default": "#fc0362"
+        },
+        {
+            "name": "Min",
+            "label": "Minimum",
+            "type": "number",
+            "default": -100
+        },
+        {
+            "name": "Max",
+            "label": "Maximum",
+            "type": "number",
+            "default": 100
+        },
+        {
+            "name": "Value",
+            "label": "Value",
+            "type": "number",
+            "default": 50
+        }
+    ],
+    "templates": [
+        {
+            "name": "bar",
+            "geometry": [
+                {
+                    "type": "rect",
+                    "x": 0.5,
+                    "w": "=@Value / (@Max - @Min)"
+                }
+            ]
+        }
+    ],
+    "shapes": [
+        // Background
+        {
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "=fillColor()"
+                },
+                "stroke": {
+                    "color": "#000000",
+                    "width": 1
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                },
+                {
+                    "type": "path",
+                    "path": "M 0.5 0 L 0.5 1"
+                }
+            ]
+        },
+        // Progress
+        {
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "=IF(@Value < 0, @NegativeColor, @PositiveColor)"
+                }
+            },
+            "geometry": [
+                {
+                    "type": "template",
+                    "template": "bar"
+                }
+            ]
+        }
+    ]
+}

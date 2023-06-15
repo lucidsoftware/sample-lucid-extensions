@@ -1,0 +1,180 @@
+{
+  "properties": [
+    {
+      "name": "Activity",
+      "label": "Activity",
+      "type": "picklist",
+      "default": "Task",
+      "options": [
+        {
+          "label": "Task",
+          "value": "Task"
+        },
+        {
+          "label": "Transaction",
+          "value": "Transaction"
+        },
+        {
+          "label": "Event Sub-Process",
+          "value": "Event Sub-Process"
+        },
+        {
+          "label": "Call Activity",
+          "value": "Call Activity"
+        }
+      ]
+    },
+    {
+      "name": "Task Types",
+      "label": "Task Types",
+      "type": "picklist",
+      "default": "None",
+      "options": [
+        {
+          "label": "None",
+          "value": "None"
+        },
+        {
+          "label": "Send",
+          "value": "Send"
+        },
+        {
+          "label": "Receive",
+          "value": "Receive"
+        },
+        {
+          "label": "User",
+          "value": "User"
+        },
+        {
+          "label": "Manual",
+          "value": "Manual"
+        },
+        {
+          "label": "Business Rule",
+          "value": "Business Rule"
+        },
+        {
+          "label": "Service",
+          "value": "Service"
+        },
+        {
+          "label": "Script",
+          "value": "Script"
+        }
+      ]
+    },
+    {
+      "name": "Activity Marker 1",
+      "label": "Activity Marker 1",
+      "type": "picklist",
+      "default": "None",
+      "options": [
+        {
+          "label": "None",
+          "value": "None"
+        },
+        {
+          "label": "Sub-Process",
+          "value": "Sub-Process"
+        },
+        {
+          "label": "Loop",
+          "value": "Loop"
+        },
+        {
+          "label": "Parallel MI",
+          "value": "Parallel MI"
+        },
+        {
+          "label": "Sequential MI",
+          "value": "Sequential MI"
+        },
+        {
+          "label": "Ad Hoc",
+          "value": "Ad Hoc"
+        },
+        {
+          "label": "Compensation",
+          "value": "Compensation"
+        }
+      ]
+    },
+    {
+      "name": "Activity Marker 2",
+      "label": "Activity Marker 2",
+      "type": "picklist",
+      "default": "None",
+      "options": [
+        {
+          "label": "None",
+          "value": "None"
+        },
+        {
+          "label": "Sub-Process",
+          "value": "Sub-Process"
+        },
+        {
+          "label": "Loop",
+          "value": "Loop"
+        },
+        {
+          "label": "Parallel MI",
+          "value": "Parallel MI"
+        },
+        {
+          "label": "Sequential MI",
+          "value": "Sequential MI"
+        },
+        {
+          "label": "Ad Hoc",
+          "value": "Ad Hoc"
+        },
+        {
+          "label": "Compensation",
+          "value": "Compensation"
+        }
+      ]
+    }
+  ],
+  "geometry": [
+    {
+      "type": "rect"
+    }
+  ],
+  "shapes": [
+    {
+      "geometry": [
+        {
+          "type": "rect",
+          "condition": "=@'Activity' = 'Transaction'"
+        }
+      ],
+      "bounds": {
+        "x": 0.5,
+        "y": 0.5,
+        "w": 1.05,
+        "h": 1.05,
+        "anchor": "center"
+      }
+    },
+    {
+      "geometry": [
+        {
+          "type": "rect"
+        }
+      ],
+      "textarea": {
+        "name": "main",
+        "text": "{{=this.Activity}}",
+        "editable": true
+      },
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1,
+        "h": 1
+      }
+    }
+  ]
+}

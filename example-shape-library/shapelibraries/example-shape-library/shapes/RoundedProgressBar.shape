@@ -1,0 +1,117 @@
+{
+    "properties": [
+        {
+            "name": "Min",
+            "label": "Min",
+            "type": "number",
+            "default": 1,
+            "constraints": [
+                {
+                    "condition": "=@Min < @Max",
+                    "message": "Min constraint"
+                }
+            ]
+        },
+        {
+            "name": "Max",
+            "label": "Max",
+            "type": "number",
+            "default": 100,
+            "constraints": [
+                {
+                    "condition": "=@Max > @Min",
+                    "message": "Max constraint"
+                }
+            ]
+        },
+        {
+            "name": "Value",
+            "label": "Value",
+            "type": "number",
+            "default": 40,
+            "constraints": [
+                {
+                    "condition": "=@Value >= @Min",
+                    "resolution": "=@Min",
+                    "message": "Min value constraint"
+                },
+                {
+                    "condition": "=@Value <= @Max",
+                    "resolution": "=@Max",
+                    "message": "Max value constraint"
+                }
+            ]
+        },
+        {
+            "name": "Foreground",
+            "label": "Foreground",
+            "type": "color",
+            "default": "=fillColor()"
+        },
+        {
+            "name": "Background",
+            "label": "Background",
+            "type": "color",
+            "default": "#D7E9FF"
+        }
+    ],
+    "defs": [
+        {
+            "name": "Rounded",
+            "type": "number",
+            "value": "=@Height / @Width"
+        }
+    ],
+    "clip": {
+        "geometry": [
+            {
+                "type": "union",
+                "geometry": [
+                    {
+                        "type": "ellipse",
+                        "w": "=@Rounded"
+                    },
+                    {
+                        "type": "rect",
+                        "x": "=@Rounded / 2",
+                        "w": "=1 - @Rounded"
+                    },
+                    {
+                        "type": "ellipse",
+                        "x": "=1 - @Rounded",
+                        "w": "=@Rounded"
+                    }
+                ]
+            }
+        ]
+    },
+    "shapes": [
+        {
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "=@Background"
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ]
+        },
+        {
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "=@Foreground"
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect",
+                    "w": "=(@Value - @Min) / (@Max - @Min)"
+                }
+            ]
+        }
+    ]
+}

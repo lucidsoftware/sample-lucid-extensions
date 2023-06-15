@@ -1,0 +1,25 @@
+{
+    "shapes": [
+        {
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ]
+        },
+        {
+            "condition": "=isodd(currentsecond)",
+            "geometry": [
+                {
+                    "type": "polygon",
+                    "n": 5,
+                    "condition": "=mod(currentsecond, 3) = 1"
+                },
+                {
+                    "type": "ellipse",
+                    "condition": "=mod(currentsecond, 3) = 2"
+                }
+            ]
+        }
+    ]
+}

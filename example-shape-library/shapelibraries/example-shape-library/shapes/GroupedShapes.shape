@@ -1,0 +1,170 @@
+{
+    "defs": [
+        {
+            "name": "block",
+            "type": "number",
+            "value": 20
+        }
+    ],
+    "geometry": [
+        {
+            "type": "rect"
+        }
+    ],
+    "minSize": {
+        "width": "=11*20",
+        "height": "=20*10"
+    },
+    "style": {
+        "fill": {
+            "type": "color",
+            "color": "#dfdfdf"
+        },
+        "stroke": {
+            "width": 0
+        }
+    },
+    "shapes": [
+        {
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": true,
+                "x": "=@block",
+                "y": "=@block",
+                "w": "=@Width - @block",
+                "h": "=20"
+            },
+            "textarea": {
+                "name": "title",
+                "text": "Heading 2 Text",
+                "align": "left",
+                "editable": true,
+                "style": {
+                    "bold": true,
+                    "italic": false,
+                    "size": 24
+                }
+            }
+        },
+        {
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": true,
+                "x": "=@block",
+                "y": "=@block *3",
+                "w": "= @Width - (@block * 2)",
+                "h": "= @Height - (@block * 4)"
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ],
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                },
+                "stroke": {
+                    "width": 2,
+                    "color": "#0066cc"
+                }
+            },
+            "shapes": [
+                {
+                    "bounds": {
+                        "anchor": "top-left",
+                        "absolute": true,
+                        "x": "=20",
+                        "y": "=20",
+                        "w": "= @Width - 40",
+                        "h": "=20"
+                    },
+                    "textarea": {
+                        "name": "Subheading",
+                        "text": "Subheading Text",
+                        "align": "left",
+                        "style": {
+                            "bold": true,
+                            "italic": false,
+                            "size": 20
+                        },
+                        "editable": true
+                    }
+                },
+                {
+                    "bounds": {
+                        "anchor": "top-left",
+                        "absolute": true,
+                        "x": "=20",
+                        "y": "=60",
+                        "w": "=(@Width - 100) / 2",
+                        "h": "=@Height - 160"
+                    },
+                    "geometry": [
+                        {
+                            "type": "rect"
+                        }
+                    ],
+                    "style": {
+                        "fill": {
+                            "type": "color",
+                            "color": "#dae9f7"
+                        },
+                        "stroke": {
+                            "width": 0
+                        }
+                    },
+                    "textarea": {
+                        "name": "bodytext1",
+                        "text": "body text",
+                        "margins": 10,
+                        "align": "center",
+                        "editable": true,
+                        "style": {
+                            "bold": false,
+                            "italic": false,
+                            "size": 16
+                        }
+                    }
+                },
+                {
+                    "bounds": {
+                        "anchor": "top-left",
+                        "absolute": true,
+                        "x": "= 40 + ( ( @Width - 100 ) / 2)",
+                        "y": "=60",
+                        "w": "=(@Width - 100) / 2",
+                        "h": "=@Height - 160"
+                    },
+                    "geometry": [
+                        {
+                            "type": "rect"
+                        }
+                    ],
+                    "style": {
+                        "fill": {
+                            "type": "color",
+                            "color": "#dae9f7"
+                        },
+                        "stroke": {
+                            "width": 0
+                        }
+                    },
+                    "textarea": {
+                        "name": "bodytext2",
+                        "text": "body text",
+                        "margins": 10,
+                        "align": "center",
+                        "editable": true,
+                        "style": {
+                            "bold": false,
+                            "italic": false,
+                            "size": 16
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
