@@ -44,6 +44,7 @@
         }
     ],
     "shapes": [
+        // Background
         {
             "style": {
                 "fill": {
@@ -65,6 +66,7 @@
                 }
             ]
         },
+        // Progress
         {
             "style": {
                 "fill": {

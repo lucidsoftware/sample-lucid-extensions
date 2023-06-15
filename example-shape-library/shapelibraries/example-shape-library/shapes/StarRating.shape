@@ -67,12 +67,14 @@
         }
     },
     "geometry": [
+        // Background
         {
             "type": "template",
             "template": "stars"
         }
     ],
     "shapes": [
+        // Foreground
         {
             "style": {
                 "fill": {
@@ -96,6 +98,7 @@
                 }
             ]
         },
+        // Outline for the stars
         {
             "style": {
                 "fill": {

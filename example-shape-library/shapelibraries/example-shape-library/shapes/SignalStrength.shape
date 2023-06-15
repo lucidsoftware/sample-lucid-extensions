@@ -57,6 +57,7 @@
     ],
     "shapes": [
         {
+            // Outer Path
             "shapes": [
                 {
                     "style": {
@@ -71,6 +72,7 @@
                         }
                     ]
                 },
+                // Inner Path
                 {
                     "style": {
                         "fill": {
@@ -93,10 +95,12 @@
             {
                 "type": "intersection",
                 "geometry": [
+                    // Triangle Path
                     {
                         "type": "path",
                         "path": "M 0,1 L 1,0 L 1,1 Z"
                     },
+                    // Bars
                     {
                         "type": "union",
                         "geometry": [
