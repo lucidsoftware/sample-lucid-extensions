@@ -1,0 +1,50 @@
+{
+  "id": "",
+  "version": "1.0.0",
+  "extensions": [
+    {
+      "name": "todoist",
+      "title": "Todoist",
+      "product": "spark",
+      "codePath": "editorextensions/todoist/bin/extension.js",
+      "scopes": [
+        "READ",
+        "WRITE",
+        "DOWNLOAD",
+        "SHOW_MODAL",
+        "CUSTOM_UI",
+        "NETWORK"
+      ]
+    }
+  ],
+  "shapeLibraries": [],
+  "oauthProviders": [
+    {
+      "name": "todoist",
+      "title": "Todoist",
+      "authorizationUrl": "https://todoist.com/oauth/authorize",
+      "tokenUrl": "https://todoist.com/oauth/access_token",
+      "scopes": [
+        "data:read_write"
+      ],
+      "domainWhitelist": [
+        "https://api.todoist.com",
+        "https://todoist.com"
+      ],
+      "clientAuthentication": "clientParameters"
+    }
+  ],
+  "dataConnectors": [
+    {
+      "name": "todoist",
+      "oauthProviderName": "todoist",
+      "callbackBaseUrl": "http://localhost:3001?kind=action&name=",
+      "dataActions": {
+        "Import": "Import",
+        "Patch": "Patch",
+        "HardRefresh": "HardRefresh",
+        "Poll": "Poll"
+      }
+    }
+  ]
+}
