@@ -25,7 +25,7 @@ const createExampleTasks = async (
     change: PatchChange,
     externalExampleDataClient: ExternalExampleDataClient,
 ) => {
-    Object.entries(itemsAdded).map(async ([oldPrimaryKey, additions]) => {
+    await Promise.all(Object.entries(itemsAdded).map(async ([oldPrimaryKey, additions]) => {
         try {
             const fixedAdditions = lucidToExampleTaskCreationData(additions);
             const taskResponse = await externalExampleDataClient.create(fixedAdditions);
@@ -39,7 +39,7 @@ const createExampleTasks = async (
             change.setTooltipError(oldPrimaryKey, 'Failed to create task');
             console.warn('Error creating item', err);
         }
-    });
+    }));
 };
 
 const updateExampleTasks = async (
@@ -47,7 +47,7 @@ const updateExampleTasks = async (
     change: PatchChange,
     externalExampleDataClient: ExternalExampleDataClient,
 ) => {
-    Object.entries(itemsChanged).map(async ([primaryKey, changes]) => {
+    await Promise.all(Object.entries(itemsChanged).map(async ([primaryKey, changes]) => {
         try {
             const updateDate = await lucidToExampleTaskUpdateData(changes, primaryKey);
             await externalExampleDataClient.update(updateDate);
@@ -55,7 +55,7 @@ const updateExampleTasks = async (
             change.setTooltipError(primaryKey, 'Failed to update task');
             console.warn('error patching', err);
         }
-    });
+    }));
 };
 
 /**
