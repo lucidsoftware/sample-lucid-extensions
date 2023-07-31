@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Import Page</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+        <style>
+            body,
+            form {
+                margin: 0;
+            }
+
+            .text {
+                color: #282c33;
+                font-family: 'Roboto', sans-serif;
+                font-size: 14px;
+            }
+
+            .input-container {
+                padding: 16px;
+            }
+
+            .button-container {
+                border-top: solid 1px #ced4db;
+                padding: 16px;
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .header {
+                font-size: 16px;
+                font-weight: 500;
+                font-style: normal;	
+                font-stretch: normal;
+                line-height: 24px;
+                margin: 0 0 8px;
+            }
+
+            .label {
+                font-weight: normal;
+                font-style: normal;	
+                font-stretch: normal;
+                line-height: 20px;
+            }
+
+            .input-text {
+                background: #fff;
+                border: 1px solid #a9afb8;
+                border-radius: 4px;
+                height: 30px;
+                margin: 8px 0;
+                overflow: hidden;
+                padding: 5px 8px;
+                text-overflow: ellipsis;
+                width: 100%;
+            }
+
+            .input-text:focus {
+                outline: none;
+                border-color: #7c78ff;
+            }
+
+            ::placeholder {
+                opacity: 0.8;
+            }
+
+            .button {
+                background-color: #3c41c2;
+                border-color: transparent;
+                color: #fff;
+                border-radius: 4px;
+                line-height: 20px;
+                font-weight: 600;
+                font-style: normal;	
+                font-stretch: normal;
+                height: 32px;
+                min-width: 96px;
+            }
+
+            .button:hover {
+                background-color: #2f3296;
+            }
+
+            .button:active {
+                background-color: #21265c;
+            }
+
+            .button:disabled {
+                cursor: not-allowed;
+                pointer-events: none;
+                opacity: 0.45;
+            }
+        </style>
+    </head>
+    <body>
+        <form id="import-form">
+            <div class="input-container">
+                <p class="header text">Enter the ID and page numbers of the document you would like to import</p>
+                
+                <label class="label text" for="doc-id">Document ID</label>
+                <br/>
+                <input class="input-text text" id="doc-id" type="text" placeholder="00000000-0000-0000-0000-000000000000"/>
+
+                <label class="label text" for="page-nums">Page numbers</label>
+                <br/>
+                <input class="input-text text" id="page-nums" type="text" placeholder="0, 1, 2..."/>
+            </div>
+
+            <div class="button-container">
+                <input class="button text" id="submit-button" type="submit" value="Submit">
+            </div>
+        </form>
+
+        <script type="text/javascript">
+        document.getElementById("import-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+        
+            const docId = document.getElementById('doc-id');
+            const pageNums = document.getElementById('page-nums');
+
+            parent.postMessage({
+                docId: docId.value,
+                pageNums: pageNums.value,
+            }, '*')
+        });
+
+        // Listen for changes in the input fields
+        const docIdField = document.getElementById('doc-id');
+        const pageNumsField = document.getElementById('page-nums');
+        const submitButton = document.getElementById('submit-button');
+        
+        submitButton.disabled = true;
+
+        docIdField.addEventListener('input', checkInputFields);
+        pageNumsField.addEventListener('input', checkInputFields);
+
+        // Function to check the input fields' values and enable or disable the submit button
+        function checkInputFields() {
+            const docId = document.getElementById('doc-id').value;
+            const pageNums = document.getElementById('page-nums').value;
+            const submitButton = document.getElementById('submit-button');
+
+            const isDocIdEmpty = docId.trim().length === 0;
+            const isPageNumsEmpty = pageNums.trim().length === 0;
+
+            submitButton.disabled = isDocIdEmpty || isPageNumsEmpty;
+        }
+        </script>
+    </body>
+</html>

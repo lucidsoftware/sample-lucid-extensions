@@ -1,0 +1,25 @@
+{
+  "id": "!!REPLACE THIS WITH YOUR PACKAGE ID!!",
+  "version": "1.0.0",
+  "extensions": [
+    {
+      "name": "import-page",
+      "title": "Import page",
+      "products": [
+        "chart",
+        "spark"
+      ],
+      "codePath": "editorextensions/import-page/bin/extension.js",
+      "scopes": [
+        "READ",
+        "WRITE",
+        "DOWNLOAD",
+        "SHOW_MODAL",
+        "CUSTOM_UI",
+        "NETWORK"
+      ]
+    }
+  ],
+  "shapeLibraries": [],
+  "oauthProviders": []
+}
