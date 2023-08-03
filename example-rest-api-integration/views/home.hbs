@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+
+  <link rel="stylesheet" href="/styles/home.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+    <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-5">Example Lucid REST API application</h1>
+      <p class="lead">Welcome <b>{{username}}</b></p>
+      <form method="POST" action="/logout" class="logout-form">
+        <button type="submit" class="btn btn-block btn-outline-danger">Logout</button>
+      </form>
+      <p class="lead">Imagine this is your application, and the user has is logged in.</p>
+    </div>
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Connect with Lucid using OAuth 2.0</h4>
+          </div>
+          <div class="card-body">
+                {{#if connected}}
+                  <p>You already connected your account, the token will expire on: {{ expireDate }}</p>
+                  <button type="button" id="connect-button" class="btn btn-block btn-outline-primary">Connect your Lucid account again</button>
+                {{else}}
+                  <button type="button" id="connect-button" class="btn btn-block btn-outline-primary">Connect your Lucid account</button>
+                {{/if}}
+          </div>
+        </div>
+
+        <!-- If a lucid account was connected, we show the profile -->
+        {{#if connected}}
+        <div class="card mb-4 box-shadow" >
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Lucid Profile</h4>
+          </div>
+          <div class="card-body">
+                <p>Now that you have a connected your Lucid user, we can use the OAuth2 token in the server to display the profile information</p>
+                <ul class="list-unstyled mt-3 mb-4" id="user-profile-contents"> </ul>
+          </div>
+        </div>
+
+        <script src="/scripts/profile.js" defer></script>
+       {{/if}}
+
+      </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="/scripts/connect.js" defer></script>
+  </body>
+
+</html>
