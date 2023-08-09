@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connection Success</title>
+</head>
+<body>
+<p>This window will close automatically, if it doesn't close it manually</p>
+<script th:inline="javascript">
+    if(!!window.opener) {
+        window.opener.postMessage('Success', '/')
+    }
+</script>
+</body>
+</html>
