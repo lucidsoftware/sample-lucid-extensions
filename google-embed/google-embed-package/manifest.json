@@ -1,0 +1,45 @@
+{
+  "id": "88b8e6c8-7af0-421a-9d70-25c75528b20a",
+  "version": "1.0.0",
+  "extensions": [
+    {
+      "name": "drive",
+      "title": "Embedded Links for Google Workspace + Lucid",
+      "products": [
+        "chart",
+        "spark",
+        "teamspaces"
+      ],
+      "codePath": "editorextensions/drive/bin/extension.js",
+      "scopes": [
+        "READ",
+        "WRITE",
+        "NETWORK",
+        "SHOW_MODAL",
+        "OAUTH_TOKEN"
+      ]
+    }
+  ],
+  "shapeLibraries": [],
+  "oauthProviders": [
+    {
+      "name": "googleembedexample",
+      "title": "Google Workspace",
+      "tokenUrl": "https://oauth2.googleapis.com/token",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth?access_type=offline",
+      "scopes": [
+        "https://www.googleapis.com/auth/drive.readonly"
+      ],
+      "domainWhitelist": [
+        "https://docs.google.com",
+        "https://docs.googleapis.com",
+        "https://slides.googleapis.com",
+        "https://sheets.googleapis.com",
+        "https://www.googleapis.com"
+      ],
+      "clientAuthentication": "basic",
+      "faviconUrl": "https://cdn-cashy-static-assets.lucidchart.com/app/google-workspace/GoogleDriveLogo24.svg",
+      "helpUrl": "https://lucidspark.zendesk.com/hc/en-us/articles/360049157652-Add-Links-to-a-board#embedded-link"
+    }
+  ]
+}
