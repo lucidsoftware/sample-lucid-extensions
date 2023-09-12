@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .loading {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .loading div {
+                box-sizing: border-box;
+                display: block;
+                position: absolute;
+                width: 64px;
+                height: 64px;
+                margin: 8px;
+                border: 8px solid #1071e5;
+                border-radius: 50%;
+                animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+                border-color: #1071e5 transparent transparent transparent;
+            }
+            .loading div:nth-child(1) { animation-delay: -0.45s; }
+            .loading div:nth-child(2) { animation-delay: -0.3s; }
+            .loading div:nth-child(3) { animation-delay: -0.15s; }
+            @keyframes loading {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </head>
+    <body style="margin: 0;">
+        <div class="loading">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <script src="https://apis.google.com/js/api.js"></script>
+        <script>
+            window.addEventListener("message", (e) => {
+              if (e.data.action === "init") {
+                const accessToken = e.data.accessToken;
+                const locale = e.data.locale;
+                const title = e.data.title;
+                gapi.load(
+                  "client:picker",
+                  async () => await initializePicker(accessToken, locale, title)
+                );
+              }
+            });
+
+            async function initializePicker(accessToken, locale, title) {
+              await gapi.client.load(
+                "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"
+              );
+
+              const teamDriveView = new google.picker.DocsView(google.picker.ViewId.DOCS);
+              teamDriveView.setEnableTeamDrives(true);
+              teamDriveView.setIncludeFolders(true);
+              teamDriveView.setSelectFolderEnabled(true);
+              const docsView = new google.picker.DocsView(google.picker.ViewId.DOCS);
+              docsView.setSelectFolderEnabled(true);
+
+              const picker = new google.picker.PickerBuilder()
+                .setOAuthToken(accessToken)
+                .setOrigin(document.referrer)
+                .setCallback(pickerCallback)
+                .setTitle(title)
+                .setLocale(locale)
+                .enableFeature(google.picker.Feature.SUPPORT_TEAM_DRIVES)
+                .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+                .addView(docsView)
+                .addView(teamDriveView)
+                .build();
+              picker.setVisible(true);
+
+              document.getElementsByClassName("loading")[0].style.visibility = "hidden";
+            }
+
+            async function pickerCallback(data) {
+              if (data.action === "cancel" || data.action === "error") {
+                parent.postMessage({ action: data.action }, "*");
+              } else if (data.action === "picked") {
+                const docUrls = data[google.picker.Response.DOCUMENTS].map(
+                  (doc) => doc[google.picker.Document.URL]
+                );
+                parent.postMessage(
+                  {
+                    action: data.action,
+                    docUrls: docUrls,
+                  },
+                  "*"
+                );
+              }
+            }
+        </script>
+    </body>
+</html>
