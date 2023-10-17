@@ -1,0 +1,360 @@
+<html>
+    <head>
+        <style type="text/css">
+            html, body {
+                overflow-x:hidden;
+            }
+            .icons {
+                display:flex;
+                flex-wrap:wrap;
+            }
+            .icon {
+                width:60px;
+                height:60px;
+                border:1px solid black;
+                border-radius:4px;
+                margin:8px;
+                padding:8px;
+                background-size: 60px;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        </style>
+    </head>
+    <body>
+        <div
+            id="icons"
+            class="icons"
+        ></div>
+
+        <script type="text/javascript">
+            const iconData = [{
+                name: 'Interface Edit Pencil',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M5,12.24.5,13.5,1.76,9,10,.8a1,1,0,0,1,1.43,0L13.2,2.58A1,1,0,0,1,13.2,4Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+            },
+            {
+                name: 'Interface Edit Pin 3',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="9" cy="5" r="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M10.25,3.67a1.5,1.5,0,0,0-2.31-.23" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="13.5" x2="6.08" y2="8.43" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Magnet',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M8.81,12.07A4.86,4.86,0,0,1,1.93,5.19L6.62.5,8.81,2.69,4.51,7A1.77,1.77,0,0,0,7,9.49l4.3-4.3L13.5,7.38Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.19" y1="7.31" x2="11.38" y2="9.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="2.62" x2="6.69" y2="4.81" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Scissors',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><line x1="2.19" y1="4.93" x2="13.5" y2="11.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="2.75" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="2.19" y1="9.07" x2="13.5" y2="2.55" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="11.25" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle></g></svg>',
+            },
+            {
+                name: 'Interface Edit Binocular',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="3" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M5.5,3V1.5a1,1,0,0,0-1-1H3.32a1,1,0,0,0-1,.81L.55,10.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4.5" y1="5.5" x2="9.5" y2="5.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="5.5" y1="8" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="11" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M8.5,3V1.5a1,1,0,0,1,1-1h1.18a1,1,0,0,1,1,.81l1.79,9.19" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.5" y1="8" x2="8.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Layer Add 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><rect x="0.5" y="3.5" width="10" height="10" rx="1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></rect><path d="M3.5.5h9a1,1,0,0,1,1,1v9" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><g><line x1="5.5" y1="6" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="8.5" x2="3" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></g></svg>',
+            },
+            {
+                name: 'Interface Edit Quill',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.51,10.05a10.21,10.21,0,0,0,3,.45A10,10,0,0,0,13.5,1a10.16,10.16,0,0,0-3-.45A10,10,0,0,0,.51,10.05Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1,13.5a9.65,9.65,0,0,1-.49-3.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.01" y1="5" x2="10.58" y2="7.57" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Swatch',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M1.5.5h3a1,1,0,0,1,1,1V11A2.5,2.5,0,0,1,3,13.5H3A2.5,2.5,0,0,1,.5,11V1.5a1,1,0,0,1,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.5,5,9,1.48a1,1,0,0,1,1.41,0L12.52,3.6a1,1,0,0,1,0,1.41L4.77,12.77" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9,8.5H12.5a1,1,0,0,1,1,1v3a1,1,0,0,1-1,1H3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="4.5" x2="5.5" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="8.5" x2="5.5" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Merge',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7.5,9.5h1a1,1,0,0,0,1-1v-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,4.5v-3a1,1,0,0,0-1-1h-7a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.5,12.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.5,5.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.5,13.5a1,1,0,0,0,1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.5" y1="4.5" x2="10" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="13.5" x2="10" y2="13.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="8" x2="13.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="9.5" x2="4.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Divide',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.5,8.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1.5.5a1,1,0,0,0-1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,1.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4" y1="0.5" x2="6" y2="0.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="4" x2="0.5" y2="6" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><path d="M9.5,4.5h3a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1h-7a1,1,0,0,1-1-1v-3h4a1,1,0,0,0,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            },
+            {
+                name: 'Interface Edit Flip Right Alternate 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7,13.5V.5a6.5,6.5,0,0,1,0,13Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,1.05a6.13,6.13,0,0,0-1.3.76A6.34,6.34,0,0,0,2,2.85" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,13a6.13,6.13,0,0,1-1.3-.76,6.34,6.34,0,0,1-1.09-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M.67,5.5a6.7,6.7,0,0,0,0,3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            },{
+                name: 'Interface Edit Pencil',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M5,12.24.5,13.5,1.76,9,10,.8a1,1,0,0,1,1.43,0L13.2,2.58A1,1,0,0,1,13.2,4Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+            },
+            {
+                name: 'Interface Edit Pin 3',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="9" cy="5" r="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M10.25,3.67a1.5,1.5,0,0,0-2.31-.23" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="13.5" x2="6.08" y2="8.43" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Magnet',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M8.81,12.07A4.86,4.86,0,0,1,1.93,5.19L6.62.5,8.81,2.69,4.51,7A1.77,1.77,0,0,0,7,9.49l4.3-4.3L13.5,7.38Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.19" y1="7.31" x2="11.38" y2="9.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="2.62" x2="6.69" y2="4.81" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Scissors',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><line x1="2.19" y1="4.93" x2="13.5" y2="11.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="2.75" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="2.19" y1="9.07" x2="13.5" y2="2.55" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="11.25" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle></g></svg>',
+            },
+            {
+                name: 'Interface Edit Binocular',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="3" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M5.5,3V1.5a1,1,0,0,0-1-1H3.32a1,1,0,0,0-1,.81L.55,10.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4.5" y1="5.5" x2="9.5" y2="5.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="5.5" y1="8" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="11" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M8.5,3V1.5a1,1,0,0,1,1-1h1.18a1,1,0,0,1,1,.81l1.79,9.19" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.5" y1="8" x2="8.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Layer Add 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><rect x="0.5" y="3.5" width="10" height="10" rx="1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></rect><path d="M3.5.5h9a1,1,0,0,1,1,1v9" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><g><line x1="5.5" y1="6" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="8.5" x2="3" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></g></svg>',
+            },
+            {
+                name: 'Interface Edit Quill',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.51,10.05a10.21,10.21,0,0,0,3,.45A10,10,0,0,0,13.5,1a10.16,10.16,0,0,0-3-.45A10,10,0,0,0,.51,10.05Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1,13.5a9.65,9.65,0,0,1-.49-3.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.01" y1="5" x2="10.58" y2="7.57" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Swatch',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M1.5.5h3a1,1,0,0,1,1,1V11A2.5,2.5,0,0,1,3,13.5H3A2.5,2.5,0,0,1,.5,11V1.5a1,1,0,0,1,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.5,5,9,1.48a1,1,0,0,1,1.41,0L12.52,3.6a1,1,0,0,1,0,1.41L4.77,12.77" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9,8.5H12.5a1,1,0,0,1,1,1v3a1,1,0,0,1-1,1H3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="4.5" x2="5.5" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="8.5" x2="5.5" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Merge',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7.5,9.5h1a1,1,0,0,0,1-1v-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,4.5v-3a1,1,0,0,0-1-1h-7a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.5,12.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.5,5.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.5,13.5a1,1,0,0,0,1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.5" y1="4.5" x2="10" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="13.5" x2="10" y2="13.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="8" x2="13.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="9.5" x2="4.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Divide',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.5,8.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1.5.5a1,1,0,0,0-1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,1.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4" y1="0.5" x2="6" y2="0.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="4" x2="0.5" y2="6" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><path d="M9.5,4.5h3a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1h-7a1,1,0,0,1-1-1v-3h4a1,1,0,0,0,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            },
+            {
+                name: 'Interface Edit Flip Right Alternate 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7,13.5V.5a6.5,6.5,0,0,1,0,13Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,1.05a6.13,6.13,0,0,0-1.3.76A6.34,6.34,0,0,0,2,2.85" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,13a6.13,6.13,0,0,1-1.3-.76,6.34,6.34,0,0,1-1.09-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M.67,5.5a6.7,6.7,0,0,0,0,3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            },{
+                name: 'Interface Edit Pencil',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M5,12.24.5,13.5,1.76,9,10,.8a1,1,0,0,1,1.43,0L13.2,2.58A1,1,0,0,1,13.2,4Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+            },
+            {
+                name: 'Interface Edit Pin 3',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="9" cy="5" r="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M10.25,3.67a1.5,1.5,0,0,0-2.31-.23" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="13.5" x2="6.08" y2="8.43" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Magnet',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M8.81,12.07A4.86,4.86,0,0,1,1.93,5.19L6.62.5,8.81,2.69,4.51,7A1.77,1.77,0,0,0,7,9.49l4.3-4.3L13.5,7.38Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.19" y1="7.31" x2="11.38" y2="9.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="2.62" x2="6.69" y2="4.81" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Scissors',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><line x1="2.19" y1="4.93" x2="13.5" y2="11.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="2.75" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="2.19" y1="9.07" x2="13.5" y2="2.55" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="11.25" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle></g></svg>',
+            },
+            {
+                name: 'Interface Edit Binocular',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="3" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M5.5,3V1.5a1,1,0,0,0-1-1H3.32a1,1,0,0,0-1,.81L.55,10.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4.5" y1="5.5" x2="9.5" y2="5.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="5.5" y1="8" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="11" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M8.5,3V1.5a1,1,0,0,1,1-1h1.18a1,1,0,0,1,1,.81l1.79,9.19" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.5" y1="8" x2="8.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Layer Add 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><rect x="0.5" y="3.5" width="10" height="10" rx="1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></rect><path d="M3.5.5h9a1,1,0,0,1,1,1v9" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><g><line x1="5.5" y1="6" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="8.5" x2="3" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></g></svg>',
+            },
+            {
+                name: 'Interface Edit Quill',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.51,10.05a10.21,10.21,0,0,0,3,.45A10,10,0,0,0,13.5,1a10.16,10.16,0,0,0-3-.45A10,10,0,0,0,.51,10.05Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1,13.5a9.65,9.65,0,0,1-.49-3.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.01" y1="5" x2="10.58" y2="7.57" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Swatch',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M1.5.5h3a1,1,0,0,1,1,1V11A2.5,2.5,0,0,1,3,13.5H3A2.5,2.5,0,0,1,.5,11V1.5a1,1,0,0,1,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.5,5,9,1.48a1,1,0,0,1,1.41,0L12.52,3.6a1,1,0,0,1,0,1.41L4.77,12.77" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9,8.5H12.5a1,1,0,0,1,1,1v3a1,1,0,0,1-1,1H3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="4.5" x2="5.5" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="8.5" x2="5.5" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Merge',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7.5,9.5h1a1,1,0,0,0,1-1v-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,4.5v-3a1,1,0,0,0-1-1h-7a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.5,12.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.5,5.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.5,13.5a1,1,0,0,0,1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.5" y1="4.5" x2="10" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="13.5" x2="10" y2="13.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="8" x2="13.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="9.5" x2="4.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Divide',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.5,8.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1.5.5a1,1,0,0,0-1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,1.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4" y1="0.5" x2="6" y2="0.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="4" x2="0.5" y2="6" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><path d="M9.5,4.5h3a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1h-7a1,1,0,0,1-1-1v-3h4a1,1,0,0,0,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            },
+            {
+                name: 'Interface Edit Flip Right Alternate 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7,13.5V.5a6.5,6.5,0,0,1,0,13Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,1.05a6.13,6.13,0,0,0-1.3.76A6.34,6.34,0,0,0,2,2.85" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,13a6.13,6.13,0,0,1-1.3-.76,6.34,6.34,0,0,1-1.09-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M.67,5.5a6.7,6.7,0,0,0,0,3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            },{
+                name: 'Interface Edit Pencil',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M5,12.24.5,13.5,1.76,9,10,.8a1,1,0,0,1,1.43,0L13.2,2.58A1,1,0,0,1,13.2,4Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+            },
+            {
+                name: 'Interface Edit Pin 3',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="9" cy="5" r="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M10.25,3.67a1.5,1.5,0,0,0-2.31-.23" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="13.5" x2="6.08" y2="8.43" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Magnet',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M8.81,12.07A4.86,4.86,0,0,1,1.93,5.19L6.62.5,8.81,2.69,4.51,7A1.77,1.77,0,0,0,7,9.49l4.3-4.3L13.5,7.38Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.19" y1="7.31" x2="11.38" y2="9.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="2.62" x2="6.69" y2="4.81" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Scissors',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><line x1="2.19" y1="4.93" x2="13.5" y2="11.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="2.75" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="2.19" y1="9.07" x2="13.5" y2="2.55" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="11.25" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle></g></svg>',
+            },
+            {
+                name: 'Interface Edit Binocular',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="3" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M5.5,3V1.5a1,1,0,0,0-1-1H3.32a1,1,0,0,0-1,.81L.55,10.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4.5" y1="5.5" x2="9.5" y2="5.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="5.5" y1="8" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="11" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M8.5,3V1.5a1,1,0,0,1,1-1h1.18a1,1,0,0,1,1,.81l1.79,9.19" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.5" y1="8" x2="8.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Layer Add 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><rect x="0.5" y="3.5" width="10" height="10" rx="1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></rect><path d="M3.5.5h9a1,1,0,0,1,1,1v9" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><g><line x1="5.5" y1="6" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="8.5" x2="3" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></g></svg>',
+            },
+            {
+                name: 'Interface Edit Quill',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.51,10.05a10.21,10.21,0,0,0,3,.45A10,10,0,0,0,13.5,1a10.16,10.16,0,0,0-3-.45A10,10,0,0,0,.51,10.05Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1,13.5a9.65,9.65,0,0,1-.49-3.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.01" y1="5" x2="10.58" y2="7.57" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Swatch',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M1.5.5h3a1,1,0,0,1,1,1V11A2.5,2.5,0,0,1,3,13.5H3A2.5,2.5,0,0,1,.5,11V1.5a1,1,0,0,1,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.5,5,9,1.48a1,1,0,0,1,1.41,0L12.52,3.6a1,1,0,0,1,0,1.41L4.77,12.77" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9,8.5H12.5a1,1,0,0,1,1,1v3a1,1,0,0,1-1,1H3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="4.5" x2="5.5" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="8.5" x2="5.5" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Merge',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7.5,9.5h1a1,1,0,0,0,1-1v-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,4.5v-3a1,1,0,0,0-1-1h-7a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.5,12.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.5,5.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.5,13.5a1,1,0,0,0,1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.5" y1="4.5" x2="10" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="13.5" x2="10" y2="13.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="8" x2="13.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="9.5" x2="4.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Divide',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.5,8.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1.5.5a1,1,0,0,0-1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,1.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4" y1="0.5" x2="6" y2="0.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="4" x2="0.5" y2="6" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><path d="M9.5,4.5h3a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1h-7a1,1,0,0,1-1-1v-3h4a1,1,0,0,0,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            },
+            {
+                name: 'Interface Edit Flip Right Alternate 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7,13.5V.5a6.5,6.5,0,0,1,0,13Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,1.05a6.13,6.13,0,0,0-1.3.76A6.34,6.34,0,0,0,2,2.85" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,13a6.13,6.13,0,0,1-1.3-.76,6.34,6.34,0,0,1-1.09-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M.67,5.5a6.7,6.7,0,0,0,0,3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            },{
+                name: 'Interface Edit Pencil',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M5,12.24.5,13.5,1.76,9,10,.8a1,1,0,0,1,1.43,0L13.2,2.58A1,1,0,0,1,13.2,4Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+            },
+            {
+                name: 'Interface Edit Pin 3',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="9" cy="5" r="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M10.25,3.67a1.5,1.5,0,0,0-2.31-.23" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="13.5" x2="6.08" y2="8.43" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Magnet',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M8.81,12.07A4.86,4.86,0,0,1,1.93,5.19L6.62.5,8.81,2.69,4.51,7A1.77,1.77,0,0,0,7,9.49l4.3-4.3L13.5,7.38Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.19" y1="7.31" x2="11.38" y2="9.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="2.62" x2="6.69" y2="4.81" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Scissors',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><line x1="2.19" y1="4.93" x2="13.5" y2="11.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="2.75" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="2.19" y1="9.07" x2="13.5" y2="2.55" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="2.75" cy="11.25" r="2.25" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle></g></svg>',
+            },
+            {
+                name: 'Interface Edit Binocular',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><circle cx="3" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M5.5,3V1.5a1,1,0,0,0-1-1H3.32a1,1,0,0,0-1,.81L.55,10.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4.5" y1="5.5" x2="9.5" y2="5.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="5.5" y1="8" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><circle cx="11" cy="11" r="2.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M8.5,3V1.5a1,1,0,0,1,1-1h1.18a1,1,0,0,1,1,.81l1.79,9.19" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.5" y1="8" x2="8.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Layer Add 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><rect x="0.5" y="3.5" width="10" height="10" rx="1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></rect><path d="M3.5.5h9a1,1,0,0,1,1,1v9" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><g><line x1="5.5" y1="6" x2="5.5" y2="11" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="8.5" x2="3" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></g></svg>',
+            },
+            {
+                name: 'Interface Edit Quill',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.51,10.05a10.21,10.21,0,0,0,3,.45A10,10,0,0,0,13.5,1a10.16,10.16,0,0,0-3-.45A10,10,0,0,0,.51,10.05Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1,13.5a9.65,9.65,0,0,1-.49-3.45" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="8.01" y1="5" x2="10.58" y2="7.57" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Swatch',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M1.5.5h3a1,1,0,0,1,1,1V11A2.5,2.5,0,0,1,3,13.5H3A2.5,2.5,0,0,1,.5,11V1.5a1,1,0,0,1,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.5,5,9,1.48a1,1,0,0,1,1.41,0L12.52,3.6a1,1,0,0,1,0,1.41L4.77,12.77" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9,8.5H12.5a1,1,0,0,1,1,1v3a1,1,0,0,1-1,1H3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="0.5" y1="4.5" x2="5.5" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="8.5" x2="5.5" y2="8.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Merge',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7.5,9.5h1a1,1,0,0,0,1-1v-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,4.5v-3a1,1,0,0,0-1-1h-7a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.5,12.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.5,5.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.5,13.5a1,1,0,0,0,1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9.5" y1="4.5" x2="10" y2="4.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="8" y1="13.5" x2="10" y2="13.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="8" x2="13.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="4.5" y1="9.5" x2="4.5" y2="10" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>',
+            },
+            {
+                name: 'Interface Edit Pathfinder Divide',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M.5,8.5a1,1,0,0,0,1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1.5.5a1,1,0,0,0-1,1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.5,1.5a1,1,0,0,0-1-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><line x1="4" y1="0.5" x2="6" y2="0.5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="4" x2="0.5" y2="6" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></line><path d="M9.5,4.5h3a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1h-7a1,1,0,0,1-1-1v-3h4a1,1,0,0,0,1-1Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            },
+            {
+                name: 'Interface Edit Flip Right Alternate 2',
+                svg: '<svg width="4096" height="4096" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><g><path d="M7,13.5V.5a6.5,6.5,0,0,1,0,13Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,1.05a6.13,6.13,0,0,0-1.3.76A6.34,6.34,0,0,0,2,2.85" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.39,13a6.13,6.13,0,0,1-1.3-.76,6.34,6.34,0,0,1-1.09-1" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path><path d="M.67,5.5a6.7,6.7,0,0,0,0,3" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>',
+            }];
+
+
+            let pointerDownEvent = undefined;// PointerEvent | undefined;
+            let dragData = undefined;
+            let pointerIsOut = false;
+
+            const documentPointerUp = (e) => {
+                if(pointerIsOut) {
+                    //Notify the editor that it needs to simulate canvas pointer events
+                    parent.postMessage({message:'pointerup', x:e.pageX - window.scrollX, y:e.pageY - window.scrollY}, '*');
+                }
+
+                stopDrag();
+            };
+
+            const isInsideFrame = (e) => {
+                const x = e.pageX - window.scrollX;
+                const y = e.pageY - window.scrollY;
+                return x >= 0 && x <= window.innerWidth && y >= 0 && y <= window.innerHeight;
+            };
+
+            const documentPointerMove = (e) => {
+                const isInside = isInsideFrame(e);
+                if(!pointerIsOut && !isInside) {
+                    startCanvasDrag();
+                } else if(pointerIsOut && isInside) {
+                    //If the pointer has re-entered the iframe while dragging, tell the extension to
+                    //cancel the ongoing interaction for dragging the new block out.
+                    stopCanvasDrag();
+                }
+                pointerIsOut = !isInside;
+
+                //While dragging the HTML element around, move it around
+                //with relative positioning to keep it attached to the pointer cursor.
+                const target = pointerDownEvent?.target;
+                if (pointerDownEvent && target instanceof HTMLElement) {
+                    target.style.position = 'relative';
+                    target.style.top = e.pageY - pointerDownEvent.pageY + 'px';
+                    target.style.left = e.pageX - pointerDownEvent.pageX + 'px';
+                }
+
+                if(isInside) {
+                    //Defense in depth: If somehow the pointer buttons have been released and the user
+                    //is moving the pointer over this iframe again, cancel any ongoing drag operation.
+                    if (e.buttons == 0) {
+                        stopDrag();
+                    }
+                }
+                else {
+                    //Notify the editor that it needs to simulate canvas pointer events
+                    parent.postMessage({message:'pointermove', x:e.pageX - window.scrollX, y:e.pageY - window.scrollY}, '*');
+                }
+            };
+
+            //If we have asked the extension to start a drag-new-block interaction, we need
+            //to listen for a message indicating that interaction has completed (either
+            //successfully or not) in order to reset our drag/drop state entirely.
+            const windowMessage = (e) => {
+                if (e.data === 'dragDone') {
+                    stopDrag();
+                }
+            };
+
+            const startCanvasDrag = () => {
+                parent.postMessage({message: 'drag', data: dragData}, '*');
+                window.addEventListener('message', windowMessage);
+            }
+
+            const stopCanvasDrag = () => {
+                window.removeEventListener('message', windowMessage);
+                parent.postMessage({message:'cancelDrag'}, '*');
+            }
+
+            //Start listening for pointer events on this iframe to implement drag & drop.
+            const startDrag = () => {
+                window.document.addEventListener('pointerup', documentPointerUp);
+                window.document.addEventListener('pointermove', documentPointerMove);
+            }
+
+            //Cancel drag & drop, and reset the DOM back to how it began.
+            const stopDrag = () => {
+                const target = pointerDownEvent?.target;
+                if (pointerDownEvent && target instanceof HTMLElement) {
+                    target.style.position = 'static';
+                    target.style.top = '';
+                    target.style.left = '';
+                    pointerDownEvent = undefined;
+                }
+                window.document.removeEventListener('pointerup', documentPointerUp);
+                window.document.removeEventListener('pointermove', documentPointerMove);
+                stopCanvasDrag();
+            }
+
+            const iconsDiv = document.getElementById('icons');
+            for(const {name, svg} of iconData) {
+                const iconDiv = document.createElement('div');
+
+                iconDiv.className = 'icon';
+                const url = 'data:image/svg+xml;base64,' + btoa(svg);
+                iconDiv.style.backgroundImage = 'url(' + url + ')';
+
+                iconDiv.addEventListener('pointerdown', (e) => {
+                    //Store the event that started the drag, as a coordinate anchor.
+                    pointerDownEvent = e;
+                    pointerIsOut = false;
+                    dragData = {name, url};
+                    startDrag();
+                });
+
+                iconsDiv.appendChild(iconDiv);
+            }
+        </script>
+    </body>
+</html>
