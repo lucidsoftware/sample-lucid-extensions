@@ -1,0 +1,44 @@
+{
+    "name": "AI Prompt Flow",
+    "shapes": [
+        {
+            "name": "System Prompt",
+            "shape": "system-prompt",
+            "defaults": {
+                "width": 564,
+                "height": 230
+            }
+        },
+        {
+            "name": "Prompt Segment",
+            "shape": "prompt-segment",
+            "defaults": {
+                "width": 564,
+                "height": 200
+            }
+        },
+        {
+            "name": "User Prompt",
+            "shape": "user-prompt",
+            "defaults": {
+                "width": 564,
+                "height": 120
+            },
+            "properties": {
+                "Model": "gpt-3.5-turbo"
+            }
+        },
+        {
+            "name": "Response",
+            "shape": "response",
+            "defaults": {
+                "width": 564,
+                "height": 300
+            },
+            "properties": {
+                "ModelResponseText": "",
+                "ModelResponseModelUsed": ""
+            }
+        }
+    ]
+}

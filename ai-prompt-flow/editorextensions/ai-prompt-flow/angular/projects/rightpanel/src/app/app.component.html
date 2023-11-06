@@ -1,0 +1,49 @@
+<h4>{{ phrases.selectedShape }}</h4>
+<div class="shape-header">
+    <img
+        [src]="getImageSrc()"
+        class="icon"
+    >
+    <span class="selection-name">{{ getShapeName() }}</span>
+</div>
+<div *ngIf="executableSelection.length > 1">{{ phrases.xOutOfYArePrompts() }}</div>
+<shared-button
+    *ngIf="executableSelection.length > 1"
+    class="execute-multiple"
+    (onClicked)="executePrompts()"
+    [disabled]="shouldExecutionDisabled"
+    [displayText]="phrases.executePrompts()"
+    [loading]="executing"
+></shared-button>
+<div *ngIf="singleSelection">
+    <div class="details">
+        <div *ngIf="isSystemPrompt(singleSelection)">
+            <app-system-prompt
+                [systemPrompt]="singleSelection"
+                [availableModels]="availableModels"
+                [(executing)]="executing"
+                [(isExecuteFailed)]="isExecuteFailed"
+            ></app-system-prompt>
+        </div>
+        <div *ngIf="isUserPrompt(singleSelection)">
+            <app-user-prompt
+                [userPrompt]="singleSelection"
+                [availableModels]="availableModels"
+                [(executing)]="executing"
+                [(isExecuteFailed)]="isExecuteFailed"
+            ></app-user-prompt>
+        </div>
+        <div *ngIf="isOutput(singleSelection)">
+            <app-output [output]="singleSelection"></app-output>
+        </div>
+        <div *ngIf="isPromptSegment(singleSelection)">
+            <app-prompt-segment [promptSegment]="singleSelection"></app-prompt-segment>
+        </div>
+        <div *ngIf="isVariablesTable(singleSelection)">
+            <app-variables [variables]="singleSelection"></app-variables>
+        </div>
+        <div *ngIf="isExamples(singleSelection)">
+            <app-examples [examples]="singleSelection"></app-examples>
+        </div>
+    </div>
+</div>

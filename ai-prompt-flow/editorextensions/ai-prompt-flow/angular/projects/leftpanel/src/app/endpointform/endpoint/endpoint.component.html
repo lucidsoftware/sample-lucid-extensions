@@ -1,0 +1,10 @@
+<app-edit-endpoint
+    *ngIf="endpoint.editing"
+    class="endpoint"
+    [endpoint]="endpoint"
+></app-edit-endpoint>
+<app-existing-endpoint
+    *ngIf="!endpoint.editing"
+    class="endpoint"
+    [endpoint]="endpoint"
+></app-existing-endpoint>

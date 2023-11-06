@@ -1,0 +1,140 @@
+<div class="container">
+    <form
+        #form="ngForm"
+        (submit)="onSubmit()"
+    >
+        <!-- TODO i18n for error messages -->
+        <!-- TODO set better placeholder values -->
+        <div class="form-group header-row">
+            <label>Edit Model</label>
+            <img
+                src="Trash16.svg"
+                class="trash-icon"
+                (click)="onDelete()"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="displayName">Model Name</label>
+            <input
+                type="text"
+                placeholder="New Model"
+                [(ngModel)]="endpoint['display-name']"
+                name="displayName"
+                required
+                noWhitespace
+                noDuplicateNames
+                [endpoint]="endpoint"
+                #displayNameModel="ngModel"
+            >
+            <div
+                *ngIf="displayNameModel.invalid && displayNameModel.touched"
+                class="text-danger"
+            >
+                <div *ngIf="displayNameModel.errors?.['whitespace']">Display name is required</div>
+                <div *ngIf="displayNameModel.errors?.['duplicateName']">Display name must be unique</div>
+            </div>
+        </div>
+
+        <div class="form-group service-type">
+            <label for="serviceType">Service Type&nbsp;</label>
+            <select
+                [(ngModel)]="endpoint['service-type']"
+                name="serviceType"
+                (change)="onServiceTypeChange($event)"
+                required
+                #serviceTypeModel="ngModel"
+            >
+                <option value="OpenAI">OpenAI</option>
+                <option value="Azure">Azure</option>
+            </select>
+            <div
+                *ngIf="serviceTypeModel.invalid && serviceTypeModel.touched"
+                class="text-danger"
+            >
+                Service Type is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="endpointUrl">
+                Endpoint URL
+                <img
+                    src="InformationCircle16.svg"
+                    [title]="'Example: ' + getSampleUrl()"
+                >
+            </label>
+            <input
+                type="text"
+                placeholder="Endpoint URL"
+                [(ngModel)]="endpoint['endpoint-url']"
+                name="endpointUrl"
+                required
+                noWhitespace
+                #endpointUrlModel="ngModel"
+            >
+            <div
+                *ngIf="endpointUrlModel.invalid && endpointUrlModel.touched"
+                class="text-danger"
+            >
+                Endpoint URL is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="apiKey">API Key</label>
+            <input
+                type="password"
+                placeholder="API Key"
+                [(ngModel)]="endpoint['api-key']"
+                name="apiKey"
+                required
+                noWhitespace
+                #apiKeyModel="ngModel"
+            >
+            <div
+                *ngIf="apiKeyModel.invalid && apiKeyModel.touched"
+                class="text-danger"
+            >
+                API Key is required
+            </div>
+        </div>
+
+        <!-- Display Model input for OpenAI -->
+        <div
+            class="form-group"
+            *ngIf="endpoint['service-type'] === 'OpenAI'"
+        >
+            <label for="model">Model</label>
+            <input
+                type="text"
+                placeholder="Model"
+                [(ngModel)]="endpoint['model']"
+                name="model"
+                required
+                noWhitespace
+                #modelModel="ngModel"
+            >
+            <div
+                *ngIf="modelModel.invalid && modelModel.touched"
+                class="text-danger"
+            >
+                Model is required for OpenAI endpoints
+            </div>
+        </div>
+
+        <div class="form-group button-container">
+            <shared-button
+                [displayText]="phrases.cancel"
+                (onClicked)="onCancel()"
+                class="tertiary"
+            ></shared-button>
+            <shared-button
+                [displayText]="phrases.save"
+                (onClicked)="!form.invalid && onSubmit()"
+                [disabled]="form.invalid"
+                [isSubmit]="true"
+            ></shared-button>
+        </div>
+    </form>
+</div>

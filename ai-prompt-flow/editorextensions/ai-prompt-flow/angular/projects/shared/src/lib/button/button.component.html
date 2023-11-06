@@ -1,0 +1,17 @@
+<button
+    class="custom-button"
+    [disabled]="disabled"
+    [class.disabled]="disabled"
+    [class.icon-only]="displayText == null"
+    [type]="isSubmit ? 'submit' : 'button'"
+    (click)="click()"
+>
+    <img
+        *ngIf="iconUrl && !loading"
+        [src]="iconUrl"
+        alt="Button Icon"
+        class="button-icon"
+    >
+    <div *ngIf="!loading && displayText != null">{{ displayText }}</div>
+    <loading-dots *ngIf="loading"></loading-dots>
+</button>

@@ -1,0 +1,59 @@
+<app-tabs
+    [tabs]="tabs"
+    [(activeTabId)]="activeTabId"
+></app-tabs>
+<div
+    *ngIf="activeTabId == 'shapes'"
+    class="tab-content"
+>
+    <app-callout
+        *ngIf="packageSettings.loaded && packageSettings.endpoints.length == 0"
+        class="setup-callout"
+        [calloutTitle]="phrases.setupCalloutTitle"
+        [calloutText]="packageSettings.canEdit ? phrases.setupCalloutText : phrases.setupCalloutNoEditAccessText"
+        [buttonText]="packageSettings.canEdit ? phrases.setupCalloutButtonText : undefined"
+        (buttonClicked)="connectModel()"
+    ></app-callout>
+    <app-default-model-selector></app-default-model-selector>
+    <app-collapsible-section [sectionTitle]="phrases.promptShapes">
+        <div class="prompt-shape-section">
+            <app-shape
+                class="drag"
+                *ngFor="let shape of shapes"
+                [shapeTitle]="shape.title"
+                [shapeIcon]="shape.icon"
+                (pointerdown)="pointerDown($event, shape.id)"
+                [title]="shape.tooltip"
+            >
+                {{ shape }}
+            </app-shape>
+        </div>
+    </app-collapsible-section>
+</div>
+<div
+    *ngIf="activeTabId == 'settings'"
+    class="tab-content"
+>
+    <app-settings></app-settings>
+</div>
+<div class="footer">
+    <a
+        href="https://help.lucid.co/hc/en-us/articles/19717919036692-Use-AI-Prompt-Flow-to-iterate-on-and-improve-AI-prompts"
+        target="_blank"
+    >
+        <img src="Help24.svg">
+        <span>Help</span>
+    </a>
+
+    <div
+        class="feedback-link"
+        (click)="showFeedbackForm = true"
+    >
+        <img src="Chat24.svg">
+        <span>Provide Feedback</span>
+    </div>
+</div>
+<app-feedback-form
+    *ngIf="showFeedbackForm"
+    (close)="showFeedbackForm=false"
+></app-feedback-form>

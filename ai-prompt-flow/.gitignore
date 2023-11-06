@@ -1,0 +1,6 @@
+**/node_modules/**
+editorextensions/*/bin/**
+package*.zip
+shapelibraries/*.lcsz
+*.credentials.local
+manifest.local.json

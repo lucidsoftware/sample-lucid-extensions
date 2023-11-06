@@ -1,0 +1,93 @@
+:host {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 16px;
+
+    > input {
+        display: block;
+        width: 100%;
+    }
+
+    > label {
+        display: inline-block;
+        margin-bottom: 4px;
+
+        img {
+            vertical-align: text-bottom;
+        }
+    }
+
+    &.button-container {
+        margin-bottom: 0;
+    }
+
+    &.header-row input {
+        margin-right: 32px;
+    }
+}
+
+.text-danger {
+    color: red;
+    font-style: italic;
+}
+
+.service-type {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    select {
+        height: 32px;
+    }
+}
+
+input[type='text'],
+input[type='password'] {
+    line-height: 20px;
+    font-size: 14px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 32px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #979ea8;
+    color: #282c33;
+    padding: 5px 8px;
+    margin: 0;
+    cursor: auto;
+    outline: 0;
+}
+
+input[type='text']:focus {
+    border-color: #1071e5;
+}
+
+input[type='text']::selection {
+    background-color: #b5d6ff;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    label {
+        font-weight: 600;
+    }
+}
+
+.trash-icon {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+
+    > * {
+        margin-left: 4px;
+    }
+}
