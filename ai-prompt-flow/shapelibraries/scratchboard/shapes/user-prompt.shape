@@ -1,0 +1,111 @@
+{
+    "images": {
+        "icon": {
+            "type": "file",
+            "path": "user.svg"
+        }
+    },
+    "style": {
+        "fill": {
+            "type": "color",
+            "color": "#ffffff"
+        },
+        "rounding": 5
+    },
+    "shapes": [
+        {
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ],
+            "bounds": {
+                "x": 0,
+                "y": 0,
+                "absolute": false,
+                "w": 1,
+                "h": 1
+            },
+            "textarea": {
+                "name": "UserPromptContent",
+                "text": "How do I cook a turkey?",
+                "editable": true,
+                "style": {
+                    "color": "#000000",
+                    "font":"Liberation Sans",
+                    "size": 22
+                },
+                "align": "left",
+                "valign": "top",
+                "margins": {
+                    "bottom": 24,
+                    "left": 24,
+                    "right": 24,
+                    "top": 80
+                }
+            }
+        },
+        {
+            "textarea": {
+                "name": "UserPromptHeader",
+                "text": "User Prompt",
+                "editable": false,
+                "style": {
+                    "color": "#000000",
+                    "font":"Liberation Sans",
+                    "size": 22,
+                    "bold": true
+                },
+                "align": "left",
+                "valign": "middle",
+                "margins": {
+                    "left": 78
+                }
+            },
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "x": 0,
+                "y": 24,
+                "absolute": "yh",
+                "w": 1,
+                "h": 48
+            }
+        },
+        {
+            "style": {
+                "fill": {
+                    "type": "image",
+                    "ref": "icon",
+                    "mode": "stretch"
+                },
+                "rounding": 0,
+                "stroke":{
+                    "width": 0
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ],
+            "bounds": {
+                "x": 24,
+                "y": 24,
+                "absolute": "xywh",
+                "w": 42,
+                "h": 42
+            }
+        }
+    ]
+}

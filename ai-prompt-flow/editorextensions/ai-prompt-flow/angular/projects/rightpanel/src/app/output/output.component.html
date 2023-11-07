@@ -1,0 +1,33 @@
+<div class="model">
+    <label class="model-label">{{ phrases.modelUsed }}</label>
+    <span class="model-used">{{ output['model-used'] }}</span>
+</div>
+<div
+    *ngIf="createdAt()"
+    class="created-at"
+>
+    <label class="created-at-label">{{ phrases.createdAt }}</label>
+    <span class="created-at-used">{{ createdAt() }}</span>
+</div>
+<div class="output-label">
+    <h4>{{ phrases.output }}</h4>
+    <img
+        class="copy-icon"
+        (click)="copy()"
+        src="copy.svg"
+    >
+</div>
+<div
+    class="output"
+    [textContent]="output['output']"
+></div>
+<h4>{{ phrases.systemPrompt }}</h4>
+<div
+    class="system-prompt"
+    [textContent]="output['system-prompt']"
+></div>
+<h4>{{ phrases.userPrompt }}</h4>
+<div
+    class="user-prompt"
+    [textContent]="output['user-prompt']"
+></div>

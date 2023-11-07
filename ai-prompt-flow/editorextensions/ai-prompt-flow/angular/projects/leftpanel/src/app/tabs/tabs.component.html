@@ -1,0 +1,10 @@
+<div class="tabs-container">
+    <div
+        *ngFor="let tab of tabs"
+        class="tab"
+        [class.active]="tab.id === activeTabId"
+        (click)="activateTab(tab.id)"
+    >
+        {{ tab.displayName }}
+    </div>
+</div>

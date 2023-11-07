@@ -1,0 +1,52 @@
+<h4>{{ phrases.systemPrompt }}</h4>
+<div
+    class="system-prompt"
+    [textContent]="examples['system-prompt'] ?? phrases.noSystemPromptConnected"
+></div>
+<h4>{{ phrases.fewShotLearningExamples }}</h4>
+<div
+    *ngIf="examples['examples'].length > 0"
+    class="examples-table"
+>
+    <div class="grid-row header-row">
+        <div class="grid-cell col1">{{ phrases.user }}</div>
+        <div class="grid-cell col2">{{ phrases.assistant }}</div>
+        <div class="grid-cell col3"></div>
+    </div>
+
+    <div
+        *ngFor="let example of examples['examples']; let i = index"
+        class="grid-row"
+    >
+        <div
+            contenteditable
+            class="grid-cell col1 user"
+            (input)="updateExampleUser($event, i)"
+            [textContent]="example[0]"
+        ></div>
+        <div
+            contenteditable
+            class="grid-cell col2 response"
+            (input)="updateExampleResponse($event, i)"
+            [textContent]="example[1]"
+        ></div>
+        <div class="grid-cell col3">
+            <img
+                src="X16.svg"
+                class="delete-example"
+                (click)="deleteExample(i)"
+            >
+        </div>
+    </div>
+</div>
+<div
+    *ngIf="examples['examples'].length == 0"
+    [textContent]="phrases.noExamples"
+    class="no-examples-provided"
+></div>
+<shared-button
+    [displayText]="phrases.addExample"
+    iconUrl="PlusCircle24.svg"
+    class="tertiary add-example"
+    (onClicked)="addExample()"
+></shared-button>

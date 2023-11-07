@@ -1,0 +1,14 @@
+<h4>{{ phrases.segmentName }}</h4>
+<div
+    contenteditable
+    class="editable segment-name"
+    (input)="updateSegmentName($event)"
+    [textContent]="promptSegment['segment-name']"
+></div>
+<h4>{{ phrases.segmentValue }}</h4>
+<div
+    contenteditable
+    class="editable segment-value"
+    (input)="updateSegmentValue($event)"
+    [textContent]="promptSegment['segment-value']"
+></div>

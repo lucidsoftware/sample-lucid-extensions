@@ -1,0 +1,174 @@
+{
+    "style": {
+        "fill": {
+            "type": "color",
+            "color": "#ffffff"
+        },
+        "rounding": 5
+    },
+    "shapes": [
+        {
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                },
+                {"type": "path", "path": "M 0,{{=56/@height}} L 1,{{=56/@height}}"}
+            ],
+            "bounds": {
+                "x": 0,
+                "y": 0,
+                "absolute": false,
+                "w": 1,
+                "h": 1
+            },
+            "textarea": {
+                "name": "PromptSegmentContent",
+                "text": "Enter Value",
+                "editable": true,
+                "style": {
+                    "color": "#6f7681",
+                    "font":"Liberation Sans",
+                    "size": 22
+                },
+                "align": "left",
+                "valign": "middle",
+                "margins": {
+                    "bottom": 24,
+                    "left": 24,
+                    "right": 24,
+                    "top": 162
+                }
+            }
+        },
+        {
+            "textarea": {
+                "name": "PromptSegmentTitle",
+                "text": "Value",
+                "editable": false,
+                "style": {
+                    "color": "#000000",
+                    "font":"Liberation Sans",
+                    "size": 20,
+                    "bold": true
+                },
+                "align": "left",
+                "valign": "middle",
+                "margins": {
+                    "left": 24,
+                    "right": 24
+                }
+            },
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "x": 0,
+                "y": 138,
+                "absolute": "yh",
+                "w": 1,
+                "h": 24
+            }
+        },
+        {
+            "textarea": {
+                "name": "SegmentName",
+                "text": "Enter Name",
+                "editable": true,
+                "style": {
+                    "color": "#6f7681",
+                    "font":"Liberation Sans",
+                    "size": 22
+                },
+                "align": "left",
+                "valign": "middle",
+                "margins": {
+                    "left": 24
+                }
+            },
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "x": 0,
+                "y": 102,
+                "absolute": "yh",
+                "w": 1,
+                "h": 24
+            }
+        },
+         {
+            "textarea": {
+                "name": "SegmentNameTitle",
+                "text": "Variable Name",
+                "editable": false,
+                "style": {
+                    "color": "#000000",
+                    "font":"Liberation Sans",
+                    "size": 20,
+                    "bold": true
+                },
+                "align": "left",
+                "valign": "middle",
+                "margins": {
+                    "left": 24
+                }
+            },
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "x": 0,
+                "y": 74,
+                "absolute": "yh",
+                "w": 1,
+                "h": 24
+            }
+        },
+        {
+            "textarea": {
+                "name": "PromptSegmentHeader",
+                "text": "Global Variable",
+                "editable": false,
+                "style": {
+                    "color": "#000000",
+                    "font":"Liberation Sans",
+                    "size": 22,
+                    "bold": true
+                },
+                "align": "left",
+                "valign": "middle",
+                "margins": {
+                    "left": 24
+                }
+            },
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "x": 0,
+                "y": 15,
+                "absolute": "yh",
+                "w": 1,
+                "h": 32
+            }
+        }
+    ]
+}

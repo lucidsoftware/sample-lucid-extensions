@@ -1,0 +1,7 @@
+{
+    "devDependencies": {
+        "@angular/cli": "^16.0.0",
+        "inliner": "^1.13.1",
+        "webpack-shell-plugin-next": "^2.3.1"
+    }
+}

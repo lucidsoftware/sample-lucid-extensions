@@ -1,0 +1,79 @@
+:host {
+    overflow-x: hidden;
+    user-select: none;
+
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.drag {
+    * {
+        pointer-events: none;
+    }
+}
+
+.remote {
+    border: solid 2px blue;
+    margin: 8px;
+
+    * {
+        pointer-events: none;
+    }
+}
+
+.setup-callout {
+    margin: 8px;
+}
+
+.prompt-shape-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    app-shape {
+        width: 100px;
+        margin: 8px;
+    }
+}
+
+.tab-content {
+    margin: 8px 16px;
+    flex-grow: 1;
+}
+
+.footer {
+    padding: 6px 16px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+
+    > * {
+        display: flex;
+        align-items: center;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    span {
+        margin: 0 16px 0 4px;
+    }
+
+    .feedback-link {
+        cursor: pointer;
+    }
+}
+
+app-feedback-form {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

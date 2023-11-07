@@ -1,0 +1,46 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    > * {
+        margin: 8px 0 0 0;
+    }
+}
+
+.samples-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.header-row {
+    flex: 1;
+    font-weight: 600;
+}
+
+.grid-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.grid-cell {
+    border-bottom: 1px solid #ced4db;
+    padding: 4px;
+    word-wrap: break-word;
+}
+
+.col1,
+.col2 {
+    flex: 1;
+}
+
+.col1 {
+    flex-grow: 0.4;
+}
+
+.col2 {
+    flex-grow: 0.6;
+}
+
+.col3 {
+    width: 16px;
+}

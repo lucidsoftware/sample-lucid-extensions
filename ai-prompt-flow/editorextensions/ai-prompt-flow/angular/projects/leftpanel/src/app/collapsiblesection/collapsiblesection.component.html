@@ -1,0 +1,19 @@
+<div
+    class="collapsible-header"
+    (click)="toggleCollapse()"
+>
+    <span class="collapse-icon">
+        <img
+            *ngIf="!isCollapsed"
+            src="CaretDown24.svg"
+        >
+        <img
+            *ngIf="isCollapsed"
+            src="CaretRight24.svg"
+        >
+    </span>
+    {{ sectionTitle }}
+</div>
+<div *ngIf="!isCollapsed">
+    <ng-content></ng-content>
+</div>

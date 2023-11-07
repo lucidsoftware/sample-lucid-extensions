@@ -1,0 +1,12 @@
+{
+    "devDependencies": {
+        "@angular/cli": "^16.0.0",
+        "raw-loader": "^4.0.2",
+        "ts-loader": "^9.2.6",
+        "typescript": "^4.5.2",
+        "webpack": "^5.64.4"
+    },
+    "dependencies": {
+        "lucid-extension-sdk": "^0.0.234"
+    }
+}

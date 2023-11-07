@@ -1,0 +1,150 @@
+{
+    "images": {
+        "icon": {
+            "type": "file",
+            "path": "response.svg"
+        }
+    },
+    "properties": [
+        {
+            "name": "ResponseContent",
+            "label": "LLM Output",
+            "type": "string",
+            "default": ""
+        },
+        {
+            "name": "ModelUsed",
+            "label": "Model Used",
+            "type": "string",
+            "default": ""
+        }
+    ],
+    "style": {
+        "fill": {
+            "type": "color",
+            "color": "#ffffff"
+        },
+        "rounding": 5
+    },
+    "shapes": [
+        {
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ],
+            "bounds": {
+                "x": 0,
+                "y": 0,
+                "absolute": false,
+                "w": 1,
+                "h": 1
+            },
+            "textarea": {
+                "name": "ResponseContent",
+                "text": "{{=@ResponseContent}}",
+                "editable": true,
+                "style": {
+                    "color": "#000000",
+                    "font":"Liberation Sans",
+                    "size": 22
+                },
+                "align": "left",
+                "valign": "top",
+                "margins": {
+                    "bottom": 24,
+                    "left": 24,
+                    "right": 24,
+                    "top": 80
+                }
+            }
+        },
+        {
+            "textarea": {
+                "name": "ResponseHeader",
+                "text": "Output",
+                "editable": false,
+                "style": {
+                    "color": "#000000",
+                    "font":"Liberation Sans",
+                    "size": 22,
+                    "bold": true
+                },
+                "align": "left",
+                "valign": "middle",
+                "margins": {
+                    "left": 78
+                }
+            },
+            "style": {
+                "fill": {
+                    "type": "color",
+                    "color": "#ffffff"
+                }
+            },
+            "bounds": {
+                "x": 0,
+                "y": 24,
+                "absolute": "yh",
+                "w": 1,
+                "h": 16
+            }
+        },
+        {
+            "textarea": {
+                "name": "ModelHeader",
+                "text": "Model used: {{=@ModelUsed}}",
+                "editable": false,
+                "style": {
+                    "color": "#6f7681",
+                    "font":"Liberation Sans",
+                    "size": 16
+                },
+                "align": "left",
+                "valign": "middle",
+                "margins": {
+                    "left": 78
+                }
+            },
+            "bounds": {
+                "x": 0,
+                "y": 48,
+                "absolute": "yh",
+                "w": 1,
+                "h": 16
+            }
+
+        },
+        {
+            "style": {
+                "fill": {
+                    "type": "image",
+                    "ref": "icon",
+                    "mode": "stretch"
+                },
+                "rounding": 0,
+                "stroke":{
+                    "width": 0
+                }
+            },
+            "geometry": [
+                {
+                    "type": "rect"
+                }
+            ],
+            "bounds": {
+                "x": 24,
+                "y": 24,
+                "absolute": "xywh",
+                "w": 42,
+                "h": 42
+            }
+        }
+    ]
+}
