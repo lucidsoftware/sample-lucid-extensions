@@ -77,7 +77,7 @@ export class PromptExecutor {
             // have more than 10 models in a single chain, but it is a pretty arbitrary limit so I
             // don't have issues with bumping it up if there are valid uses.
             throw new Error(
-                'Too many system blocks executed in a single session. Reach out to ML/AI 3 if you have a valid use case for this.',
+                'Too many system blocks executed in a single session.',
             );
         } else {
             upstreamExecutions = new Set(upstreamExecutions).add(system.id);

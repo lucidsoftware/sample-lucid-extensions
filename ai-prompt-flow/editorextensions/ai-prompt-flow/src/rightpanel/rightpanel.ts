@@ -62,13 +62,6 @@ export class RightPanel extends Panel {
                 return convertToAiShape(item, this.client);
             })
             .filter(isDef);
-        if (items.length > 0) {
-            // Keep the right panel open whenever AI shapes are selected.
-            // Without this, if
-            // sessionStorage.getItem('sessionStore LucidContextualPanelSessionuserClosedContextualPanel')
-            // is null the right panel will frequently open and close as the selection changes.
-            this.show();
-        }
         const message: SelectionMessage = {
             'type': 'selection',
             'selectionInfo': items.map((item) => {

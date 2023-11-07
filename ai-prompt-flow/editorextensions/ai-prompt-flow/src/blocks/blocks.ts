@@ -580,7 +580,6 @@ function addRow(table: TableBlockProxy, index: number = table.getRows().length -
     const currentStyles = cell.getTextStyle();
     const newRow = table.addRow(cell, false);
     for (const newCell of newRow.getCells()) {
-        // See https://lucidsoftware.slack.com/archives/C01BTPAMZNJ/p1695334462696559
         // tl;dr is that getTextStyle returns the size in px, but setTextStyle expects it in points
         newCell.setTextStyle({
             ...currentStyles,

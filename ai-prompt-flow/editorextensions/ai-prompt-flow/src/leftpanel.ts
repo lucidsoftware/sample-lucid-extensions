@@ -419,7 +419,7 @@ export class LeftPanel extends Panel {
                 'rating': message.rating >= 4 ? 'thumbs up' : 'thumbs down',
                 'comment': 'Score: ' + message.rating + '/5. Comment: ' + message.feedback,
             };
-            this.client.sendCommand(CommandName.FireBeaconEvent, {'e': JSON.stringify(beaconEvent)});
+            console.log(beaconEvent);
         }
     }
 }
