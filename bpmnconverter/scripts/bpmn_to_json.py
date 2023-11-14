@@ -50,12 +50,12 @@ def simplifyDocs(doclist):
             shape_id = shape.get('@bpmnElement')
             bounds = shape.get('dc:Bounds')
             simplifiedDoc.get('shapes')[shape_id] = {
-                                                    'x': bounds.get('@x')
-                                                    'y': bounds.get('@y')
-                                                    'w': bounds.get('@width')
-                                                    'h': bounds.get('@height')
-                                                    'type': None
-                                                    'shape_text' = None
+                                                    'x': bounds.get('@x'),
+                                                    'y': bounds.get('@y'),
+                                                    'w': bounds.get('@width'),
+                                                    'h': bounds.get('@height'),
+                                                    'type': None,
+                                                    'shape_text': None,
                                                 }
         if isinstance(process, list):
             for section in process:
