@@ -1,4 +1,3 @@
-from xml.dom import minidom
 import xmltodict
 import os
 
@@ -16,10 +15,13 @@ def convert_file_to_object(file_name: str):
         converted_data['data'] = data
     else:
         print(f"Failed to parse {file_name}, skipping")
+
+    if converted_data['data'] == None: 
+        return None
     return converted_data
 
 
-def extract_dir_and_convert(dir_name: str):
+def extract_dir_and_convert(dir_name: str, recursive: bool):
     print(f"Reading dir {dir_name}")
     dir_contents = os.listdir(dir_name)
     converted_data_list = {
@@ -29,17 +31,27 @@ def extract_dir_and_convert(dir_name: str):
     }
     data = []
     for entry in dir_contents:
-        data.append(object_from_bpmn(dir_name + '/' +entry))
+        path = dir_name + '/' + entry
+        if recursive:
+            parsed_object = object_from_bpmn(path,recursive)
+            if parsed_object != None:
+                data.append(parsed_object)
+        else:
+            if os.path.isfile(path):
+                parsed_object = convert_file_to_object(path)
+                if parsed_object != None:
+                    data.append(parsed_object)
     converted_data_list['data']=data
 
     return converted_data_list
 
 
-def object_from_bpmn(input: str):
-    if os.path.isfile(input):
-        return convert_file_to_object(input)
-    elif os.path.isdir(input):
-        return extract_dir_and_convert(input)
+def object_from_bpmn(source: str, recursive: bool):
+    if os.path.isfile(source):
+        return convert_file_to_object(source)
+    elif os.path.isdir(source):
+        return extract_dir_and_convert(source, recursive)
     else:
-        print(f"Failed to parse {input}, skipping")
+        print(f"Failed to parse {source}, skipping")
         return None
+    
