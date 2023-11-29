@@ -16,19 +16,15 @@
     <!-- nodes -->
     <startEvent id="_1" name="StartProcess" />
     <scriptTask id="_2" name="Hello" >
-      <script>System.out.println("Hello");</script>
+      <script>System.out.println("Hello World");</script>
     </scriptTask>
-    <scriptTask id="_3" name="World">
-      <script>System.out.println("World");</script>
-    </scriptTask>
-    <endEvent id="_4" name="EndProcess" >
+    <endEvent id="_3" name="EndProcess" >
         <terminateEventDefinition/>
     </endEvent>
 
     <!-- connections -->
     <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
     <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
-    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
 
   </process>
 
@@ -41,10 +37,7 @@
         <dc:Bounds x="95" y="88" width="83" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" >
-        <dc:Bounds x="258" y="88" width="83" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_4" >
-        <dc:Bounds x="421" y="86" width="48" height="48" />
+        <dc:Bounds x="258" y="86" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_1-_2" >
         <di:waypoint x="39" y="115" />
