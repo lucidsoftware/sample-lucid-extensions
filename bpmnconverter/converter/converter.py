@@ -2,7 +2,7 @@ import argparse
 import json
 from utils.bpmn_object_to_lucid_json import transform_object_into_lucid_json
 from utils.bpmn_to_object import object_from_bpmn
-
+from utils.lucid_utils import oauth, uploadDoc
 if __name__ == '__main__':
     #TODO: Add description
     parser = argparse.ArgumentParser()
@@ -19,10 +19,10 @@ if __name__ == '__main__':
     if bpmn_object == None:
         print('No data was parsed, something went wrong')
     else:
-
-        print(json.dumps(bpmn_object))
-
         lucid_jsons = transform_object_into_lucid_json(bpmn_object)
 
-        print(json.dumps(lucid_jsons))
+        access_token = oauth()
+
+        for lucid_doc in lucid_jsons:
+            uploadDoc(lucid_doc, access_token)
     

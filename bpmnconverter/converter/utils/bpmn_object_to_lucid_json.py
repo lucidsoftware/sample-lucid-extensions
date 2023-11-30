@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from bpmnconverter.converter.utils.group_utils import parse_groups
+from utils.group_utils import parse_groups
 from utils.data_objects_utils import data_associations_by_reference, parse_data_objects, parse_data_stores
 from utils.gateways_util import parse_gateways
 from utils.activities_utils import parse_ad_hoc_sub_process, parse_call_activities, parse_sub_process, parse_tasks, parse_transactions

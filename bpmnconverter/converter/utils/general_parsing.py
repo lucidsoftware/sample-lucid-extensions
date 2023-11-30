@@ -14,10 +14,10 @@ def get_base_shape_and_bb(shape: dict, bpmn_shapes: dict):
         elif 'dc:Bounds' in shape_description:
             shape_bb = shape_description['dc:Bounds']
         lucid_shape['boundingBox'] = {
-            'x': shape_bb['@x'],
-            'y': shape_bb['@y'],
-            'w': shape_bb['@width'],
-            'h': shape_bb['@height'],
+            'x': float(shape_bb['@x']),
+            'y': float(shape_bb['@y']),
+            'w': float(shape_bb['@width']),
+            'h': float(shape_bb['@height']),
         }
         lucid_shape['style'] = {}
         if '@bioc:stroke' in shape_description:
