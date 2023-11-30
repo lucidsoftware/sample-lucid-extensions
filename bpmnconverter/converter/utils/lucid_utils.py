@@ -44,10 +44,9 @@ def uploadDoc(standard_doc, access_token):
     doc_name = standard_doc.get('title')
     print("Uploading doc {0}".format(doc_name))
     os.mkdir(doc_name)
-    file_name = doc_name + '.json'
     lucid_file = doc_name + '.lucid'
 
-    with open(doc_name + '/' + file_name, 'w') as f:
+    with open(doc_name + '/' + 'document.json', 'w') as f:
         json.dump(standard_doc, f)
     
     shutil.make_archive(doc_name, 'zip', doc_name)
