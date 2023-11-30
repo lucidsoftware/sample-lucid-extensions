@@ -19,12 +19,7 @@ if __name__ == '__main__':
     if bpmn_object == None:
         print('No data was parsed, something went wrong')
     else:
-
-        #print(json.dumps(bpmn_object))
-
         lucid_jsons = transform_object_into_lucid_json(bpmn_object)
-
-        #print(json.dumps(lucid_jsons))
 
         access_token = oauth()
 
