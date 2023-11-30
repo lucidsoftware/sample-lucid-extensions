@@ -61,7 +61,7 @@ def parse_ad_hoc_sub_process(tasks: list, bpmn_shapes: dict):
             lucid_shape['type'] = 'bpmnActivity'
             lucid_shape['activityType'] = 'task'
             lucid_shape['taskType'] = 'none'
-            markers =  ['subprocess', 'adhoc']
+            markers =  ['subProcess', 'adhoc']
             attach_markers(lucid_shape, markers)
             lucid_shapes.append(lucid_shape)
         else:
@@ -78,14 +78,14 @@ def parse_sub_process(tasks: list, bpmn_shapes: dict):
                 lucid_shape['type'] = 'bpmnActivity'
                 lucid_shape['activityType'] = 'eventSubprocess'
                 lucid_shape['taskType'] = 'none'
-                markers =  ['subprocess']
+                markers =  ['subProcess']
                 attach_markers(lucid_shape, markers)
                 lucid_shapes.append(lucid_shape)
             else:
                 lucid_shape['type'] = 'bpmnActivity'
                 lucid_shape['activityType'] = 'task'
                 lucid_shape['taskType'] = 'none'
-                markers =  ['subprocess']+ get_activity_marker_from_activity(task)
+                markers =  ['subProcess']+ get_activity_marker_from_activity(task)
                 attach_markers(lucid_shape, markers)
                 lucid_shapes.append(lucid_shape)
         else:

@@ -22,6 +22,8 @@ The directory called schemas shows what each implemented shape should look like
 - Parse data stores
 - Parse groups
 - Schema representation for all the mplemented shapes
+- Authentication
+- Request to Lucid API
 
 ## Things that are yet to be implemented
 - Choreographies are half way there, get_lane_coount and orientation are missing
@@ -29,5 +31,4 @@ The directory called schemas shows what each implemented shape should look like
 - Pool
 - Pool black box
 - Text Annotation
-- Authentication, can be optained from the first commit 
-- Request to Lucid API
+- Lines
