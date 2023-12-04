@@ -6,6 +6,8 @@ def get_base_shape_and_bb(shape: dict, bpmn_shapes: dict):
     }
     if '@name' in shape:
         lucid_shape['text'] = shape['@name']
+    elif 'text' in shape:
+        lucid_shape['text'] = shape['text']
     if id in bpmn_shapes:
         shape_description = bpmn_shapes[id]
         shape_bb ={}
