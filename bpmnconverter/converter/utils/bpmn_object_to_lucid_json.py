@@ -4,6 +4,13 @@ from utils.data_objects_utils import data_associations_by_reference, parse_data_
 from utils.gateways_util import parse_gateways
 from utils.activities_utils import parse_ad_hoc_sub_process, parse_call_activities, parse_sub_process, parse_tasks, parse_transactions
 from utils.event_utils import parse_boundary_events, parse_end_events, parse_intermediate_catch_events, parse_intermediate_throw_events, parse_start_events
+from utils.line_utils import parse_lines, process_edges
+
+def get_lines_in_process(process: dict, bpmn_edges: list, lucid_shapes: list):
+    lucid_lines = []
+    if 'sequenceFlow' in process:
+        lucid_lines += parse_lines(process['sequenceFlow'], bpmn_edges, lucid_shapes)
+    return lucid_lines
 
 def get_shapes_in_process(process: dict, bpmn_shapes: dict):
     keys = process.keys()
@@ -72,7 +79,7 @@ def get_shapes_in_process(process: dict, bpmn_shapes: dict):
             lucid_shapes += parse_data_objects(entry, bpmn_shapes, data_associations)
         elif key == 'dataStoreReference':
             lucid_shapes += parse_data_stores(entry, bpmn_shapes)
-        elif key == 'gorup':
+        elif key == 'group':
             lucid_shapes += parse_groups(entry, bpmn_shapes)
     return lucid_shapes
 
@@ -81,6 +88,12 @@ def parse_processes_list(processes: list, bpmn_shapes: dict):
     for process in processes:
         lucid_shapes += get_shapes_in_process(process, bpmn_shapes)
     return lucid_shapes
+
+def parse_processes_lines_list(processes: list, bpmn_edges: list, lucid_shapes: list):
+    lucid_lines = []
+    for process in processes:
+        lucid_lines += get_lines_in_process(process, bpmn_edges, lucid_shapes)
+    return lucid_lines
 
 def get_bpmn_planes(diagrams):
     planes = []
@@ -129,16 +142,18 @@ def get_lucid_json(bpmn: Dict[str, Any]):
         diagrams_as_list = [diagrams] if not isinstance(diagrams, list) else diagrams
         planes =  get_bpmn_planes(diagrams_as_list)
         shapes_dir = get_bpmn_shapes(planes, 'bpmndi:BPMNShape')
+        bpmn_edges = process_edges(planes)
 
-        lucid_shapes = parse_processes_list(processes_as_list, shapes_dir)
+        lucid_shapes  = parse_processes_list(processes_as_list, shapes_dir)
+        lucid_lines = parse_processes_lines_list(processes_as_list, bpmn_edges, lucid_shapes)
 
         #TODO: Finish
         if 'choreography' in definitions:
             choreographies = definitions['choreography']
             choreographies_as_list = choreographies if isinstance(choreographies, list) else [choreographies]
-            
-
+        
         lucid_doc['pages'][0]['shapes'] = lucid_shapes
+        lucid_doc['pages'][0]['lines'] = lucid_lines
 
         return lucid_doc
     else:
