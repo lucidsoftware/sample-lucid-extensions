@@ -5,7 +5,7 @@ def parse_lines(lines: list, bpmn_edges: list, lucid_shapes: list):
     if isinstance(lines, list):
         for line in lines:
             lucid_lines.append(process_line(line, bpmn_edges, lucid_shapes))
-    else:
+    elif isinstance(lines, dict):
         lucid_lines.append(process_line(lines, bpmn_edges, lucid_shapes))
 
     return lucid_lines
