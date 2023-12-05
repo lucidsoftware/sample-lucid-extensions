@@ -7,6 +7,7 @@ from utils.event_utils import parse_boundary_events, parse_end_events, parse_int
 from utils.line_utils import parse_lines, process_edges
 from utils.lane_utils import parse_lanes
 from utils.annotation_utils import parse_text_annotations
+from utils.namespace_utils import remove_namespace_prefixes
 
 def get_lines_in_process(process: dict, bpmn_edges: list, lucid_shapes: list):
     lucid_lines = []
@@ -104,7 +105,11 @@ def parse_processes_lines_list(processes: list, bpmn_edges: list, lucid_shapes: 
 def get_bpmn_planes(diagrams):
     planes = []
     for diagram in diagrams: 
-        raw_planes = diagram["bpmndi:BPMNPlane"] 
+        raw_planes = {}
+        if 'bpmndi:BPMNPlane' in diagram:
+            raw_planes = diagram['bpmndi:BPMNPlane'] 
+        elif 'BPMNPlane' in diagram:
+            raw_planes = diagram['BPMNPlane']
         planes += [raw_planes] if not isinstance(raw_planes, list) else raw_planes
     return planes
 
@@ -125,13 +130,15 @@ def get_bpmn_shapes(planes, key: str):
 def get_lucid_json(bpmn: Dict[str, Any]):
     #add try catch
     doc_name = (bpmn['file_name'].rsplit('.', 1)[0]).rsplit('/', 1)[-1]
+    print(doc_name)
+    print(len(doc_name))
     bpmn_doc = bpmn['data']
     lucid_doc = {
         'title': doc_name,
         'version':1, 
         'pages': [
             {
-                "id": doc_name,
+                "id": "page1",
                 "title": doc_name,
                 "shapes": [],
                 "lines": [],
@@ -140,14 +147,27 @@ def get_lucid_json(bpmn: Dict[str, Any]):
             }
         ]
     }
+    removedPrefixes = False
+    if 'definitions' not in bpmn_doc:
+        bpmn_doc = remove_namespace_prefixes(bpmn_doc)
+        removedPrefixes = True
+
     if 'definitions' in bpmn_doc:
         definitions =  bpmn_doc['definitions']  
         processes = definitions['process']
         processes_as_list = [processes] if not isinstance(processes, list) else processes
-        diagrams = definitions['bpmndi:BPMNDiagram']
+        diagrams = {}
+        if 'bpmndi:BPMNDiagram' in definitions:
+            diagrams = definitions['bpmndi:BPMNDiagram']
+        elif 'BPMNDiagram' in definitions:
+            diagrams = definitions['BPMNDiagram']
         diagrams_as_list = [diagrams] if not isinstance(diagrams, list) else diagrams
         planes =  get_bpmn_planes(diagrams_as_list)
-        shapes_dir = get_bpmn_shapes(planes, 'bpmndi:BPMNShape')
+        if removedPrefixes:
+            shapes_dir = get_bpmn_shapes(planes, 'BPMNShape')
+        else:
+            shapes_dir = get_bpmn_shapes(planes, 'bpmndi:BPMNShape')
+
         bpmn_edges = process_edges(planes)
 
         lucid_shapes  = parse_processes_list(processes_as_list, shapes_dir)

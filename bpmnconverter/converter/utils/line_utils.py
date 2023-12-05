@@ -13,7 +13,10 @@ def parse_lines(lines: list, bpmn_edges: list, lucid_shapes: list):
 def process_edges(bpmn_planes: list):
     bpmn_edges = []
     for plane in bpmn_planes:
-        bpmn_edges += plane['bpmndi:BPMNEdge']
+        if 'bpmndi:BPMNEdge' in plane:
+            bpmn_edges += plane['bpmndi:BPMNEdge']
+        elif 'BPMNEdge' in plane:
+            bpmn_edges += plane['BPMNEdge']
 
     return bpmn_edges
 
@@ -88,6 +91,8 @@ def process_line(line: dict, bpmn_edges: list, lucid_shapes: list):
         waypoints = edge['omgdi:waypoint']
     elif 'di:waypoint' in edge:
         waypoints = edge['di:waypoint']
+    elif 'waypoint' in edge:
+        waypoints = edge['waypoint']
 
     lucid_line = {
         'id': id,
