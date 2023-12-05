@@ -35,8 +35,11 @@ def get_pool_details(bpmnPool: dict, lane: dict, bpmn_shapes: dict):
     bpmnPool, orientation = get_pool_orientation(bpmnPool, bpmn_shapes)
     bpmnPool['lanes'] = []
     bpmnPool['magnetize'] = False
-    childLaneSet = lane.get('childLaneSet')
-    childLanes = childLaneSet['lane']
+    childLaneSet = None
+    childLanes = None
+    if 'childLaneSet' in lane:
+        childLaneSet = lane.get('childLaneSet')
+        childLanes = childLaneSet['lane']
     if isinstance(childLanes, list):
         for childLane in childLanes:
             bpmnPool['lanes'].append(get_pool_lane_resource(childLane, bpmn_shapes, orientation))
@@ -46,13 +49,15 @@ def get_pool_details(bpmnPool: dict, lane: dict, bpmn_shapes: dict):
                 }
                 lucid_shapes += parse_lanes(laneSet, bpmn_shapes)
                     
-    else:
+    elif isinstance(childLanes, dict):
         bpmnPool['lanes'].append(get_pool_lane_resource(childLanes, bpmn_shapes, orientation))
         if childLanes.get('childLaneSet'):
             laneSet = {
                         'lane': childLane
             }
             lucid_shapes += parse_lanes(laneSet, bpmn_shapes)
+    else:
+        bpmnPool['lanes'].append(get_pool_lane_resource(lane, bpmn_shapes, orientation))
     lucid_shapes.append(bpmnPool)
     return lucid_shapes
 
@@ -71,6 +76,8 @@ def get_pool_lane_resource(lane, bpmn_shapes, orientation):
             lane_bb = lane_description['omgdc:Bounds']
         elif 'dc:Bounds' in lane_description:
             lane_bb = lane_description['dc:Bounds']
+        elif'Bounds' in lane_description:
+            lane_bb = lane_description['Bounds']
         if orientation == 'horizontal':
             pool_lane['width'] = float(lane_bb['@height'])
         elif orientation == 'vertical': 

@@ -15,6 +15,8 @@ def get_base_shape_and_bb(shape: dict, bpmn_shapes: dict):
             shape_bb = shape_description['omgdc:Bounds']
         elif 'dc:Bounds' in shape_description:
             shape_bb = shape_description['dc:Bounds']
+        elif 'Bounds' in shape_description:
+            shape_bb = shape_description['Bounds']
         lucid_shape['boundingBox'] = {
             'x': float(shape_bb['@x']),
             'y': float(shape_bb['@y']),
