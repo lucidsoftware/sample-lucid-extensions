@@ -24,11 +24,11 @@ The directory called schemas shows what each implemented shape should look like
 - Schema representation for all the mplemented shapes
 - Authentication
 - Request to Lucid API
+- Lines
+- Pool
+- Text Annotation
 
 ## Things that are yet to be implemented
 - Choreographies are half way there, get_lane_coount and orientation are missing
 - Conversation, this one is kinda weird, someone that understands BPMN could probably implement it in one second
-- Pool
 - Pool black box
-- Text Annotation
-- Lines

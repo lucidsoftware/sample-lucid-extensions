@@ -5,6 +5,8 @@ from utils.gateways_util import parse_gateways
 from utils.activities_utils import parse_ad_hoc_sub_process, parse_call_activities, parse_sub_process, parse_tasks, parse_transactions
 from utils.event_utils import parse_boundary_events, parse_end_events, parse_intermediate_catch_events, parse_intermediate_throw_events, parse_start_events
 from utils.line_utils import parse_lines, process_edges
+from utils.lane_utils import parse_lanes
+from utils.annotation_utils import parse_text_annotations
 
 def get_lines_in_process(process: dict, bpmn_edges: list, lucid_shapes: list):
     lucid_lines = []
@@ -81,6 +83,10 @@ def get_shapes_in_process(process: dict, bpmn_shapes: dict):
             lucid_shapes += parse_data_stores(entry, bpmn_shapes)
         elif key == 'group':
             lucid_shapes += parse_groups(entry, bpmn_shapes)
+        elif key == 'laneSet':
+            lucid_shapes += parse_lanes(entry, bpmn_shapes)
+        elif key == 'textAnnotation':
+            lucid_shapes += parse_text_annotations(entry, bpmn_shapes)
     return lucid_shapes
 
 def parse_processes_list(processes: list, bpmn_shapes: dict):
