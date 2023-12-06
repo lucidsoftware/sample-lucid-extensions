@@ -130,8 +130,6 @@ def get_bpmn_shapes(planes, key: str):
 def get_lucid_json(bpmn: Dict[str, Any]):
     #add try catch
     doc_name = (bpmn['file_name'].rsplit('.', 1)[0]).rsplit('/', 1)[-1]
-    print(doc_name)
-    print(len(doc_name))
     bpmn_doc = bpmn['data']
     lucid_doc = {
         'title': doc_name,
