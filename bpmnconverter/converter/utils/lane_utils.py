@@ -7,7 +7,10 @@ def parse_lanes(laneSets: dict, bpmn_shapes: dict):
             if isinstance(lanes, list):
                 for lane in lanes:
                     bpmnPool = get_base_shape_and_bb(lane, bpmn_shapes)
-                    bpmnPool['title'] = bpmnPool.pop('text')
+                    if 'text' in bpmnPool:
+                        bpmnPool['title'] = bpmnPool.pop('text')
+                    else:
+                        bpmnPool['title'] = 'pool'
                     bpmnPool['type'] = 'bpmnPool'
                     lucid_shapes += get_pool_details(bpmnPool, lane, bpmn_shapes)
             else:
@@ -53,7 +56,7 @@ def get_pool_details(bpmnPool: dict, lane: dict, bpmn_shapes: dict):
         bpmnPool['lanes'].append(get_pool_lane_resource(childLanes, bpmn_shapes, orientation))
         if childLanes.get('childLaneSet'):
             laneSet = {
-                        'lane': childLane
+                        'lane': childLanes
             }
             lucid_shapes += parse_lanes(laneSet, bpmn_shapes)
     else:

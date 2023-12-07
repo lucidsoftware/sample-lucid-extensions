@@ -76,7 +76,7 @@ def parse_sub_process(tasks: list, bpmn_shapes: dict):
         if lucid_shape != None:
             if '@triggeredByEvent' in task and task['@triggeredByEvent'] == "true":
                 lucid_shape['type'] = 'bpmnActivity'
-                lucid_shape['activityType'] = 'eventSubprocess'
+                lucid_shape['activityType'] = 'eventSubProcess'
                 lucid_shape['taskType'] = 'none'
                 markers =  ['subProcess']
                 attach_markers(lucid_shape, markers)

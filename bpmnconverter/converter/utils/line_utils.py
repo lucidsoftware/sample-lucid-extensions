@@ -108,25 +108,45 @@ def process_line(line: dict, bpmn_edges: list, lucid_shapes: list):
             }
         ]
         lucid_line['text'] = text
+    if 'boundingBox' in sourceShape:
+        position1 = getPosition(sourceShape, waypoints[0])
+        endpoint1 = {
+            'type': 'shapeEndpoint',
+            'style': 'none',
+            'shapeId': sourceId,
+            'position': position1
+        }
+        lucid_line['endpoint1'] = endpoint1
+    else:
+        x1 = float(waypoints[0]['@x'])
+        y1 = float(waypoints[0]['@y'])
+        endpoint1 = {
+            'type': 'positionEndpoint',
+            'style': 'none',
+            'position': {'x': x1, 'y': y1}
+        }
+        lucid_line['endpoint1'] = endpoint1
 
-    position1 = getPosition(sourceShape, waypoints[0])
-    position2 = getPosition(targetShape, waypoints[-1])
+    if 'boundingBox' in targetShape:
+        position2 = getPosition(targetShape, waypoints[-1])
+        endpoint2 = {
+            'type': 'shapeEndpoint',
+            'style': 'arrow',
+            'shapeId': targetId,
+            'position': position2
+        }
+        lucid_line['endpoint2'] = endpoint2
+    else:
+        x2 = float(waypoints[-1]['@x'])
+        y2 = float(waypoints[-1]['@y'])
+        endpoint2 = {
+            'type': 'positionEndpoint',
+            'style': 'none',
+            'position': {'x': x2, 'y': y2}
+        }
+        lucid_line['endpoint2'] = endpoint2
 
-    endpoint1 = {
-        'type': 'shapeEndpoint',
-        'style': 'none',
-        'shapeId': sourceId,
-        'position': position1
-    }
-    lucid_line['endpoint1'] = endpoint1
 
-    endpoint2 = {
-        'type': 'shapeEndpoint',
-        'style': 'arrow',
-        'shapeId': targetId,
-        'position': position2
-    }
-    lucid_line['endpoint2'] = endpoint2
 
     return lucid_line
     
