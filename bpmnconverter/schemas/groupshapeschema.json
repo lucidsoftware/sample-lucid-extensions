@@ -1,0 +1,19 @@
+{
+    "id": {
+        "type": "string"
+    },
+    "boundingBox": {
+        "type": "BoundingBox"
+    },
+    "style": {
+        "type": "Style"
+    },
+    "text": {
+        "type": "string",
+        "optional": true
+    },
+    "type": {
+        "type": "string constant",
+        "value": "bpmnGroup"
+    }
+}
