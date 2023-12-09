@@ -1,0 +1,65 @@
+{
+    "id": {
+        "type": "string"
+    },
+    "boundingBox": {
+        "type": "BoundingBox"
+    },
+    "style": {
+        "type": "Style"
+    },
+    "text": {
+        "type": "string",
+        "optional": true
+    },
+    "type": {
+        "type": "string constant",
+        "value": "bpmnActivity"
+    },
+    "activityType": {
+        "type": "BPMNActivityType",
+        "values": [
+            "task",
+            "transaction",
+            "eventSubprocess",
+            "callActivity"
+        ]
+    },
+    "taskType": {
+        "type": "BPMNTaskType",
+        "values": [
+            "none",
+            "send",
+            "receive",
+            "user",
+            "manual",
+            "businessRule",
+            "service",
+            "script"
+        ]
+    },
+    "activityMarker1": {
+        "type": "BPMNActivityMarker",
+        "values": [
+            "none",
+            "subprocess",
+            "loop",
+            "parallelMI",
+            "sequentialMI",
+            "adhoc",
+            "compensation"
+        ]
+    },
+    "activityMarker2": {
+        "type": "BPMNActivityMarker",
+        "values": [
+            "none",
+            "subProcess",
+            "loop",
+            "parallelMI",
+            "sequentialMI",
+            "adhoc",
+            "compensation"
+        ]
+    }
+}
