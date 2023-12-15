@@ -1,0 +1,216 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "leftpanel": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "less",
+                    "standalone": true
+                },
+                "@schematics/angular:directive": {
+                    "standalone": true
+                },
+                "@schematics/angular:pipe": {
+                    "standalone": true
+                }
+            },
+            "root": "projects/leftpanel",
+            "sourceRoot": "projects/leftpanel/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/leftpanel",
+                        "index": "projects/leftpanel/src/index.html",
+                        "main": "projects/leftpanel/src/main.ts",
+                        "polyfills": ["zone.js"],
+                        "tsConfig": "projects/leftpanel/tsconfig.app.json",
+                        "inlineStyleLanguage": "less",
+                        "assets": ["projects/leftpanel/src/favicon.ico", "projects/leftpanel/src/assets"],
+                        "styles": ["projects/leftpanel/src/styles.less"],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "leftpanel:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "leftpanel:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "leftpanel:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "polyfills": ["zone.js", "zone.js/testing"],
+                        "tsConfig": "projects/leftpanel/tsconfig.spec.json",
+                        "inlineStyleLanguage": "less",
+                        "assets": ["projects/leftpanel/src/favicon.ico", "projects/leftpanel/src/assets"],
+                        "styles": ["projects/leftpanel/src/styles.less"],
+                        "scripts": []
+                    }
+                }
+            }
+        },
+        "rightpanel": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "less",
+                    "standalone": true
+                },
+                "@schematics/angular:directive": {
+                    "standalone": true
+                },
+                "@schematics/angular:pipe": {
+                    "standalone": true
+                }
+            },
+            "root": "projects/rightpanel",
+            "sourceRoot": "projects/rightpanel/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/rightpanel",
+                        "index": "projects/rightpanel/src/index.html",
+                        "main": "projects/rightpanel/src/main.ts",
+                        "polyfills": ["zone.js"],
+                        "tsConfig": "projects/rightpanel/tsconfig.app.json",
+                        "inlineStyleLanguage": "less",
+                        "assets": ["projects/rightpanel/src/favicon.ico", "projects/rightpanel/src/assets"],
+                        "styles": ["projects/rightpanel/src/styles.less"],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "rightpanel:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "rightpanel:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "rightpanel:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "polyfills": ["zone.js", "zone.js/testing"],
+                        "tsConfig": "projects/rightpanel/tsconfig.spec.json",
+                        "inlineStyleLanguage": "less",
+                        "assets": ["projects/rightpanel/src/favicon.ico", "projects/rightpanel/src/assets"],
+                        "styles": ["projects/rightpanel/src/styles.less"],
+                        "scripts": [],
+                        "karmaConfig": "projects/rightpanel/karma.conf.js"
+                    }
+                }
+            }
+        },
+        "shared": {
+            "projectType": "library",
+            "root": "projects/shared",
+            "sourceRoot": "projects/shared/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "project": "projects/shared/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/shared/tsconfig.lib.prod.json"
+                        },
+                        "development": {
+                            "tsConfig": "projects/shared/tsconfig.lib.json"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "tsConfig": "projects/shared/tsconfig.spec.json",
+                        "polyfills": ["zone.js", "zone.js/testing"]
+                    }
+                }
+            }
+        }
+    }
+}

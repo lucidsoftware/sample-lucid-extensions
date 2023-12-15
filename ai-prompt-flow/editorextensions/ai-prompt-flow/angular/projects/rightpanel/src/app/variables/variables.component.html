@@ -1,0 +1,46 @@
+<div
+    *ngIf="variables['variables'].length > 0"
+    class="variables-table"
+>
+    <div class="grid-row header-row">
+        <div class="grid-cell col1">{{ phrases.name }}</div>
+        <div class="grid-cell col2">{{ phrases.value }}</div>
+        <div class="grid-cell col3"></div>
+    </div>
+
+    <div
+        *ngFor="let variable of variables['variables']; let i = index"
+        class="grid-row"
+    >
+        <div
+            contenteditable
+            class="grid-cell col1 variable-name"
+            (input)="updateVariableName($event, i)"
+            [textContent]="variable[0]"
+        ></div>
+        <div
+            contenteditable
+            class="grid-cell col2 variable-value"
+            (input)="updateVariableValue($event, i)"
+            [textContent]="variable[1]"
+        ></div>
+        <div class="grid-cell col3">
+            <img
+                src="X16.svg"
+                class="delete-variable"
+                (click)="deleteVariable(i)"
+            >
+        </div>
+    </div>
+</div>
+<div
+    *ngIf="variables['variables'].length == 0"
+    [textContent]="phrases.noUserVariables"
+    class="no-variables-provided"
+></div>
+<shared-button
+    [displayText]="phrases.addVariable"
+    iconUrl="PlusCircle24.svg"
+    class="tertiary add-variable"
+    (onClicked)="addVariable()"
+></shared-button>

@@ -1,0 +1,21 @@
+<label>{{ phrases.defaultModel }}</label>
+<select
+    [(ngModel)]="defaultModel"
+    name="defaultModel"
+    required
+>
+    <option
+        value
+        disabled
+        selected
+        hidden
+    >
+        {{ phrases.none }}
+    </option>
+    <option
+        *ngFor="let modelOption of getDefaultModelOptions()"
+        [value]="modelOption"
+    >
+        {{ modelOption }}
+    </option>
+</select>

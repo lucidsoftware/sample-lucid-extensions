@@ -1,0 +1,10 @@
+<div class="text">
+    <p class="service-type">{{ endpoint['service-type'] }}</p>
+    <p class="display-name">{{ endpoint['display-name'] }}</p>
+</div>
+<img
+    *ngIf="packageSettings.canEdit"
+    src="Pencil16.svg"
+    class="edit-icon"
+    (click)="onEdit()"
+>

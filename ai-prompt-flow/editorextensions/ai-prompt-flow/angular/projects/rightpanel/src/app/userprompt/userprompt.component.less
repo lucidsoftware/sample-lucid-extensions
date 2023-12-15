@@ -1,0 +1,42 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    > * {
+        margin: 8px 0 0 0;
+    }
+}
+
+.model {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.model-label {
+    margin-right: 8px;
+}
+
+.user-prompt {
+    border: 1px solid #979ea8;
+    padding: 8px;
+    border-radius: 4px;
+    white-space: pre-wrap; // This allows newlines in the prompt to be displayed without needing to render it as HTML
+}
+
+.system-prompt,
+.system-prompt-invalid {
+    display: flex;
+    span {
+        align-self: center;
+    }
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.execute-prompt {
+    width: 150px;
+}

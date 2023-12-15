@@ -1,0 +1,65 @@
+<app-callout
+    *ngIf="isModelInvalid"
+    class="setup-callout"
+    [calloutTitle]="phrases.setupCalloutTitle"
+    [calloutText]="phrases.setupCalloutText"
+></app-callout>
+<div class="model">
+    <label class="model-label">{{ phrases.model }}</label>
+    <select
+        class="selected-model"
+        (change)="changeModel($event)"
+    >
+        <option
+            class="invalid-model"
+            *ngIf="isModelInvalid"
+            selected
+            disabled
+            [value]="invalidModelName"
+        >
+            {{ invalidModelName }}
+        </option>
+        <option
+            *ngFor="let model of availableModels"
+            [selected]="model == systemPrompt['model']"
+            [value]="model"
+        >
+            {{ model }}
+        </option>
+    </select>
+</div>
+<h4>{{ phrases.systemPrompt }}</h4>
+<div
+    contenteditable
+    class="system-prompt"
+    rows="4"
+    (input)="updateSystemPrompt($event)"
+    [textContent]="systemPrompt['system-prompt']"
+></div>
+<div class="user-prompt-count">
+    <img
+        *ngIf="systemPrompt['count-of-user-prompts'] == 0"
+        [src]="icons.warning"
+        class="icon"
+    >
+    <span class="user-count">
+        {{ phrases.userPromptsConnected(systemPrompt['count-of-user-prompts']) }}
+    </span>
+</div>
+<div
+    *ngIf="isExecuteFailed"
+    class="user-prompt-count"
+>
+    <img
+        [src]="icons.error"
+        class="icon"
+    >
+    <span>{{ phrases.executeFailed }}</span>
+</div>
+<shared-button
+    class="execute-prompt"
+    [disabled]="isExecuteDisabled()"
+    [displayText]="phrases.executePrompts(systemPrompt['count-of-user-prompts'])"
+    [loading]="executing"
+    (onClicked)="executePrompts()"
+></shared-button>

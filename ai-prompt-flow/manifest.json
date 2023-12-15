@@ -1,0 +1,30 @@
+{
+    "id": "",
+    "version": "1.0.0",
+    "extensions": [
+        {
+            "name": "ai-prompt-flow",
+            "title": "AI Prompt Flow",
+            "products": ["chart"],
+            "codePath": "editorextensions/ai-prompt-flow/bin/extension.js",
+            "scopes": ["READ", "WRITE", "DOWNLOAD", "SHOW_MODAL", "CUSTOM_UI", "NETWORK", "USER_INFO"]
+        }
+    ],
+    "shapeLibraries": [
+        {
+            "//": "The name must remain 'scratchboard' to stay consistent with the first published releases.",
+            "name": "scratchboard",
+            "product": "chart",
+            "lcszPath": "shapelibraries/scratchboard.lcsz"
+        }
+    ],
+    "settings": [
+        {
+            "name": "endpoints",
+            "label": "Model Endpoints",
+            "description": "A list of model endpoints that can be accessed by the extension. Currently endpoints implementing either OpenAI's or Azure's chat interface are supported. If you enter an empty array ([]) as the value, you can add endpoints via the panel in the extension. They will need to be configured once per extension installation.",
+            "type": "string",
+            "default": "[]"
+        }
+    ]
+}

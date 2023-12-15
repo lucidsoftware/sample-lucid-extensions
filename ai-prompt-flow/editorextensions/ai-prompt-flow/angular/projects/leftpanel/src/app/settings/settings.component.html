@@ -1,0 +1,35 @@
+<div class="section-header">
+    <h4>Connected Models</h4>
+    <shared-button
+        *ngIf="packageSettings.endpoints.length >= 1 && packageSettings.canEdit"
+        class="tertiary"
+        [disabled]="isEditing"
+        iconUrl="PlusCircle24.svg"
+        (onClicked)="addNewEndpoint()"
+    >
+    </shared-button>
+</div>
+<div
+    *ngIf="packageSettings.endpoints.length >= 1"
+    class="endpoints"
+>
+    <app-endpoint
+        *ngFor="let endpoint of packageSettings.endpoints; index as i"
+        [endpoint]="endpoint"
+    ></app-endpoint>
+</div>
+<div
+    class="zero-state"
+    *ngIf="packageSettings.endpoints.length == 0"
+>
+    <img
+        src="CollaborativeAI24.svg"
+        class="zero-state-icon"
+    >
+    <div class="zero-state-text">{{ phrases.zeroStateMessage() }}</div>
+    <shared-button
+        *ngIf="packageSettings.canEdit"
+        [displayText]="phrases.connectModel"
+        (onClicked)="addNewEndpoint()"
+    ></shared-button>
+</div>

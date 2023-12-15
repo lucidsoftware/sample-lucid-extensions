@@ -1,0 +1,14 @@
+<svg
+    [attr.width]="12 * radius"
+    height="24"
+    [attr.viewBox]="'0 0 ' + 12 * radius + ' 24'"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+>
+    <circle
+        *ngFor="let x of [3, 6, 9]"
+        [attr.cx]="x * radius"
+        cy="12"
+        [attr.r]="radius"
+    ></circle>
+</svg>

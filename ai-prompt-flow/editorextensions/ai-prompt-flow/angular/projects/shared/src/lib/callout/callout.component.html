@@ -1,0 +1,9 @@
+<div class="callout-container">
+    <p class="callout-title">{{ calloutTitle.toUpperCase() }}</p>
+    <p>{{ calloutText }}</p>
+    <shared-button
+        *ngIf="buttonText"
+        [displayText]="buttonText"
+        (onClicked)="onButtonClick()"
+    ></shared-button>
+</div>

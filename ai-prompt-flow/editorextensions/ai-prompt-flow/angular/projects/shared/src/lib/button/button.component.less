@@ -1,0 +1,60 @@
+.custom-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 32px;
+    border-radius: 4px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #3c41c2;
+    color: white;
+
+    &:hover {
+        background-color: #2f3296;
+    }
+
+    > * {
+        vertical-align: middle;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.45;
+    }
+}
+
+.button-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+:host(.tertiary) .custom-button {
+    border: none;
+    color: #3c41c2;
+    background-color: transparent;
+
+    &:hover {
+        background-color: #f2f2ff;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.45;
+    }
+}
+
+.custom-button.icon-only {
+    padding: 0;
+    margin: 0;
+
+    img {
+        margin: 0;
+    }
+}

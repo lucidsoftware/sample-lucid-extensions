@@ -1,0 +1,44 @@
+<div class="model">
+    <label class="model-label">{{ phrases.modelUsed }}</label>
+    <span class="model-used">{{ userPrompt['model-used'] }}</span>
+</div>
+<h4>{{ phrases.userPrompt }}</h4>
+<div
+    contenteditable
+    class="user-prompt"
+    rows="4"
+    (input)="updateUserPrompt($event)"
+    [textContent]="userPrompt['user-prompt']"
+></div>
+<h4>{{ phrases.systemPrompt }}</h4>
+<div
+    class="system-prompt"
+    [textContent]="userPrompt['system-prompt']"
+></div>
+<div
+    *ngIf="isExecuteDisabled()"
+    class="system-prompt-invalid"
+>
+    <img
+        [src]="icons.warning"
+        class="icon"
+    >
+    <span>{{ phrases.systemPromptInvalid() }}</span>
+</div>
+<div
+    *ngIf="isExecuteFailed"
+    class="system-prompt-invalid"
+>
+    <img
+        [src]="icons.error"
+        class="icon"
+    >
+    <span>{{ phrases.executeFailed }}</span>
+</div>
+<shared-button
+    class="execute-prompt"
+    [disabled]="isExecuteDisabled()"
+    [displayText]="phrases.executePrompt"
+    [loading]="executing"
+    (onClicked)="executePrompt()"
+></shared-button>
