@@ -5,6 +5,3 @@
 **/*.credentials.local
 **/manifest.local.json
 **/data-connector/bin
-
-# whitelist
-!icon-repository-dragndrop/package.zip
