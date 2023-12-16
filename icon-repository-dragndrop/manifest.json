@@ -1,0 +1,25 @@
+{
+  "version": "1.0.1",
+  "extensions": [
+    {
+      "name": "icon-repository-dragndrop",
+      "title": "icon-repository-dragndrop",
+      "products": [
+        "chart",
+        "spark",
+        "teamspaces"
+      ],
+      "codePath": "editorextensions/icon-repository-dragndrop/bin/extension.js",
+      "scopes": [
+        "READ",
+        "WRITE",
+        "DOWNLOAD",
+        "SHOW_MODAL",
+        "CUSTOM_UI",
+        "NETWORK"
+      ]
+    }
+  ],
+  "shapeLibraries": [],
+  "oauthProviders": []
+}
