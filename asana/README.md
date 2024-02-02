@@ -65,16 +65,15 @@ More information about running a data connector can be found [here](https://deve
 
 The code is organized into the following folders:
 ```
-├── asana-extension-package
-│   └── editorextensions
-│       └── asana
-│           ├── resources
-│           │   └── i18n
-│           └── src
-│               ├── model
-│               └── net
+├── editorextensions
+│   └── asana
+│       ├── resources
+│       │   └── i18n
+│       └── src
+│           ├── model
+│           └── net
 ├── common
-└── data-connector
+└── dataconnectors
     ├── actions
     ├── collections
     ├── routes
