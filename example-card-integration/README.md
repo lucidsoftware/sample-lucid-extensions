@@ -1,6 +1,26 @@
 # Lucid / Example card integration
 
-This repository contains the source for an example card integration built on Lucid's extensibility platform. This integration is based on the card integration walkthrough presented [here](https://developer.lucid.co/extension-api/#lucid-card-integrations). This integration does not connect to an actual external data source and instead mocks the responses one would get from such a source.
+This repository contains the source for an example card integration built on Lucid's extensibility platform. 
+This integration is based on the card integration walkthrough presented [here](https://developer.lucid.co/extension-api/#lucid-card-integrations). 
+This integration does not connect to any external data source, it instead mocks the data that might otherwise be fetched with an API call.
+
+## Features
+
+The integration adds a toolbar menu option to Lucidspark which allows you to import Lucid cards.
+
+![Example card integration entrypoint](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/example_cards_entrypoint.png)
+
+From there you can import cards using Lucid's import modal, which can be configured to search or filter by custom fields.
+
+![Example card integration import modal](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/example_card_integration_modal.png)
+
+You can create cards using the new task callout which is also configured by the extension.
+
+![Example card creation callout](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/example_card_integration_create_callout.png)
+
+Once imported or created, the cards will appear on the board.
+
+![Example card](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/example_card_integration_card.png)
 
 ## Getting started
 
@@ -63,7 +83,7 @@ The code is organized into the following folders:
 ├── data
 └── data-connector
     ├── actions
-    ├── schema
+    └── schema
 ```
 
 `/editorextensions` contains the extension source code.
