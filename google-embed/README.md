@@ -63,12 +63,12 @@ Now you're ready to bundle, upload and install your extension by following the r
 
 The code is organized into the following folders:
 ```
-├── google-embed-package
+├── google-embed
 │   └── editorextensions
 │       └── drive
 ```
 
-`/google-embed-package` contains the editor extension used for the integration, including the package manifest, the extension source code, and any shape libraries defined by the extension (in this case none).
+`/google-embed` contains the editor extension used for the integration, including the package manifest, the extension source code, and any shape libraries defined by the extension (in this case none).
 
 ## How to test
 Since the google extension is installed by default by Lucid, you will need to somehow handle link unfurling in this extension differently.
