@@ -1,0 +1,10 @@
+<main>
+  <div class="flex flex-col space-y-2">
+    <div class="flex flex-row space-x-2">
+      <div>Auto?</div>
+      <input type="checkbox" [checked]="checked" (change)="toggle()"/>
+    </div>
+    <input type="range" class="slider" [min]="min" [max]="max" [step]="step" [value]="currentValue" [disabled]="checked" (change)="setValue($event)"/>
+  </div>
+</main>
+

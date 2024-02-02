@@ -1,0 +1,43 @@
+
+<main class="main">
+  <div class="flex flex-col h-screen px-2 py-4 space-y-4">
+    <div class="text-3xl">
+      Shape
+    </div>
+    <div class="flex flex-row justify-between">
+      <button class="px-2 py-1 rounded bg-blue-600 text-white" (click)="setShapeType('circle')" [ngClass]="{'bg-blue-100 text-black border-2 border-blue-400': shapeType == 'circle'}">Circle</button>
+      <button class="px-2 py-1 rounded bg-blue-600 text-white" (click)="setShapeType('spiral')" [ngClass]="{'bg-blue-100 text-black border-2 border-blue-400': shapeType == 'spiral'}">Spiral</button>
+      <button class="px-2 py-1 rounded bg-blue-600 text-white" (click)="setShapeType('triangle')" [ngClass]="{'bg-blue-100 text-black border-2 border-blue-400': shapeType == 'triangle'}">Triangle</button>
+    </div>
+    <div *ngIf="shapeType == 'spiral' || shapeType == 'circle'" class="flex flex-col space-y-2">
+      <div class="text-2xl">
+        Radius
+      </div>
+      <app-slider-with-toggle [min]="getRadiusSliderConfiguration().min" [max]="getRadiusSliderConfiguration().max" [step]="getRadiusSliderConfiguration().step" (toggleChanged)="setRadius($event)" (valueChanged)="setRadius($event)"/>
+    </div>
+    <div *ngIf="shapeType == 'triangle'" class="flex flex-col space-y-2">
+      <div class="text-2xl">
+        Side Length
+      </div>
+      <app-slider-with-toggle [min]="TriangleSideLengthSliderConfiguration.min" [max]="TriangleSideLengthSliderConfiguration.max" [step]="TriangleSideLengthSliderConfiguration.step" (toggleChanged)="setSideLength($event)" (valueChanged)="setSideLength($event)"/>
+    </div>
+    <div  *ngIf="shapeType == 'spiral'" class="flex flex-col space-y-2">
+      <div class="text-2xl">
+        Spacing
+      </div>
+      <app-slider-with-toggle [min]="SpiralSpacingSliderConfiguration.min" [max]="SpiralSpacingSliderConfiguration.max" [step]="SpiralSpacingSliderConfiguration.step" (toggleChanged)="setSpacing($event)" (valueChanged)="setSpacing($event)"/>
+    </div>
+    <div  *ngIf="shapeType == 'spiral'" class="flex flex-col space-y-2">
+      <div class="text-2xl">
+        Direction
+      </div>
+      <div class="flex flex-row justify-center space-x-8">
+        <ng-icon name="bootstrapArrowClockwise" (click)="setClockwise(true)" class="hover:scale-105 cursor-pointer" size="32" [ngClass]="{'scale-125 hover:scale-125': clockwise || clockwise === undefined}"/>
+        <ng-icon name="bootstrapArrowCounterclockwise" (click)="setClockwise(false)" size="32" class="hover:scale-105 cursor-pointer" [ngClass]="{'scale-125 hover:scale-125': clockwise === false }"/>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<router-outlet></router-outlet>
