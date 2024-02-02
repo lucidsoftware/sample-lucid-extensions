@@ -1,5 +1,4 @@
 import {EditorClient, Modal} from 'lucid-extension-sdk';
-import importHtml from '../resources/import.html';
 
 export interface ImportModalSubmission {
     'docId': string;
@@ -10,9 +9,9 @@ export class ImportPageModal extends Modal {
     constructor(client: EditorClient) {
         super(client, {
             title: 'Import a document',
-            width: 500,
-            height: 285,
-            content: importHtml,
+            width: 560,
+            height: 312,
+            url: 'import.html'
         });
     }
 
