@@ -50,6 +50,23 @@
         <script src="/scripts/profile.js" defer></script>
        {{/if}}
 
+        {{#if connected}}
+        <div class="card mb-4 box-shadow" >
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Unfurling Example</h4>
+          </div>
+          <div class="card-body" id="unfurl-example">
+            <form class="d-flex justify-content-center">
+              <div class="input-group mb-3 w-75">
+                <input type="documentLink" name="documentLink" id="documentLink" class="form-control"  placeholder="Enter the Lucid document link">
+                <button class="btn btn-block btn-outline-primary" type="submit" onclick="startUnfurling(event)">Unfurl</button>
+              </div>
+            </form>
+          </div>
+        </div> 
+        <script src="/scripts/unfurl.js" defer></script>
+       {{/if}}
+
       </div>
     </div>
 
