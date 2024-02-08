@@ -22,7 +22,7 @@ You can find more information about the integration, and install it to use for y
 
 ## BPMN Converter
 
-A tool for importning BPMN formatted files into Lucid using the REST API.
+A tool for importing BPMN formatted files into Lucid using the REST API.
 Uses our JSON import enpoints to create documents programatically.
 
 ## Example Card Integration
