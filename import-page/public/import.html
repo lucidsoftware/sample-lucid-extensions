@@ -21,6 +21,8 @@
 
             .input-container {
                 padding: 16px;
+                display: flex;
+                flex-direction: column;
             }
 
             .button-container {
@@ -55,7 +57,7 @@
                 overflow: hidden;
                 padding: 5px 8px;
                 text-overflow: ellipsis;
-                width: 100%;
+                width: 80%;
             }
 
             .input-text:focus {
@@ -101,11 +103,9 @@
                 <p class="header text">Enter the ID and page numbers of the document you would like to import</p>
                 
                 <label class="label text" for="doc-id">Document ID</label>
-                <br/>
                 <input class="input-text text" id="doc-id" type="text" placeholder="00000000-0000-0000-0000-000000000000"/>
 
                 <label class="label text" for="page-nums">Page numbers</label>
-                <br/>
                 <input class="input-text text" id="page-nums" type="text" placeholder="0, 1, 2..."/>
             </div>
 

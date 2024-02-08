@@ -17,9 +17,9 @@ import {
     SemanticKind,
     SerializedFieldType,
 } from 'lucid-extension-sdk';
-import {TaskCollectionName} from '../../../../common/constants';
-import {convertDueAtToDateonly} from '../../../../common/date';
-import {DefaultFieldNames} from '../../../../common/fields';
+import {TaskCollectionName} from '../../../common/constants';
+import {convertDueAtToDateonly} from '../../../common/date';
+import {DefaultFieldNames} from '../../../common/fields';
 import {WorkspaceCompact} from './model/asanamodel';
 import {AsanaClient} from './net/asanaclient';
 

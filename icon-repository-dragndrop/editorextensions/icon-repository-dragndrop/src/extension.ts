@@ -10,7 +10,7 @@ export class IconPanel extends Panel {
 
     constructor(client: EditorClient) {
         super(client, {
-            title: 'demo',
+            title: 'Icon Drag-n-drop',
             url: 'panel.html',
             location: PanelLocation.ImageSearchTab,
             iconUrl:

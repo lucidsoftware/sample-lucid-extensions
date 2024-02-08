@@ -5,7 +5,7 @@ This is a basic application built using the [NestJS framework](https://developer
 
 The application allows a user to connect their Lucid account using the [OAuth 2.0 Authentication](https://developer.lucid.co/rest-api/v1/#authentication) and then request the Lucid's user profile information to display it in the UI.
 
-![alt text](documentation/app.gif)
+![REST API application demo](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/example_rest_api_demo.gif)
 
 ## How to use Lucid's REST API
 
@@ -14,7 +14,7 @@ The goal of this application is to provide guidance on how you can integrate you
 
 Once the user has logged into the application they will see this UI:
 
-![alt text](documentation/connectaccount.png)
+![Connect account page](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/example_rest_api_connect_account.png)
 
 The behavior of this UI is powered by the [Connect script](assets/scripts/connect.js). When the button is clicked, it will open a new window with the URL https://localhost:4000/oauth2/authorize
 
@@ -30,7 +30,7 @@ The request will be handled by the `authorize` method in the [OAuth2Controller](
 
 The user will be prompted with the OAuth 2.0 authorization page.
 
-![alt text](documentation/authorizationpage.png)
+![Lucid authorization page](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/example_rest_api_authorization_page.png)
 
 If the user grants access to the application by clicking on `Grant Access` button. This page will redirect to the provided redirect URI and will include the OAuth 2.0 authorization code in the query parameters. This request is handled by the `handleRedirect` method in the [OAuth2Controller](src/oauth2//oauth2.controller.ts).
 
@@ -132,7 +132,7 @@ The application `/api/profile` endpoint in the [ApiController](src/api/api.contr
 
 The front-end then displays the profile information:
 
-![alt text](documentation/profile.png)
+![Lucid profile](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/example_rest_api_profile.png)
 
 Lucid offers an extensive list of APIs that you can use. Check our [documenation](https://developer.lucid.co/rest-api) for an up-to-date list.
 
