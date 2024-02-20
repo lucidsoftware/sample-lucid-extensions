@@ -8,11 +8,16 @@ async function startUnfurling(event) {
 
   if (response.ok) {
     const jsonResult = await response.json();
-
-    var iframe = document.createElement('iframe');
-    iframe.width = '600px';
-    iframe.height = '800px';
-    iframe.setAttribute('src', jsonResult.link);
-    document.getElementById('unfurl-example').appendChild(iframe);
+    const maybeIframe = document.getElementById('unfurlIframe');
+    if (!maybeIframe) {
+      var iframe = document.createElement('iframe');
+      iframe.id = 'unfurlIframe';
+      iframe.width = '600px';
+      iframe.height = '800px';
+      iframe.setAttribute('src', jsonResult.link);
+      document.getElementById('unfurl-example').appendChild(iframe);
+    } else {
+      maybeIframe.setAttribute('src', jsonResult.link);
+    }
   }
 }
