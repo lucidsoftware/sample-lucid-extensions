@@ -22,6 +22,10 @@ Then you can run the development server, this will also start any frontend frame
 /frontend-frameworks$ npm start
 ```
 
+With everything running, you can open a new Lucid document, enable "Load local extension" in your developer menu, and you will see a new menu item in top toolbar which opens the react app in a side panel.
+
+![React example](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/react-app-skeleton.png)
+
 ## Folder / file structure
 
 The code is organized into the following folders:

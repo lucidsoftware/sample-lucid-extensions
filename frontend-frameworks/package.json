@@ -9,7 +9,7 @@
         "test-shape-libraries":"npx lucid-package test-shape-libraries",
         "test": "npx lucid-package test-editor-extension",
 
-        "start": "npx lucid-package test-editor-extension",
+        "start": "npx lucid-package@latest test-editor-extension",
 
         "bundle":"npx lucid-package bundle"
        }
