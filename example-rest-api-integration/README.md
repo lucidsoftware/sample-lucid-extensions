@@ -138,7 +138,7 @@ Lucid offers an extensive list of APIs that you can use. Check our [documenation
 
 ### Using the unfurling API
 The unfurling API allows users to embed and view Lucid documents easily by entering a document link. 
-![alt text](documentation/unfurl.png)
+![alt text](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/unfurl.png)
 
 ## Runinng the application
 
