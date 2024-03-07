@@ -25,6 +25,12 @@ You can find more information about the integration, and install it to use for y
 A tool for importing BPMN formatted files into Lucid using the REST API.
 Uses our JSON import enpoints to create documents programatically.
 
+## Data Connector Example
+
+A small data connector which uses Lucid's REST API to import users' folder trees as data on a document.
+
+![Folder tree import demo](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/folderTreeDemo.gif)
+
 ## Example Card Integration
 
 An example card integration which uses mocked data.
