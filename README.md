@@ -46,6 +46,12 @@ You can find more information about designing your own custom shapes [here](http
 
 ![Example shape library](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/example_shape_library.png)
 
+## Frontend Frameworks
+
+A collection of minimal editor extensions which leverage frontend frameworks, like React.
+
+![Frontend Frameworks](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/react-app-skeleton.png)
+
 ## Google Embed
 
 An integration which brings Google Docs documents into Lucidchart and Lucidspark as expandable links using our Extension API.
