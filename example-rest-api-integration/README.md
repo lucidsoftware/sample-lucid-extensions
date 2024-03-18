@@ -136,6 +136,9 @@ The front-end then displays the profile information:
 
 Lucid offers an extensive list of APIs that you can use. Check our [documenation](https://developer.lucid.co/rest-api) for an up-to-date list.
 
+### Using the unfurling API
+The unfurling API allows users to embed and view Lucid documents easily by entering a document link. 
+![alt text](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/unfurl.png)
 
 ## Runinng the application
 
