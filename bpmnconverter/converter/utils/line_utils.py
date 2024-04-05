@@ -4,9 +4,14 @@ def parse_lines(lines: list, bpmn_edges: list, lucid_shapes: list):
     lucid_lines = []
     if isinstance(lines, list):
         for line in lines:
-            lucid_lines.append(process_line(line, bpmn_edges, lucid_shapes))
+            lucid_line = process_line(line, bpmn_edges, lucid_shapes)
+            if lucid_line:
+                lucid_lines.append(lucid_line)
+
     elif isinstance(lines, dict):
-        lucid_lines.append(process_line(lines, bpmn_edges, lucid_shapes))
+        lucid_line = process_line(lines, bpmn_edges, lucid_shapes)
+        if lucid_line:
+            lucid_lines.append(lucid_line)
 
     return lucid_lines
 
@@ -42,9 +47,10 @@ def getShapes(lucid_shapes: list, sourceId: str, targetId: str):
 def getEdge(edges: list, edgeId: str):
     targetEdge = {}
     for edge in edges:
-        if edge['@bpmnElement'] == edgeId:
-            targetEdge = edge
-            break
+        if isinstance(edge, dict):
+            if edge['@bpmnElement'] == edgeId:
+                targetEdge = edge
+                break
 
     return targetEdge
 
@@ -73,10 +79,17 @@ def getPosition(shape: dict, waypoint: dict):
     x = float(waypoint['@x'])
     y = float(waypoint['@y'])
     position_x, position_y = normalize_coordinates(x, y, x_min, y_min, x_max, y_max)
-    position = {
-                'x': position_x,
-                'y': position_y
-    }
+    position = {}
+    if (0 <= position_x <= 1) and (0 <= position_y <= 1):
+        position = {
+                    'x': position_x,
+                    'y': position_y
+        }
+    else:
+        position = {
+                    'x': 1,
+                    'y': 0.5
+        }
     return position
 
 def process_line(line: dict, bpmn_edges: list, lucid_shapes: list):
@@ -93,6 +106,8 @@ def process_line(line: dict, bpmn_edges: list, lucid_shapes: list):
         waypoints = edge['di:waypoint']
     elif 'waypoint' in edge:
         waypoints = edge['waypoint']
+    else:
+        return None
 
     lucid_line = {
         'id': id,
