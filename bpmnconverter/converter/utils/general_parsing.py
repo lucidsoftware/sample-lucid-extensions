@@ -7,23 +7,7 @@ def get_base_shape_and_bb(shape: dict, bpmn_shapes: dict):
     if '@name' in shape:
         lucid_shape['text'] = shape['@name']
     elif 'text' in shape:
-<<<<<<< HEAD
-        text = shape['text']
-        if text:
-            if 'font-size: small' in text:
-                text = text.replace('font-size: small', 'font-size: 3 px')
-            elif 'font-size: medium' in text:
-                text = text.replace('font-size: medium', 'font-size: 5 px')
-            elif 'font-size: large' in text:
-                text = text.replace('font-size: large', 'font-size: 7 px')
-            elif 'font-size: x-large' in text:
-                text = text.replace('font-size: x-large', 'font-size: 9 px')
-            elif 'font-size: xx-large' in text:
-                text = text.replace('font-size: xx-large', 'font-size: 11 px')
-        lucid_shape['text'] = text
-=======
         lucid_shape['text'] = shape['text']
->>>>>>> f15d905893e362c8661c9eaca64c8c780430a061
     if id in bpmn_shapes:
         shape_description = bpmn_shapes[id]
         shape_bb ={}
@@ -37,11 +21,7 @@ def get_base_shape_and_bb(shape: dict, bpmn_shapes: dict):
             'x': float(shape_bb['@x']),
             'y': float(shape_bb['@y']),
             'w': float(shape_bb['@width']),
-<<<<<<< HEAD
-            'h': float(shape_bb['@height'])
-=======
             'h': float(shape_bb['@height']),
->>>>>>> f15d905893e362c8661c9eaca64c8c780430a061
         }
         lucid_shape['style'] = {}
         if '@bioc:stroke' in shape_description:
