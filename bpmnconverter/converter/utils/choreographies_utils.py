@@ -16,6 +16,7 @@ def parse_choreographies(choreographies: list, bpmn_shapes: dict, task_type: str
                 choreographyType = 'subChoreography'
             elif key == 'callChoreography':
                 choreographyType = 'call'
+<<<<<<< HEAD
 
             #get_lane_count(entry)
             #lucid_shape = get_base_shape_and_bb(entry, bpmn_shapes)
@@ -23,6 +24,8 @@ def parse_choreographies(choreographies: list, bpmn_shapes: dict, task_type: str
             #if lucid_shape != None:
                 #lucid_shape['choreographyType'] = choreographyType
                 #lucid_shapes.append(lucid_shape)
+=======
+>>>>>>> f15d905893e362c8661c9eaca64c8c780430a061
         else:
             continue
     
