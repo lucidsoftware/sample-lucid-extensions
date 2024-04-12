@@ -1,0 +1,41 @@
+{
+  "id": "",
+  "version": "1.0.0",
+  "extensions": [
+    {
+      "name": "oauth-example",
+      "title": "oauth-example",
+      "products": [
+        "chart",
+        "spark",
+        "teamspaces"
+      ],
+      "codePath": "editorextensions/oauth-example/bin/extension.js",
+      "scopes": [
+        "READ",
+        "WRITE",
+        "DOWNLOAD",
+        "SHOW_MODAL",
+        "CUSTOM_UI",
+        "NETWORK"
+      ]
+    }
+  ],
+  "shapeLibraries": [],
+  "oauthProviders": [
+    {
+      "name": "lucid",
+      "title": "Lucid",
+      "authorizationUrl": "https://lucid.app/oauth2/authorize",
+      "tokenUrl": "https://api.lucid.co/oauth2/token",
+      "scopes": [
+        "folder"
+      ],
+      "domainWhitelist": [
+        "https://api.lucid.co"
+      ],
+      "clientAuthentication": "clientParameters",
+      "faviconUrl": "https://cdn-cashy-static-assets.lucidchart.com/marketing/images/LucidSoftwareFavicon.png"
+    }
+  ]
+}
