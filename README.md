@@ -78,6 +78,12 @@ A minimal integration for copying pages within or between documents using the Ex
 
 ![Import page](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/import_document.png)
 
+## OAuth Example
+
+A minimal example of how to query an external REST API using the Extension API.
+
+![OAuth example](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/oauth-example-demo.gif)
+
 ## Todoist
 
 A cards integration which can import tasks from Todoist and keep them in sync when changes are made either in Lucid or in Todoist.
