@@ -88,12 +88,9 @@ def get_shapes_in_process(process: dict, bpmn_shapes: dict):
             lucid_shapes += parse_lanes(entry, bpmn_shapes)
         elif key == 'textAnnotation':
             lucid_shapes += parse_text_annotations(entry, bpmn_shapes)
-<<<<<<< HEAD
         for shape in lucid_shapes:
             if len(shape['id']) > 36:
                 shape['id'] = shape['id'][:36]
-=======
->>>>>>> f15d905893e362c8661c9eaca64c8c780430a061
     return lucid_shapes
 
 def parse_processes_list(processes: list, bpmn_shapes: dict):
@@ -106,12 +103,9 @@ def parse_processes_lines_list(processes: list, bpmn_edges: list, lucid_shapes: 
     lucid_lines = []
     for process in processes:
         lucid_lines += get_lines_in_process(process, bpmn_edges, lucid_shapes)
-<<<<<<< HEAD
     for line in lucid_lines:
         if len(line['id']) > 36:
             line['id'] = line['id'][:36]
-=======
->>>>>>> f15d905893e362c8661c9eaca64c8c780430a061
     return lucid_lines
 
 def get_bpmn_planes(diagrams):
@@ -157,10 +151,7 @@ def get_lucid_json(bpmn: Dict[str, Any]):
             }
         ]
     }
-<<<<<<< HEAD
 
-    #removedPrefixes = False
-    #if 'definitions' not in bpmn_doc:
     bpmn_doc = remove_namespace_prefixes(bpmn_doc)
     removedPrefixes = True
 
@@ -171,16 +162,6 @@ def get_lucid_json(bpmn: Dict[str, Any]):
             return None
         processes = definitions['process']
 
-=======
-    removedPrefixes = False
-    if 'definitions' not in bpmn_doc:
-        bpmn_doc = remove_namespace_prefixes(bpmn_doc)
-        removedPrefixes = True
-
-    if 'definitions' in bpmn_doc:
-        definitions =  bpmn_doc['definitions']  
-        processes = definitions['process']
->>>>>>> f15d905893e362c8661c9eaca64c8c780430a061
         processes_as_list = [processes] if not isinstance(processes, list) else processes
         diagrams = {}
         if 'bpmndi:BPMNDiagram' in definitions:

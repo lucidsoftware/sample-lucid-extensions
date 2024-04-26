@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # BPMN to Lucid converter
 
 This is heavily a work in progress, the main idea is to have a cli application that takes a dir or an xml/bpmn file
@@ -23,7 +22,6 @@ The directory called schemas shows what each implemented shape should look like
 - Parse data stores
 - Parse groups
 - Schema representation for all the mplemented shapes
-=======
 # BPMN to Lucid Converter
 
 This is heavily a work in progress. The main idea is to have a CLI application that takes a directory or an XML/BPMN file and makes a request to the Lucid public API to create a diagram.
@@ -47,7 +45,6 @@ The directory called "schemas" shows what each implemented shape should look lik
 - Parse data stores
 - Parse groups
 - Schema representation for all the implemented shapes
->>>>>>> f15d905893e362c8661c9eaca64c8c780430a061
 - Authentication
 - Request to Lucid API
 - Lines
@@ -55,11 +52,6 @@ The directory called "schemas" shows what each implemented shape should look lik
 - Text Annotation
 
 ## Things that are yet to be implemented
-<<<<<<< HEAD
-- Choreographies are half way there, get_lane_coount and orientation are missing
-- Conversation, this one is kinda weird, someone that understands BPMN could probably implement it in one second
-=======
 - Choreographies are halfway there; get_lane_count and orientation are missing.
 - Conversation; this one is kind of weird. Someone that understands BPMN could probably implement it in one second.
->>>>>>> f15d905893e362c8661c9eaca64c8c780430a061
 - Pool black box
