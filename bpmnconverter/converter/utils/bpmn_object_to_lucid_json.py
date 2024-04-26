@@ -162,6 +162,14 @@ def get_lucid_json(bpmn: Dict[str, Any]):
             return None
         processes = definitions['process']
 
+    removedPrefixes = False
+    if 'definitions' not in bpmn_doc:
+        bpmn_doc = remove_namespace_prefixes(bpmn_doc)
+        removedPrefixes = True
+
+    if 'definitions' in bpmn_doc:
+        definitions =  bpmn_doc['definitions']  
+        processes = definitions['process']
         processes_as_list = [processes] if not isinstance(processes, list) else processes
         diagrams = {}
         if 'bpmndi:BPMNDiagram' in definitions:
