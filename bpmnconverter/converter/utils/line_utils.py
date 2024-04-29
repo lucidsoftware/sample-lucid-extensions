@@ -82,13 +82,13 @@ def getPosition(shape: dict, waypoint: dict):
     position = {}
     if (0 <= position_x <= 1) and (0 <= position_y <= 1):
         position = {
-                    'x': position_x,
-                    'y': position_y
+            'x': position_x,
+            'y': position_y
         }
     else:
         position = {
-                    'x': 1,
-                    'y': 0.5
+            'x': 1,
+            'y': 0.5
         }
     return position
 
