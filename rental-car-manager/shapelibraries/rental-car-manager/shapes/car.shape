@@ -1,0 +1,67 @@
+{
+    "geometry": [
+        {
+            "type": "rect"
+        }
+    ],
+    "shapes": [
+        {
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": false,
+                "x": "0.05",
+                "y": "0.05",
+                "w": "0.8",
+                "h": "0.05"
+            },
+            "textarea": {
+                "name": "makeAndModel",
+                "text": "{{=IFERROR(YEAR(@'Manufactured Date'), 'Year') & ' ' & IFERROR(@'Make', 'Make') & ' ' & IFERROR(@'Model', 'Model')}}"
+                "style": {
+                    "bold": true,
+                    "size": 12,
+                    "sizeUnits": "pt"
+                },
+                "align": "left"
+            }
+        },
+        {
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": false,
+                "x": "0.05",
+                "y": "0.55",
+                "w": "0.9",
+                "h": "0.05"
+            },
+            "textarea": {
+                "name": "miles",
+                "text": "{{=IFERROR(@'Miles', 'Unknown') & ' miles'}}"
+                "style": {
+                    "size": 10,
+                    "sizeUnits": "pt"
+                },
+                "align": "left"
+            }
+        },
+        {
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": false,
+                "x": "0.05",
+                "y": "0.75",
+                "w": "0.9",
+                "h": "0.05"
+            },
+            "textarea": {
+                "name": "status",
+                "text": "{{='Status: ' & IFERROR(@'Status', 'Unknown')}}"
+                "style": {
+                    "size": 10,
+                    "sizeUnits": "pt"
+                },
+                "align": "left"
+            }
+        },
+    ]
+}

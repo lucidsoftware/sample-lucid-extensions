@@ -1,4 +1,13 @@
 {
     "name": "Rental Car Manager",
-    "shapes": []
+    "shapes": [
+        {
+            "shape": "car",
+            "name": "Car Shape",
+            "defaults": {
+                "width": 360,
+                "height": 140
+            }
+        }
+    ]
 }
