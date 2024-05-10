@@ -10,11 +10,13 @@ import {
   isJsonObject,
 } from "lucid-extension-sdk";
 import { CarSchema } from "../collections/car";
+import { LotSchema } from "../collections/lots";
 import {
   CARS_COLLECTION_NAME,
   DATA_SOURCE_NAME,
+  LOTS_COLLECTION_NAME,
 } from "../../common/constants";
-import { isCarArray } from "../validators";
+import { isCarArray, isLotArray } from "../validators";
 
 export class RentACarModal extends Modal {
   private static icon = "https://lucid.app/favicon.ico";
@@ -45,10 +47,25 @@ export class RentACarModal extends Modal {
         });
       }
     }
+
+    if (isDefAndNotNull(message["lots"])) {
+      const lots = message["lots"];
+      if (isLotArray(lots)) {
+        const collection = this.getOrCreateLotsCollection();
+        collection.patchItems({
+          added: lots as Record<string, SerializedFieldType>[],
+        });
+      }
+    }
   }
   private getOrCreateCarsCollection(): CollectionProxy {
     return this.getOrCreateCollection(CARS_COLLECTION_NAME, CarSchema);
   }
+
+  private getOrCreateLotsCollection(): CollectionProxy {
+    return this.getOrCreateCollection(LOTS_COLLECTION_NAME, LotSchema);
+  }
+
   private getOrCreateCollection(
     collectionName: string,
     collectionSchema: SchemaDefinition,
