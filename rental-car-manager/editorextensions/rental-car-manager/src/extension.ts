@@ -4,12 +4,14 @@ import {
   MenuLocation,
   MenuType,
 } from "lucid-extension-sdk";
+import { RentACarModal } from "./modal/rentacarmodal";
 
 const client = new EditorClient();
 const menu = new Menu(client);
+const modal = new RentACarModal(client);
 
 const showModal = () => {
-  client.alert("Replace me!");
+  modal.show();
 };
 client.registerAction("showModal", showModal);
 
