@@ -1,0 +1,89 @@
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  margin-right: 4px;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
+.title {
+  font-size: xx-large;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+main {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+button {
+  margin-left: 8px;
+}
+
+.add-lots-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.tree-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tree-row-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.add-more-controls {
+  margin-left: 16px;
+}
+
+.pad-left {
+  margin-left: 16px;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.description {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.visualize-row {
+  margin-top: 16px;
+}
+
+.address {
+  width: 200px;
+  overflow-x: hidden;
+}

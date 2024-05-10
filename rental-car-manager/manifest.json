@@ -1,0 +1,21 @@
+{
+  "id": "",
+  "version": "1.0.0",
+  "extensions": [
+    {
+      "name": "rental-car-manager",
+      "title": "Rental Car Manager",
+      "products": ["chart"],
+      "codePath": "editorextensions/rental-car-manager/bin/extension.js",
+      "scopes": ["READ", "WRITE", "SHOW_MODAL", "CUSTOM_UI"]
+    }
+  ],
+  "shapeLibraries": [
+    {
+      "name": "rental-car-manager",
+      "product": "chart",
+      "lcszPath": "shapelibraries/rental-car-manager.lcsz"
+    }
+  ],
+  "oauthProviders": []
+}
