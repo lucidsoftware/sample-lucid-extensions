@@ -125,6 +125,8 @@ export class RentACarModal extends Modal {
       lotNodes,
       startPoint,
     );
+
+    this.drawLots(lotPositions);
   }
 
   private async loadBlockClasses() {
@@ -201,5 +203,20 @@ export class RentACarModal extends Modal {
       carNodes.length * (BLOCK_SIZES.CAR_HEIGHT + BLOCK_SIZES.MARGIN);
 
     return { carPositions, bottomY };
+  }
+
+  private drawLots(lotBBs: Map<Lot, Box>) {
+    const page = this.viewport.getCurrentPage();
+    for (const [lot, lotBB] of lotBBs.entries()) {
+      const lotBlock = page?.addBlock({
+        className: "ProcessBlock",
+        boundingBox: lotBB,
+      });
+
+      if (lotBlock) {
+        lotBlock.textAreas.set("Text", lot.address);
+        lotBlock.properties.set("Text_VAlign", "top");
+      }
+    }
   }
 }
