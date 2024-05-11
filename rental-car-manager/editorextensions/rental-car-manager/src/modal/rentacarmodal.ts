@@ -15,8 +15,9 @@ import {
   CARS_COLLECTION_NAME,
   DATA_SOURCE_NAME,
   LOTS_COLLECTION_NAME,
+  LotNode,
 } from "../../common/constants";
-import { isCarArray, isLotArray } from "../validators";
+import { isCarArray, isLotArray, isLotNodeArray } from "../validators";
 
 export class RentACarModal extends Modal {
   private static icon = "https://lucid.app/favicon.ico";
@@ -57,6 +58,14 @@ export class RentACarModal extends Modal {
         });
       }
     }
+
+    const visualizeBody = message["visualize"];
+    if (isDefAndNotNull(visualizeBody) && isLotNodeArray(visualizeBody)) {
+      await this.visualize(visualizeBody);
+      this.hide();
+    } else {
+      console.error(visualizeBody);
+    }
   }
   private getOrCreateCarsCollection(): CollectionProxy {
     return this.getOrCreateCollection(CARS_COLLECTION_NAME, CarSchema);
@@ -88,5 +97,24 @@ export class RentACarModal extends Modal {
       return existingDataSource;
     }
     return this.dataProxy.addDataSource(DATA_SOURCE_NAME, {});
+  }
+
+  private async visualize(lotNodes: LotNode[]) {
+    const carBlockDef = await this.loadBlockClasses();
+    if (!carBlockDef) {
+      this.client.alert(
+        "Make sure you've enabled the Rental Car Manager shape library!",
+      );
+      return;
+    }
+  }
+
+  private async loadBlockClasses() {
+    const data = await Promise.all([
+      this.client.loadBlockClasses(["ProcessBlock"]),
+      this.client.getCustomShapeDefinition("rental-car-manager", "car"),
+    ]);
+    const [processBlock, carBlock] = data;
+    return carBlock;
   }
 }
