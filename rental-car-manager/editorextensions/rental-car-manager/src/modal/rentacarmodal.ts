@@ -127,6 +127,7 @@ export class RentACarModal extends Modal {
     );
 
     this.drawLots(lotPositions);
+    this.drawCars(carPositions, carBlockDef);
   }
 
   private async loadBlockClasses() {
@@ -217,6 +218,16 @@ export class RentACarModal extends Modal {
         lotBlock.textAreas.set("Text", lot.address);
         lotBlock.properties.set("Text_VAlign", "top");
       }
+    }
+  }
+
+  private drawCars(carBBs: Map<Car, Box>, carBlockDef: BlockDefinition) {
+    const page = this.viewport.getCurrentPage();
+    for (const [car, carBB] of carBBs.entries()) {
+      const carBlock = page?.addBlock({
+        ...carBlockDef,
+        boundingBox: carBB,
+      });
     }
   }
 }
