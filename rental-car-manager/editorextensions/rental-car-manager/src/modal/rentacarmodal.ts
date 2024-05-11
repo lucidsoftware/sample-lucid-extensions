@@ -3,6 +3,7 @@ import {
   Box,
   CollectionProxy,
   DataProxy,
+  DocumentProxy,
   EditorClient,
   JsonSerializable,
   Modal,
@@ -25,13 +26,19 @@ import {
   LotNode,
 } from "../../common/constants";
 import { isCarArray, isLotArray, isLotNodeArray } from "../validators";
-
+import { RuleProxy } from "lucid-extension-sdk/document/documentelement/ruleproxy";
+import {
+  SERVICE_NEEDED_RULE_NAME,
+  serviceNeededRuleDefinition,
+} from "../rules/service";
+import { CAR_COLOR_RULE_NAME, carColorRuleDefinition } from "../rules/color";
 export class RentACarModal extends Modal {
   private static icon = "https://lucid.app/favicon.ico";
 
   constructor(
     client: EditorClient,
     private dataProxy: DataProxy,
+    private documentProxy: DocumentProxy,
     private viewport: Viewport,
   ) {
     super(client, {
@@ -221,8 +228,31 @@ export class RentACarModal extends Modal {
     }
   }
 
+  private getOrCreateConditionalFormattingRules() {
+    const rules: RuleProxy[] = [];
+
+    const carColorRule =
+      this.documentProxy.rules.find(
+        (rule) => rule.getName() === CAR_COLOR_RULE_NAME,
+      ) || this.documentProxy.addRule(carColorRuleDefinition);
+    if (carColorRule) {
+      rules.push(carColorRule);
+    }
+
+    const serviceNeededRule =
+      this.documentProxy.rules.find(
+        (rule) => rule.getName() === SERVICE_NEEDED_RULE_NAME,
+      ) || this.documentProxy.addRule(serviceNeededRuleDefinition);
+    if (serviceNeededRule) {
+      rules.push(serviceNeededRule);
+    }
+
+    return rules;
+  }
+
   private drawCars(carBBs: Map<Car, Box>, carBlockDef: BlockDefinition) {
     const page = this.viewport.getCurrentPage();
+    const rules = this.getOrCreateConditionalFormattingRules();
     for (const [car, carBB] of carBBs.entries()) {
       const carBlock = page?.addBlock({
         ...carBlockDef,
@@ -235,6 +265,7 @@ export class RentACarModal extends Modal {
           primaryKey: `"${car.id}"`,
           readonly: true,
         });
+        rules.forEach((ruleProxy) => carBlock.applyRule(ruleProxy));
       }
     }
   }

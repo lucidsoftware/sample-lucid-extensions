@@ -1,5 +1,6 @@
 import {
   DataProxy,
+  DocumentProxy,
   EditorClient,
   Menu,
   MenuLocation,
@@ -11,8 +12,9 @@ import { RentACarModal } from "./modal/rentacarmodal";
 const client = new EditorClient();
 const menu = new Menu(client);
 const dataProxy = new DataProxy(client);
+const documentProxy = new DocumentProxy(client);
 const viewport = new Viewport(client);
-const modal = new RentACarModal(client, dataProxy, viewport);
+const modal = new RentACarModal(client, dataProxy, documentProxy, viewport);
 
 const showModal = () => {
   modal.show();
