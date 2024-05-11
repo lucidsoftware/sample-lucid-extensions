@@ -1,9 +1,12 @@
 import {
+  BlockDefinition,
+  Box,
   CollectionProxy,
   DataProxy,
   EditorClient,
   JsonSerializable,
   Modal,
+  Point,
   SchemaDefinition,
   SerializedFieldType,
   Viewport,
@@ -15,8 +18,10 @@ import { LotSchema } from "../collections/lots";
 import {
   BLOCK_SIZES,
   CARS_COLLECTION_NAME,
+  Car,
   DATA_SOURCE_NAME,
   LOTS_COLLECTION_NAME,
+  Lot,
   LotNode,
 } from "../../common/constants";
 import { isCarArray, isLotArray, isLotNodeArray } from "../validators";
@@ -116,6 +121,10 @@ export class RentACarModal extends Modal {
       x: visibleRect.x + BLOCK_SIZES.START_PADDING,
       y: visibleRect.y + BLOCK_SIZES.START_PADDING,
     };
+    const { lotPositions, carPositions } = this.getLotAndCarPositions(
+      lotNodes,
+      startPoint,
+    );
   }
 
   private async loadBlockClasses() {
@@ -125,5 +134,72 @@ export class RentACarModal extends Modal {
     ]);
     const [processBlock, carBlock] = data;
     return carBlock;
+  }
+
+  private getLotAndCarPositions(
+    lotNodes: LotNode[],
+    startPoint: Point,
+  ): {
+    carPositions: Map<Car, Box>;
+    lotPositions: Map<Lot, Box>;
+  } {
+    const lotPositions: Map<Lot, Box> = new Map();
+    const carPositions: Map<Car, Box> = new Map();
+
+    const lotY = startPoint.y;
+    for (let i = 0; i < lotNodes.length; i++) {
+      const lot = lotNodes[i].lot;
+      const cars = lotNodes[i].cars;
+
+      const lotX = i * (BLOCK_SIZES.LOT_WIDTH + BLOCK_SIZES.MARGIN);
+      const { carPositions: lotCarPositions, bottomY } = this.getCarPositions(
+        cars,
+        lotX,
+        lotY,
+      );
+      lotCarPositions.forEach((value, key) => carPositions.set(key, value));
+
+      const lotPosition = {
+        x: lotX,
+        y: lotY,
+        w: BLOCK_SIZES.LOT_WIDTH,
+        h: bottomY - lotY,
+      };
+      lotPositions.set(lot, lotPosition);
+    }
+
+    return { carPositions, lotPositions };
+  }
+
+  private getCarPositions(
+    carNodes: Car[],
+    lotX: number,
+    lotY: number,
+  ): {
+    carPositions: Map<Car, Box>;
+    bottomY: number;
+  } {
+    const carPositions: Map<Car, Box> = new Map();
+
+    const firstCarY = lotY + BLOCK_SIZES.LOT_PADDING;
+    for (let i = 0; i < carNodes.length; i++) {
+      const car = carNodes[i];
+      const carH = BLOCK_SIZES.CAR_HEIGHT;
+      const carX = lotX + BLOCK_SIZES.MARGIN;
+      const carY = firstCarY + i * (carH + BLOCK_SIZES.MARGIN);
+
+      const carBB = {
+        x: carX,
+        y: carY,
+        w: BLOCK_SIZES.CAR_WIDTH,
+        h: carH,
+      };
+      carPositions.set(car, carBB);
+    }
+    const bottomY =
+      firstCarY +
+      carNodes.length * (BLOCK_SIZES.CAR_HEIGHT + BLOCK_SIZES.MARGIN);
+
+    return { carPositions, bottomY };
   }
 }
