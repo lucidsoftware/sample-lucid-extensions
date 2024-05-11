@@ -6,12 +6,14 @@ import {
   Modal,
   SchemaDefinition,
   SerializedFieldType,
+  Viewport,
   isDefAndNotNull,
   isJsonObject,
 } from "lucid-extension-sdk";
 import { CarSchema } from "../collections/car";
 import { LotSchema } from "../collections/lots";
 import {
+  BLOCK_SIZES,
   CARS_COLLECTION_NAME,
   DATA_SOURCE_NAME,
   LOTS_COLLECTION_NAME,
@@ -25,6 +27,7 @@ export class RentACarModal extends Modal {
   constructor(
     client: EditorClient,
     private dataProxy: DataProxy,
+    private viewport: Viewport,
   ) {
     super(client, {
       title: "Rental Car Manager",
@@ -107,6 +110,12 @@ export class RentACarModal extends Modal {
       );
       return;
     }
+
+    const visibleRect = this.viewport.getVisibleRect();
+    const startPoint = {
+      x: visibleRect.x + BLOCK_SIZES.START_PADDING,
+      y: visibleRect.y + BLOCK_SIZES.START_PADDING,
+    };
   }
 
   private async loadBlockClasses() {
