@@ -228,6 +228,14 @@ export class RentACarModal extends Modal {
         ...carBlockDef,
         boundingBox: carBB,
       });
+
+      if (carBlock) {
+        carBlock.setReferenceKey("ShapeData", {
+          collectionId: this.getOrCreateCarsCollection().id,
+          primaryKey: `"${car.id}"`,
+          readonly: true,
+        });
+      }
     }
   }
 }
