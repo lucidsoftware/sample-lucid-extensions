@@ -84,6 +84,14 @@ A minimal example of how to query an external REST API using the Extension API.
 
 ![OAuth example](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/oauth-example-demo.gif)
 
+
+## Rental Car Manager + Starter
+
+These two extensions serve as a tutorial for building data backed visualizations using the Extension API.
+You can follow a step by step guide [here](https://lucid.readme.io/v1.0/docs/data-visualization) which will walk you through building an extension to visualize data about a rental car fleet.
+
+![Rental Car Manager](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/rentalCarExample.gif)
+
 ## Todoist
 
 A cards integration which can import tasks from Todoist and keep them in sync when changes are made either in Lucid or in Todoist.
