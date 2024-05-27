@@ -1,0 +1,44 @@
+<main>
+  <span class="title">Lucid Rent-a-Car</span>
+  <div class="description">
+    <span>
+      Visualize a hypothetical fleet of rental cars using Lucid Rent-A-Car. Add
+      car lots and cars in this modal, and then visualize them as custom shapes
+      in Lucidchart!
+    </span>
+  </div>
+  <div class="add-lots-row">
+    <span class="material-icons">local_parking</span>
+    <span class="pad-left">Add car lots:</span>
+    <button mat-mini-fab (click)="generateLots(1)">+1</button>
+    <button mat-mini-fab (click)="generateLots(5)">+5</button>
+  </div>
+  <p-tree [value]="tree">
+    <ng-template let-node pTemplate="lot" class="tree-row">
+      <div class="tree-row">
+        <span class="material-icons">local_parking</span>
+        <span class="address">{{ node.label }}</span>
+        <div class="add-more-controls">
+          <span>Add cars:</span>
+          <button mat-mini-fab (click)="generateCars(1, node.label)">+1</button>
+          <button mat-mini-fab (click)="generateCars(5, node.label)">+5</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template let-node pTemplate="car">
+      <div class="tree-row">
+        <div class="tree-row-label">
+          <span class="material-icons">directions_car</span>
+          <span>{{ node.label }}</span>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="empty"
+      >Add some car lots to get started!</ng-template
+    >
+  </p-tree>
+  <div class="visualize-row" *ngIf="tree.length > 0">
+    <span class="pad-left">Visualize your data:</span>
+    <button mat-mini-fab (click)="visualize()">Go!</button>
+  </div>
+</main>
