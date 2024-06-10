@@ -1,7 +1,21 @@
 {
-  "id": "!!REPLACE THIS WITH YOUR PACKAGE ID!!",
+  "id": "",
   "version": "1.0.0",
-  "extensions": [],
+  "extensions": [
+    {
+      "name": "example-shape-library",
+      "title": "Example Shape Library",
+      "products": [
+        "chart",
+        "spark"
+      ],
+      "codePath": "editorextensions/example-shape-library/bin/extension.js",
+      "scopes": [
+        "READ",
+        "WRITE"
+      ]
+    }
+  ],
   "shapeLibraries": [
     {
       "name": "example-shape-library",

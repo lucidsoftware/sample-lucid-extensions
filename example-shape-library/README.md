@@ -1,6 +1,6 @@
 # Lucid Example Shape Library
 
-This repository contains the source for an example shape library built on Lucid's extensibility platform. 
+This repository contains the source for an example shape library built on Lucid's extensibility platform.
 You can find more information about creating shapes and shape libraries [here](https://developer.lucid.co/custom-shapes/).
 
 ## Getting started
@@ -13,19 +13,25 @@ To start developing, make sure you have `lucid-package` installed, then:
 
 Finally, open a Lucidchart document and look for Example Shape Library in the shapes panel.
 
-While running `test-shape-libraries`, changes you make in the code will cause the library to automatically reload. 
+While running `test-shape-libraries`, changes you make in the code will cause the library to automatically reload.
 Refreshing the page after making changes is not necessary.
 
 ## Folder / file structure
 
 The code is organized into the following folders:
+
 ```
+├── editorextensions
+|   └── example-shape-library
+|       └── src
 └── shapelibraries
     └── example-shape-library
         ├── images
         ├── shapes
         └── library.manifest
 ```
+
+`editorextensions` contains a small extension which draws shapes on the canvas, including custom and built in shapes.
 
 `/images` contains all the images used by the shape library.
 
