@@ -1,0 +1,16 @@
+{
+    "scripts": {
+        "create-editor-extension":"npx lucid-package@latest create-editor-extension",
+        "create-shape-library":"npx lucid-package@latest create-shape-library",
+        "create-data-connector":"npx lucid-package@latest create-data-connector",
+        "create-image-shape-library":"npx lucid-package@latest create-image-shape-library",
+
+        "test-editor-extension":"npx lucid-package@latest test-editor-extension",
+        "test-shape-libraries":"npx lucid-package@latest test-shape-libraries",
+        "test": "npx lucid-package@latest test-editor-extension",
+
+        "start": "npx lucid-package@latest test-editor-extension",
+
+        "bundle":"npx lucid-package@latest bundle"
+       }
+}

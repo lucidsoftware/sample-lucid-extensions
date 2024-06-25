@@ -1,0 +1,26 @@
+{
+  "id": "",
+  "version": "1.0.7",
+  "extensions": [
+    {
+      "name": "annual-calendar-creator",
+      "title": "Annual Calendar Creator",
+      "products": [
+        "chart",
+        "spark",
+        "teamspaces"
+      ],
+      "codePath": "editorextensions/annual-calendar-creator/bin/extension.js",
+      "scopes": [
+        "READ",
+        "WRITE",
+        "DOWNLOAD",
+        "SHOW_MODAL",
+        "CUSTOM_UI",
+        "NETWORK"
+      ]
+    }
+  ],
+  "shapeLibraries": [],
+  "oauthProviders": []
+}
