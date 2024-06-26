@@ -1,0 +1,66 @@
+body {
+    font-family:sans-serif;
+    font-weight:600;
+    font-size:14px;
+    margin: 14px;
+}
+
+input[type="submit"]{
+    height:32px;
+    border-radius:4px;
+    padding:0 16px;
+    border:0;
+    border-radius:4px;
+    font-family:sans-serif;
+    font-weight:600;
+    font-size:14px;
+    line-height:20px;
+    background-color:#1071e5;
+    color:white;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+input[type="submit"]:active, input[type="submit"]:hover {
+    background-color: #2888fa;
+}
+
+select {
+    line-height:20px;
+    font-size:14px;
+    min-width:96px;
+    box-sizing:border-box;
+    border-radius:4px;
+    height:32px;
+    border-width:1px;
+    border-style:solid;
+    border-color:#282c33;
+    color:#282c33;
+    padding:5px 8px;
+    margin:0;
+    cursor:auto;
+    outline:0
+}
+
+input[type="number"]{
+    line-height:20px;
+    font-size:14px;
+    min-width:96px;
+    box-sizing:border-box;
+    border-radius:4px;
+    height:32px;
+    border-width:1px;
+    border-style:solid;
+    border-color:#282c33;
+    color:#282c33;
+    padding:5px 8px;
+    margin:0;
+    cursor:auto;
+    outline:0
+}
+input[type="number"]:focus{
+    border-color:#1071e5
+}
+input[type="number"]::selection{
+    background-color:#b5d6ff
+}

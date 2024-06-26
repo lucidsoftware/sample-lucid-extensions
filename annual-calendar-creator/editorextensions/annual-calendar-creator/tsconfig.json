@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "newLine": "lf",
+        "noEmitOnError": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": false,
+        "pretty": true,
+        "removeComments": false,
+        "skipLibCheck": true,
+        "sourceMap": false,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "target": "ES2017",
+        "types": [],
+        "lib": [
+            "es5",
+            "es6",
+            "ES2016.Array.Include",
+            "ES2017.String",
+            "ES2018.Promise",
+            "ES2017.Object",
+            "esnext.asynciterable"
+        ],
+        "outDir": "bin"
+    },
+    "files": ["resources/resource.d.ts"],
+    "include": ["src/**/*"]
+}

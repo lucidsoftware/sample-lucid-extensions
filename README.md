@@ -11,6 +11,11 @@ Uses custom shapes, network requests, and an Angular frontend to create an inter
 
 You can find more information about the application, and install it to use for yourself at its [marketplace listing](https://lucid.co/marketplace/1d2a2200/ai-prompt-flow).
 
+## Annual Calendar Creator
+
+An extension to generate monthly calendar shapes for a given year and language.
+![Annual Calendar Creator](https://cdn-cashy-static-assets.lucidchart.com/open-source-github-repositories/sample-lucid-extensions/annual-calendar-extension.gif)
+
 ## Asana
 
 Our Lucid cards for Asana integration is a production ready implementation of a cards integration built to import and manage Asana tasks in Lucidspark.

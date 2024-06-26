@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="./calendarsettings.css">
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            function setCalendarSettings() {
+                let year = document.getElementById('calendar-year').value;
+                let language = document.getElementById('calendar-language').value;
+                
+                let localizedMonths = [0,1,2,3,4,5,6,7,8,9,10,11].map(m => new Intl.DateTimeFormat(language,{month: 'long', year: 'numeric'}).format(new Date(year, m)));
+                let localizedDays = [0,1,2,3,4,5,6].map(d => new Intl.DateTimeFormat(language, {weekday: 'narrow'}).format(new Date(2024, 4, 5+d))); //May 5th 2024 is a Sunday - using that starting point to get weekday names
+
+                parent.postMessage({
+                            year: year,
+                            language: language,
+                            localizedMonths: localizedMonths,
+                            localizedDays: localizedDays
+                        }, '*')
+            }
+        </script>
+
+        <form action="javascript:setCalendarSettings()">
+            <p id="message"></p>
+            <p>Year: <input type="number" id="calendar-year" min="0" max="10000" /></p>
+            <label for="language">Language:</label>
+            <select name="language" id="calendar-language">
+                <option value="en-US">English</option>
+                <option value="es-LA">Spanish</option>
+                <option value="de">German</option>
+                <option value="ja">Japanese</option>
+                <option value="fr-FR">French</option>
+                <option value="nl">Dutch</option>
+                <option value="pt-BR">Portuguese (Brazil)</option>
+                <option value="ru">Russian</option>
+                <option value="it-IT">Italian</option>
+                <option value="pl-PL">Polish</option>
+            </select>
+            <input type="submit" onSubmit="Javascript:setCalendarSettings()">
+        </form>
+
+        <script type="text/javascript" >
+            let yearInput = document.getElementById('calendar-year');
+            yearInput.value = (new Date()).getFullYear(); //initialize to current year
+        </script>
+    </body>
+</html>
