@@ -65,10 +65,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "leftpanel:build:production"
+                            "buildTarget": "leftpanel:build:production"
                         },
                         "development": {
-                            "browserTarget": "leftpanel:build:development"
+                            "buildTarget": "leftpanel:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -154,10 +154,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "rightpanel:build:production"
+                            "buildTarget": "rightpanel:build:production"
                         },
                         "development": {
-                            "browserTarget": "rightpanel:build:development"
+                            "buildTarget": "rightpanel:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -165,7 +165,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "rightpanel:build"
+                        "buildTarget": "rightpanel:build"
                     }
                 },
                 "test": {
