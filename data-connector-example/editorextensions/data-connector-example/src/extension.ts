@@ -193,7 +193,12 @@ async function drawFolderHierarchy(rootNodes: FolderNode[], collection: Collecti
   const page = viewport.getCurrentPage();
   if (!page) return;
 
-  // Draw each folder
+  // We'll draw the folders and connections in the code below
+
+  // Create a map to store the blocks by folder ID
+  const folderBlocks = new Map<string, any>();
+
+  // Draw each folder and store the block references
   console.log(`Drawing ${folderPositions.size} folder shapes...`);
   for (const [folderId, position] of folderPositions.entries()) {
     console.log(`Drawing folder ${folderId} at position:`, position);
@@ -213,6 +218,9 @@ async function drawFolderHierarchy(rootNodes: FolderNode[], collection: Collecti
           readonly: true,
         });
         console.log(`Linked folder ${folderId} to data`);
+
+        // Store the block reference for connection later
+        folderBlocks.set(folderId, folderBlock);
       } else {
         console.error(`Failed to create block for folder ${folderId}`);
       }
@@ -243,28 +251,33 @@ async function drawFolderHierarchy(rootNodes: FolderNode[], collection: Collecti
       const parentIdStr = folder.parent.toString();
       console.log(`Folder ${folderId} has parent ${parentIdStr}`);
 
-      if (folderPositions.has(parentIdStr)) {
-        const parentPosition = folderPositions.get(parentIdStr)!;
-        console.log(`Found parent position for ${parentIdStr}`);
+      // Get the blocks for both parent and child
+      const childBlock = folderBlocks.get(folderId);
+      const parentBlock = folderBlocks.get(parentIdStr);
 
-        // Draw a line from parent to child
+      if (childBlock && parentBlock) {
+        console.log(`Found blocks for both parent ${parentIdStr} and child ${folderId}`);
+
+        // Draw a line from parent to child with proper connections to the shapes
         try {
           const line = page.addLine({
             endpoint1: {
-              x: parentPosition.x + parentPosition.w / 2,
-              y: parentPosition.y + parentPosition.h,
+              connection: parentBlock,
+              linkX: 0.5,  // Connect to the middle bottom of the parent
+              linkY: 1.0,  // Bottom of the shape
             },
             endpoint2: {
-              x: position.x + position.w / 2,
-              y: position.y,
+              connection: childBlock,
+              linkX: 0.5,  // Connect to the middle top of the child
+              linkY: 0.0,  // Top of the shape
             },
-            // Line styling properties are not directly supported in the LineDefinition
-            // We'll use the basic properties only
           });
           console.log(`Successfully drew connection from folder ${parentIdStr} to ${folderId}`);
         } catch (error) {
           console.error(`Error drawing connection from folder ${parentIdStr} to ${folderId}:`, error);
         }
+      } else {
+        console.error(`Could not find blocks for parent ${parentIdStr} or child ${folderId}`);
       }
     }
   }
