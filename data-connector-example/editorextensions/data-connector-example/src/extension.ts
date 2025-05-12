@@ -1,7 +1,11 @@
-import { EditorClient, Menu, MenuType } from "lucid-extension-sdk";
+import { Box, CollectionProxy, DataProxy, DocumentProxy, EditorClient, Menu, MenuType, Point, SerializedLucidDateObject, Viewport } from "lucid-extension-sdk";
+import { BLOCK_SIZES, DATA_SOURCE_NAME, Folder, FolderNode, FOLDERS_COLLECTION_NAME, createFolderNode } from "./constants";
 
 const client = new EditorClient();
 const menu = new Menu(client);
+const dataProxy = new DataProxy(client);
+const documentProxy = new DocumentProxy(client);
+const viewport = new Viewport(client);
 
 client.registerAction("import", async () => {
   // Temporary workaround. You must call oauthXhr once before performDataAction will work
@@ -28,3 +32,294 @@ menu.addMenuItem({
   action: "import",
   menuType: MenuType.Main,
 });
+
+client.registerAction("visualize", async () => {
+  await visualizeFolders();
+});
+
+menu.addMenuItem({
+  label: "Visualize Folders",
+  action: "visualize",
+  menuType: MenuType.Main,
+});
+
+async function visualizeFolders() {
+  try {
+    // Get the folders collection
+    const dataSource = dataProxy.dataSources.find(
+      (ds) => ds.getName() === DATA_SOURCE_NAME
+    );
+    if (!dataSource) {
+      client.alert("No data source found. Please import folders first.");
+      return;
+    }
+
+    const collection = dataSource.collections.find(
+      (col) => col.getName() === FOLDERS_COLLECTION_NAME
+    );
+    if (!collection) {
+      client.alert("No folders found. Please import folders first.");
+      return;
+    }
+
+    // Get all folders
+    const folders: Folder[] = [];
+
+    console.log("Collection found:", collection.getName());
+    console.log("Collection items count:", collection.items.size);
+
+    // Convert the MapProxy to an array of entries
+    const keys = Array.from(collection.items.keys());
+    console.log("Collection keys:", keys);
+
+    const items = keys.map(key => {
+      const dataItem = collection.items.get(key);
+      return { key, dataItem };
+    });
+
+    // Process each item
+    for (const { key, dataItem } of items) {
+      if (dataItem) {
+        console.log(`Processing item with key ${key}:`, dataItem);
+
+        // Extract folder data from the dataItem
+        const fields = dataItem.fields;
+        console.log("Fields:", fields);
+
+        // Create a proper Folder object
+        const folder: Folder = {
+          id: Number(fields.get("id")),
+          type: String(fields.get("type")),
+          name: String(fields.get("name")),
+          parent: fields.get("parent") !== undefined && fields.get("parent") !== null ? Number(fields.get("parent")) : undefined,
+          created: fields.get("created") as SerializedLucidDateObject,
+          trashed: fields.get("trashed") !== undefined ? fields.get("trashed") as SerializedLucidDateObject : undefined
+        };
+
+        console.log("Folder data:", folder);
+        folders.push(folder);
+      }
+    }
+
+    console.log("Total folders found:", folders.length);
+
+    // Build folder hierarchy
+    const folderMap = new Map<number, FolderNode>();
+    const rootNodes: FolderNode[] = [];
+
+    // First pass: create nodes for all folders
+    console.log("Creating folder nodes...");
+    folders.forEach(folder => {
+      if (folder && folder.id !== undefined) {
+        console.log(`Creating node for folder ${folder.id}: ${folder.name}`);
+        folderMap.set(folder.id, createFolderNode(folder));
+      } else {
+        console.error("Invalid folder encountered:", folder);
+      }
+    });
+
+    // Second pass: build the hierarchy
+    console.log("Building folder hierarchy...");
+    folders.forEach(folder => {
+      if (!folder || folder.id === undefined) {
+        console.error("Invalid folder encountered:", folder);
+        return;
+      }
+
+      const node = folderMap.get(folder.id);
+      if (!node) {
+        console.error(`Node not found for folder ${folder.id}`);
+        return;
+      }
+
+      if (folder.parent !== undefined && folderMap.has(folder.parent)) {
+        console.log(`Folder ${folder.id} has parent ${folder.parent}`);
+        const parentNode = folderMap.get(folder.parent);
+        if (parentNode) {
+          parentNode.children.push(node);
+        }
+      } else {
+        console.log(`Folder ${folder.id} is a root node`);
+        rootNodes.push(node);
+      }
+    });
+
+    console.log("Root nodes:", rootNodes.length);
+
+    // Draw the folder hierarchy
+    await drawFolderHierarchy(rootNodes, collection);
+  } catch (error) {
+    console.error("Error visualizing folders:", error);
+    // More detailed logging
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+      console.error("Error stack:", error.stack);
+    }
+    client.alert(`Error visualizing folders: ${error instanceof Error ? error.message : String(error)}. See console for details.`);
+  }
+}
+
+async function drawFolderHierarchy(rootNodes: FolderNode[], collection: CollectionProxy) {
+  console.log("Drawing folder hierarchy with", rootNodes.length, "root nodes");
+
+  // Load the folder shape
+  console.log("Attempting to load folder shape...");
+  let folderShape;
+  try {
+    folderShape = await client.getCustomShapeDefinition("data-connector-example", "folder");
+    console.log("Folder shape loaded:", folderShape ? "success" : "failed");
+
+    if (!folderShape) {
+      client.alert("Make sure you've enabled the Data Connector Example shape library!");
+      return;
+    }
+  } catch (error) {
+    console.error("Error loading folder shape:", error);
+    client.alert("Error loading folder shape. See console for details.");
+    return;
+  }
+
+  // Get the visible area to start drawing
+  const visibleRect = viewport.getVisibleRect();
+  const startPoint = {
+    x: visibleRect.x + BLOCK_SIZES.START_PADDING,
+    y: visibleRect.y + BLOCK_SIZES.START_PADDING,
+  };
+
+  // Calculate positions for all folders
+  const folderPositions = calculateFolderPositions(rootNodes, startPoint);
+
+  // Draw the folders
+  const page = viewport.getCurrentPage();
+  if (!page) return;
+
+  // Draw each folder
+  console.log(`Drawing ${folderPositions.size} folder shapes...`);
+  for (const [folderId, position] of folderPositions.entries()) {
+    console.log(`Drawing folder ${folderId} at position:`, position);
+
+    try {
+      const folderBlock = page.addBlock({
+        ...folderShape,
+        boundingBox: position,
+      });
+
+      if (folderBlock) {
+        console.log(`Successfully created block for folder ${folderId}`);
+        // Link the shape to the data
+        folderBlock.setReferenceKey("ShapeData", {
+          collectionId: collection.id,
+          primaryKey: folderId.toString(),
+          readonly: true,
+        });
+        console.log(`Linked folder ${folderId} to data`);
+      } else {
+        console.error(`Failed to create block for folder ${folderId}`);
+      }
+    } catch (error) {
+      console.error(`Error drawing folder ${folderId}:`, error);
+    }
+  }
+
+  // Draw connections between parent and child folders
+  for (const [folderId, position] of folderPositions.entries()) {
+    console.log(`Drawing connections for folder ${folderId}`);
+
+    // Get the folder node from the map
+    const folderNode = folderMap.get(Number(folderId));
+    if (!folderNode) {
+      console.error(`Folder node not found for ID ${folderId}`);
+      continue;
+    }
+
+    const folder = folderNode.folder;
+    if (!folder) {
+      console.error(`Folder data not found for node with ID ${folderId}`);
+      continue;
+    }
+
+    // Check if the folder has a parent and if the parent position exists
+    if (folder.parent !== undefined && folder.parent !== null) {
+      const parentIdStr = folder.parent.toString();
+      console.log(`Folder ${folderId} has parent ${parentIdStr}`);
+
+      if (folderPositions.has(parentIdStr)) {
+        const parentPosition = folderPositions.get(parentIdStr)!;
+        console.log(`Found parent position for ${parentIdStr}`);
+
+        // Draw a line from parent to child
+        try {
+          const line = page.addLine({
+            endpoint1: {
+              x: parentPosition.x + parentPosition.w / 2,
+              y: parentPosition.y + parentPosition.h,
+            },
+            endpoint2: {
+              x: position.x + position.w / 2,
+              y: position.y,
+            },
+            // Line styling properties are not directly supported in the LineDefinition
+            // We'll use the basic properties only
+          });
+          console.log(`Successfully drew connection from folder ${parentIdStr} to ${folderId}`);
+        } catch (error) {
+          console.error(`Error drawing connection from folder ${parentIdStr} to ${folderId}:`, error);
+        }
+      }
+    }
+  }
+}
+
+// Global map to store folder nodes for reference when drawing connections
+let folderMap = new Map<number, FolderNode>();
+
+function calculateFolderPositions(nodes: FolderNode[], startPoint: Point): Map<string, Box> {
+  folderMap = new Map<number, FolderNode>();
+  const positions = new Map<string, Box>();
+  let currentY = startPoint.y;
+
+  // Helper function to recursively calculate positions
+  function calculatePositionsRecursive(nodes: FolderNode[], level: number, startY: number): number {
+    let y = startY;
+
+    for (const node of nodes) {
+      console.log("Processing node:", node);
+
+      // Check if node.folder and node.folder.id are defined
+      if (!node.folder || node.folder.id === undefined) {
+        console.error("Invalid folder node encountered:", node);
+        continue; // Skip this node
+      }
+
+      // Store the node in the global map for reference
+      folderMap.set(node.folder.id, node);
+
+      // Calculate position for this folder
+      const x = startPoint.x + level * BLOCK_SIZES.LEVEL_PADDING;
+      const position: Box = {
+        x,
+        y,
+        w: BLOCK_SIZES.FOLDER_WIDTH,
+        h: BLOCK_SIZES.FOLDER_HEIGHT,
+      };
+
+      // Store the position
+      const folderId = node.folder.id.toString();
+      console.log(`Setting position for folder ${folderId}`);
+      positions.set(folderId, position);
+
+      // Move down for the next folder at this level
+      y += BLOCK_SIZES.FOLDER_HEIGHT + BLOCK_SIZES.VERTICAL_PADDING;
+
+      // Process children if any
+      if (node.children.length > 0) {
+        y = calculatePositionsRecursive(node.children, level + 1, y);
+      }
+    }
+
+    return y;
+  }
+
+  calculatePositionsRecursive(nodes, 0, currentY);
+  return positions;
+}

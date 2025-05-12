@@ -1,5 +1,5 @@
 {
-  "id": "",
+  "id": "7d12659b-aef5-4e62-98c3-b75716b1c489",
   "version": "1.0.0",
   "extensions": [
     {
@@ -21,7 +21,13 @@
       ]
     }
   ],
-  "shapeLibraries": [],
+  "shapeLibraries": [
+    {
+      "name": "data-connector-example",
+      "product": "chart",
+      "lcszPath": "shapelibraries/data-connector-example.lcsz"
+    }
+  ],
   "oauthProviders": [
     {
       "name": "lucid",
