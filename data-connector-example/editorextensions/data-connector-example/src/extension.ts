@@ -7,6 +7,10 @@ const dataProxy = new DataProxy(client);
 const documentProxy = new DocumentProxy(client);
 const viewport = new Viewport(client);
 
+// Log a message when the extension is loaded
+console.log("Data Connector Example extension loaded successfully!");
+console.log("You can find the 'Get Folder ID' option in both the main menu and the context menu (right-click).");
+
 client.registerAction("import", async () => {
   // Temporary workaround. You must call oauthXhr once before performDataAction will work
   const triggerOauth = await client.oauthXhr("lucid", {
@@ -41,6 +45,20 @@ menu.addMenuItem({
   label: "Visualize Folders",
   action: "visualize",
   menuType: MenuType.Main,
+});
+
+// Add menu item to get folder ID from selected shape - in main menu
+menu.addMenuItem({
+  label: "Get Folder ID",
+  action: "getFolderIdFromShape",
+  menuType: MenuType.Main,
+});
+
+// Also add to context menu (right-click menu) for easier access
+menu.addMenuItem({
+  label: "Get Folder ID",
+  action: "getFolderIdFromShape",
+  menuType: MenuType.Context,
 });
 
 async function visualizeFolders() {
@@ -219,6 +237,10 @@ async function drawFolderHierarchy(rootNodes: FolderNode[], collection: Collecti
         });
         console.log(`Linked folder ${folderId} to data`);
 
+        // Store the folder ID directly in the shape data
+        folderBlock.shapeData.set('folderId', folderId.toString());
+        console.log(`Stored folder ID ${folderId} in shape data`);
+
         // Store the block reference for connection later
         folderBlocks.set(folderId, folderBlock);
       } else {
@@ -233,8 +255,20 @@ async function drawFolderHierarchy(rootNodes: FolderNode[], collection: Collecti
   for (const [folderId, position] of folderPositions.entries()) {
     console.log(`Drawing connections for folder ${folderId}`);
 
-    // Get the folder node from the map
-    const folderNode = folderMap.get(Number(folderId));
+    // Get the folder node directly from the rootNodes hierarchy
+    // We need to find the node with the matching ID
+    const findFolderNode = (nodes: FolderNode[], id: number): FolderNode | undefined => {
+      for (const node of nodes) {
+        if (node.folder && node.folder.id === id) {
+          return node;
+        }
+        const found = findFolderNode(node.children, id);
+        if (found) return found;
+      }
+      return undefined;
+    };
+
+    const folderNode = findFolderNode(rootNodes, Number(folderId));
     if (!folderNode) {
       console.error(`Folder node not found for ID ${folderId}`);
       continue;
@@ -283,11 +317,9 @@ async function drawFolderHierarchy(rootNodes: FolderNode[], collection: Collecti
   }
 }
 
-// Global map to store folder nodes for reference when drawing connections
-let folderMap = new Map<number, FolderNode>();
-
 function calculateFolderPositions(nodes: FolderNode[], startPoint: Point): Map<string, Box> {
-  folderMap = new Map<number, FolderNode>();
+  // Create a new map for folder nodes in this function scope
+  const positionFolderMap = new Map<number, FolderNode>();
   const positions = new Map<string, Box>();
   let currentY = startPoint.y;
 
@@ -304,8 +336,8 @@ function calculateFolderPositions(nodes: FolderNode[], startPoint: Point): Map<s
         continue; // Skip this node
       }
 
-      // Store the node in the global map for reference
-      folderMap.set(node.folder.id, node);
+      // Store the node in the map for reference
+      positionFolderMap.set(node.folder.id, node);
 
       // Calculate position for this folder
       const x = startPoint.x + level * BLOCK_SIZES.LEVEL_PADDING;
@@ -334,5 +366,35 @@ function calculateFolderPositions(nodes: FolderNode[], startPoint: Point): Map<s
   }
 
   calculatePositionsRecursive(nodes, 0, currentY);
+
+  // Return both the positions map and the folder map
   return positions;
 }
+
+// Function to get folder ID from a shape
+client.registerAction("getFolderIdFromShape", async () => {
+  try {
+    // Get the selected shape
+    const selectedItems = viewport.getSelectedItems();
+    if (selectedItems.length === 0) {
+      client.alert("Please select a folder shape first.");
+      return;
+    }
+
+    const selectedItem = selectedItems[0];
+
+    // Get the folder ID from shape data
+    const folderId = selectedItem.shapeData.get('folderId');
+
+    if (folderId) {
+      console.log(`Found folder ID in shape data: ${folderId}`);
+      client.alert(`This shape represents folder ID: ${folderId}`);
+    } else {
+      console.log("No folder ID found in shape data");
+      client.alert("This shape doesn't have a folder ID stored in its shape data.");
+    }
+  } catch (error) {
+    console.error("Error getting folder ID from shape:", error);
+    client.alert(`Error getting folder ID: ${error instanceof Error ? error.message : String(error)}`);
+  }
+});
