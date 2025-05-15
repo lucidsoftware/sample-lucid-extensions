@@ -211,15 +211,42 @@ async function drawFolderHierarchy(rootNodes: FolderNode[], collection: Collecti
   const page = viewport.getCurrentPage();
   if (!page) return;
 
-  // We'll draw the folders and connections in the code below
-
   // Create a map to store the blocks by folder ID
   const folderBlocks = new Map<string, any>();
 
-  // Draw each folder and store the block references
-  console.log(`Drawing ${folderPositions.size} folder shapes...`);
+  // First, find any existing shapes that represent folders
+  console.log("Looking for existing folder shapes...");
+  for (const [blockId, block] of page.blocks) {
+    try {
+      // Check if this block has a folderId in its shape data
+      const folderId = block.shapeData.get('folderId');
+      if (folderId) {
+        // Convert to string to ensure type safety
+        const folderIdStr = String(folderId);
+        console.log(`Found existing shape for folder ${folderIdStr}`);
+        // Store the existing block reference for later use
+        folderBlocks.set(folderIdStr, block);
+      }
+    } catch (error) {
+      // Skip blocks that don't have shape data or can't be accessed
+      console.log("Skipping block that doesn't have folder data");
+    }
+  }
+
+  // Draw each folder that doesn't already have a shape, and store the block references
+  console.log(`Processing ${folderPositions.size} folder positions...`);
   for (const [folderId, position] of folderPositions.entries()) {
-    console.log(`Drawing folder ${folderId} at position:`, position);
+    // Check if we already have a shape for this folder
+    if (folderBlocks.has(folderId)) {
+      console.log(`Folder ${folderId} already has a shape, skipping creation`);
+      // Optionally update the position of the existing shape
+      // Uncomment the following lines if you want to update positions of existing shapes
+      // const existingBlock = folderBlocks.get(folderId);
+      // existingBlock.setBoundingBox(position);
+      continue;
+    }
+
+    console.log(`Drawing new shape for folder ${folderId} at position:`, position);
 
     try {
       const folderBlock = page.addBlock({
