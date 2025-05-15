@@ -20,7 +20,8 @@
             },
             "textarea": {
                 "name": "folderName",
-                "text": "{{=IFERROR(@'Name', 'Folder Name')}}",
+                "text": "{{=IFERROR(@'name', 'Folder Name')}}",
+                "editable": true,
                 "style": {
                     "bold": true,
                     "size": 12,
@@ -40,7 +41,7 @@
             },
             "textarea": {
                 "name": "folderType",
-                "text": "{{=IFERROR(@'Type', 'Type')}}",
+                "text": "{{=IFERROR(@'type', 'Type')}}",
                 "style": {
                     "size": 10,
                     "sizeUnits": "pt"
@@ -59,7 +60,7 @@
             },
             "textarea": {
                 "name": "folderCreated",
-                "text": "{{='Created: ' & IFERROR(TEXT(@'Created', 'MM/DD/YYYY'), 'Unknown')}}",
+                "text": "{{='Created: ' & IFERROR(TEXT(@'created', 'MM/DD/YYYY'), 'Unknown')}}",
                 "style": {
                     "size": 10,
                     "sizeUnits": "pt"
@@ -78,7 +79,7 @@
             },
             "textarea": {
                 "name": "folderParent",
-                "text": "{{='Parent: ' & IFERROR(@'Parent Folder', 'None')}}",
+                "text": "{{='Parent: ' & IFERROR(@'parent', 'None')}}",
                 "style": {
                     "size": 10,
                     "sizeUnits": "pt"
