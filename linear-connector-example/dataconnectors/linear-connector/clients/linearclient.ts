@@ -1,5 +1,5 @@
 import axios from "axios";
-import { arrayValidator } from "lucid-extension-sdk";
+import { arrayValidator, isString } from "lucid-extension-sdk";
 import { ApiIssue, isIssue } from "../collections/issues";
 
 export const isApiIssueList = arrayValidator(isIssue);
@@ -44,10 +44,14 @@ export const fetchIssues = async (authorizationToken: string) => {
       return issues;
     }
     console.error("Error retrieving issues from Linear GraphQL API", result.data);
-    return undefined;
+
+    // Return an empty array instead of undefined to avoid null checks
+    return [];
   } catch (error) {
     console.error("Error fetching issues from Linear:", error);
-    return undefined;
+
+    // Return an empty array instead of undefined to avoid null checks
+    return [];
   }
 };
 

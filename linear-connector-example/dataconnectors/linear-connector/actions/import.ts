@@ -6,27 +6,34 @@ import {
   ApiIssue,
   convertToIssue,
   issueSchema,
+  issuesCollectionName,
 } from "../collections/issues";
 import { fetchIssues } from "../clients/linearclient";
 
 export const importAction = async (action: DataConnectorAsynchronousAction) => {
   console.log("Linear Import initiated");
+
+  // Fetch issues from Linear API
   const apiIssues = await fetchIssues(action.context.userCredential);
+
+  // Create a Map to store the issues
   const itemsPatch = new Map<string, SerializedFields>();
-  
+
+  // Add each issue to the Map
   apiIssues?.forEach((apiIssue) => {
     itemsPatch.set(
-      apiIssue.id,
+      apiIssue.id.toString(),
       convertToIssue(apiIssue as ApiIssue),
     );
   });
-  
-  if (apiIssues) {
-    action.client
-      .update({
-        dataSourceName: "Linear",
+
+  // Update the data source
+  // Always proceed with the update, even if apiIssues is empty
+  action.client
+    .update({
+        dataSourceName: "Linear Issues",
         collections: {
-          "Linear Issues": {
+          [issuesCollectionName]: {
             patch: {
               items: itemsPatch,
             },
@@ -40,8 +47,7 @@ export const importAction = async (action: DataConnectorAsynchronousAction) => {
           error,
         );
       });
-  }
-  
+
   return {
     success: true,
   };

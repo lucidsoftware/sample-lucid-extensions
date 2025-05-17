@@ -63,9 +63,20 @@
   ],
   "dataConnectors": [
     {
+      "name": "data-connector-1",
+      "oauthProviderName": "lucid",
+      "callbackBaseUrl": "http://localhost:3001/?kind=action&name=",
+      "dataActions": {
+        "Import": "Import",
+        "Poll": "Poll",
+        "HardRefresh": "HardRefresh",
+        "Patch": "Patch"
+      }
+    },
+    {
       "name": "linear-connector",
       "oauthProviderName": "linear",
-      "callbackBaseUrl": "http://localhost:3001/?kind=action&name=",
+      "callbackBaseUrl": "http://localhost:3002/?kind=action&name=",
       "dataActions": {
         "Import": "Import",
         "Poll": "Poll",

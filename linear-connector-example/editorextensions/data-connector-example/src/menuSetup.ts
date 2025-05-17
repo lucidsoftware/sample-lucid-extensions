@@ -17,9 +17,9 @@ export function setupMenus() {
       method: "POST",
     });
     const result = await client.performDataAction({
-      dataConnectorName: "linear-connector",
+      dataConnectorName: "data-connector-1",
       actionName: "Import",
-      actionData: { message: "ImportIssues" },
+      actionData: { message: "ImportFolders" },
       asynchronous: true,
     });
     console.log(result);
@@ -122,6 +122,49 @@ export function setupMenus() {
   menu.addMenuItem({
     label: "Authorize with Linear",
     action: "authorizeLinear",
+    menuType: MenuType.Main,
+  });
+
+  // Register Linear import action
+  client.registerAction("importLinear", async () => {
+    try {
+      // Trigger OAuth flow for Linear
+      const triggerOauth = await client.oauthXhr("linear", {
+        url: "https://api.linear.app/graphql",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: JSON.stringify({
+          query: `{ viewer { id name } }`,
+        }),
+        method: "POST",
+      });
+
+      console.log("Linear OAuth response:", triggerOauth);
+
+      // Import issues from Linear
+      console.log("Starting Linear import...");
+      const result = await client.performDataAction({
+        dataConnectorName: "linear-connector",
+        actionName: "Import",
+        actionData: { message: "ImportIssues" },
+        asynchronous: true,
+      });
+      console.log("Linear import result:", result);
+
+      // No need to wait, just proceed with the alert
+
+      client.alert("Successfully imported issues from Linear! Please check the Data Linking panel.");
+    } catch (error) {
+      console.error("Error importing from Linear:", error);
+      client.alert(`Error importing from Linear: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  });
+
+  // Add Linear import menu item
+  menu.addMenuItem({
+    label: "Import Linear",
+    action: "importLinear",
     menuType: MenuType.Main,
   });
 

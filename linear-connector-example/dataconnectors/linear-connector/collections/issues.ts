@@ -8,6 +8,7 @@ import {
   either,
   isNullish,
   SerializedLucidDateObject,
+  SerializedFields,
 } from "lucid-extension-sdk";
 import { SemanticFields } from "lucid-extension-sdk/core/data/fieldtypedefinition/semanticfields";
 
@@ -34,9 +35,12 @@ export interface Issue {
   parentId?: string;
 }
 
-export const convertToIssue = (apiIssue: ApiIssue): any => {
+export const convertToIssue = (apiIssue: ApiIssue): SerializedFields => {
+  // Create a clean object with only the fields we need
   return {
-    ...apiIssue,
+    id: apiIssue.id,
+    title: apiIssue.title,
+    parentId: apiIssue.parentId || null,
   };
 };
 
@@ -61,4 +65,9 @@ export const issueSchema: SchemaDefinition = {
     },
   ],
   primaryKey: ["id"],
+  fieldLabels: {
+    id: "ID",
+    title: "Title",
+    parentId: "Parent Issue",
+  },
 };
