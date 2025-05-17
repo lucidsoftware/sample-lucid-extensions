@@ -35,11 +35,9 @@ export interface Issue {
   parentId?: string;
 }
 
-export const convertToIssue = (apiIssue: ApiIssue): SerializedFields => {
-  // Create a clean object with only the fields we need
+export const convertToIssue = (apiIssue: ApiIssue) => {
   return {
-    id: apiIssue.id,
-    title: apiIssue.title,
+    ...apiIssue,
     parentId: apiIssue.parentId || null,
   };
 };
