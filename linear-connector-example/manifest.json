@@ -1,0 +1,77 @@
+{
+  "id": "7d12659b-aef5-4e62-98c3-b75716b1c489",
+  "version": "1.0.0",
+  "extensions": [
+    {
+      "name": "data-connector-example",
+      "title": "Data Connector Example",
+      "products": [
+        "chart",
+        "spark",
+        "teamspaces"
+      ],
+      "codePath": "editorextensions/data-connector-example/bin/extension.js",
+      "scopes": [
+        "READ",
+        "WRITE",
+        "DOWNLOAD",
+        "SHOW_MODAL",
+        "CUSTOM_UI",
+        "NETWORK"
+      ]
+    }
+  ],
+  "shapeLibraries": [
+    {
+      "name": "data-connector-example",
+      "product": "chart",
+      "lcszPath": "shapelibraries/data-connector-example.lcsz"
+    }
+  ],
+  "oauthProviders": [
+    {
+      "name": "lucid",
+      "title": "Lucid",
+      "authorizationUrl": "https://lucid.app/oauth2/authorize",
+      "tokenUrl": "https://api.lucid.co/oauth2/token",
+      "scopes": [
+        "folder"
+      ],
+      "domainWhitelist": [
+        "https://api.lucid.co"
+      ],
+      "clientAuthentication": "clientParameters",
+      "faviconUrl": "https://cdn-cashy-static-assets.lucidchart.com/marketing/images/LucidSoftwareFavicon.png"
+    },
+    {
+      "name": "linear",
+      "title": "Linear",
+      "authorizationUrl": "https://linear.app/oauth/authorize",
+      "tokenUrl": "https://api.linear.app/oauth/token",
+      "scopes": [
+        "read",
+        "write",
+        "issues:create",
+        "comments:create"
+      ],
+      "domainWhitelist": [
+        "https://api.linear.app"
+      ],
+      "clientAuthentication": "clientParameters",
+      "faviconUrl": "https://asset.brandfetch.io/idFdo8ulhr/idzj70K5zl.png"
+    }
+  ],
+  "dataConnectors": [
+    {
+      "name": "linear-connector",
+      "oauthProviderName": "linear",
+      "callbackBaseUrl": "http://localhost:3001/?kind=action&name=",
+      "dataActions": {
+        "Import": "Import",
+        "Poll": "Poll",
+        "HardRefresh": "HardRefresh",
+        "Patch": "Patch"
+      }
+    }
+  ]
+}
