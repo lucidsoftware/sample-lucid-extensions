@@ -13,12 +13,13 @@ import {
 import { SemanticFields } from "lucid-extension-sdk/core/data/fieldtypedefinition/semanticfields";
 
 export const isIssue = objectValidator({
-  id: isString,
+  linearId: isString,
   title: isString,
   parentId: either(isString, isNullish),
 });
 
 export const isIssuePatch = objectValidator({
+  linearId: either(isString, isNullish),
   title: either(isString, isNullish),
   parentId: either(isString, isNullish),
 });
@@ -30,14 +31,15 @@ export interface ApiIssue {
 }
 
 export interface Issue {
-  id: string;
+  linearId: string;
   title: string;
   parentId?: string;
 }
 
 export const convertToIssue = (apiIssue: ApiIssue) => {
   return {
-    ...apiIssue,
+    linearId: apiIssue.id,
+    title: apiIssue.title,
     parentId: apiIssue.parentId || null,
   };
 };
@@ -47,7 +49,7 @@ export const issuesCollectionName = "Linear Issues";
 export const issueSchema: SchemaDefinition = {
   fields: [
     {
-      name: "id",
+      name: "linearId",
       type: ScalarFieldTypeEnum.STRING,
       constraints: [{ type: FieldConstraintType.LOCKED }],
     },
@@ -62,9 +64,9 @@ export const issueSchema: SchemaDefinition = {
       mapping: [SemanticFields.User],
     },
   ],
-  primaryKey: ["id"],
+  primaryKey: ["linearId"],
   fieldLabels: {
-    id: "ID",
+    linearId: "Linear ID",
     title: "Title",
     parentId: "Parent Issue",
   },

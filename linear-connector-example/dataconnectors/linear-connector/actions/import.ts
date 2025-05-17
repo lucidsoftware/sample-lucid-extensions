@@ -16,7 +16,7 @@ export const importAction = async (action: DataConnectorAsynchronousAction) => {
   const itemsPatch = new Map<string, SerializedFields>();
   apiIssues?.forEach((apiIssue) => {
     itemsPatch.set(
-      apiIssue.id.toString(),
+      apiIssue.id,
       convertToIssue(apiIssue as ApiIssue),
     );
   });
