@@ -12,7 +12,7 @@ interface CustomPatchPayload {
   message?: string;
 }
 
-export const patchAction = async (action: DataConnectorAction | DataConnectorPatchAction) => {
+export const patchAction = async (action: DataConnectorPatchAction) => {
   // Check if this is a direct action with custom payload
   if ('data' in action && action.data) {
     console.log("Received custom patch payload:", action.data);
@@ -27,7 +27,7 @@ export const patchAction = async (action: DataConnectorAction | DataConnectorPat
         // Check if name is defined
         if (!payload.updates.name) {
           console.error('Name is undefined in the updates payload');
-          return { success: false, error: 'Name is undefined in updates' };
+          return [];
         }
 
         console.log(`Updating folder ${payload.folderId} with name: ${payload.updates.name}`);
@@ -38,20 +38,22 @@ export const patchAction = async (action: DataConnectorAction | DataConnectorPat
           payload.updates.parent
         );
         console.log("Update result:", result);
-        return { success: true, result };
+        console.log("Update successful");
+        return [];
       } catch (error) {
         console.error("Error updating folder:", error);
-        return { success: false, error };
+        return [];
       }
     }
 
     // If it's just a message action (like the old format), return success
     if (payload.message === "UpdateFolders") {
       console.log("Received UpdateFolders message, but no specific updates");
-      return { success: true };
+      return [];
     }
 
-    return { success: false, error: "Invalid payload format" };
+    console.error("Invalid payload format");
+    return [];
   }
 
   // Handle standard patch actions from the collection

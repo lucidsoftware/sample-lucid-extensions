@@ -1,0 +1,13 @@
+{
+    "name": "Data Connector Example",
+    "shapes": [
+        {
+            "shape": "folder",
+            "name": "Folder Shape",
+            "defaults": {
+                "width": 200,
+                "height": 100
+            }
+        }
+    ]
+}

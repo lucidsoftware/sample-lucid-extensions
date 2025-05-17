@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "raw-loader": "^4.0.2",
+    "ts-loader": "^9.2.6",
+    "typescript": "^5.1.6",
+    "webpack": "^5.64.4",
+    "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "lucid-extension-sdk": "^0.0.263"
+  }
+}

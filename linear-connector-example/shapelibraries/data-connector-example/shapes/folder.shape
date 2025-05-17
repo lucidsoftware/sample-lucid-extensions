@@ -1,0 +1,91 @@
+{
+    "geometry": [
+        {
+            "type": "rect",
+            "cornerRadius": 8,
+            "fill": "#f5f5f5",
+            "stroke": "#4285f4",
+            "strokeWidth": 2
+        }
+    ],
+    "shapes": [
+        {
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": false,
+                "x": "0.05",
+                "y": "0.05",
+                "w": "0.9",
+                "h": "0.2"
+            },
+            "textarea": {
+                "name": "folderName",
+                "text": "{{=IFERROR(@'name', 'Folder Name')}}",
+                "editable": true,
+                "style": {
+                    "bold": true,
+                    "size": 12,
+                    "sizeUnits": "pt"
+                },
+                "align": "left"
+            }
+        },
+        {
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": false,
+                "x": "0.05",
+                "y": "0.3",
+                "w": "0.9",
+                "h": "0.15"
+            },
+            "textarea": {
+                "name": "folderType",
+                "text": "{{=IFERROR(@'type', 'Type')}}",
+                "style": {
+                    "size": 10,
+                    "sizeUnits": "pt"
+                },
+                "align": "left"
+            }
+        },
+        {
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": false,
+                "x": "0.05",
+                "y": "0.5",
+                "w": "0.9",
+                "h": "0.15"
+            },
+            "textarea": {
+                "name": "folderCreated",
+                "text": "{{='Created: ' & IFERROR(TEXT(@'created', 'MM/DD/YYYY'), 'Unknown')}}",
+                "style": {
+                    "size": 10,
+                    "sizeUnits": "pt"
+                },
+                "align": "left"
+            }
+        },
+        {
+            "bounds": {
+                "anchor": "top-left",
+                "absolute": false,
+                "x": "0.05",
+                "y": "0.7",
+                "w": "0.9",
+                "h": "0.15"
+            },
+            "textarea": {
+                "name": "folderParent",
+                "text": "{{='Parent: ' & IFERROR(@'parent', 'None')}}",
+                "style": {
+                    "size": 10,
+                    "sizeUnits": "pt"
+                },
+                "align": "left"
+            }
+        }
+    ]
+}
