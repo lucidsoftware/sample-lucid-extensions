@@ -38,6 +38,39 @@ export async function drawFolderHierarchy(rootNodes: FolderNode[], collection: C
   const page = viewport.getCurrentPage();
   if (!page) return;
 
+  // Delete all existing lines in the canvas
+  console.log("Deleting all existing lines before drawing new connections...");
+
+  // Store line IDs to avoid modification during iteration
+  const lineIds: string[] = [];
+  for (const [lineId, _] of page.lines) {
+    lineIds.push(lineId);
+  }
+  console.log(`Found ${lineIds.length} lines to delete`);
+
+  // Delete each line by ID
+  for (const lineId of lineIds) {
+    try {
+      console.log(`Attempting to delete line ${lineId}...`);
+      const line = page.lines.get(lineId);
+      if (line) {
+        line.delete();
+        console.log(`Successfully deleted line ${lineId}`);
+      } else {
+        console.log(`Line ${lineId} no longer exists, skipping`);
+      }
+    } catch (error) {
+      console.error(`Error deleting line ${lineId}:`, error);
+    }
+  }
+
+  // Verify all lines were deleted
+  let remainingLineCount = 0;
+  for (const [_, __] of page.lines) {
+    remainingLineCount++;
+  }
+  console.log(`After deletion, ${remainingLineCount} lines remain`);
+
   // Create a map to store the blocks by folder ID
   const folderBlocks = new Map<string, any>();
 
