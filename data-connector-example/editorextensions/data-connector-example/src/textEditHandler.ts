@@ -4,72 +4,26 @@ import { DATA_SOURCE_NAME, FOLDERS_COLLECTION_NAME } from "./constants";
 // Hook text edit events to update folder names in the data source
 export function setupTextEditHook() {
   // The second parameter 'true' means we want to receive the text after the edit is complete
-  // This ensures we get the new text value, not the old one
-  viewport.hookTextEdit((item, textAreaName, text) => {
+  viewport.hookTextEdit((item, textAreaName) => {
     console.log('Text edit hook called with parameters:');
     console.log('  Item:', item);
     console.log('  Text area name:', textAreaName);
-    console.log('  Text:', text);
-    // Process edits to any text area in the folder shape
-    console.log(`Text edit detected for textarea ${textAreaName}, text: ${text}`);
-
-    // The text parameter contains the new text that the user entered
-    // We need to use this value directly, as it's the new value after the edit
-    let actualText = text;
-
-    // If the text is a template reference, we need to handle it differently
-    if (text && text.includes('{{lcsz:')) {
-      console.log('Warning: Received template reference instead of actual text');
-      // In this case, we'll try to extract a meaningful value from the template
-      // But this is a fallback - ideally we should be getting the actual text
-      try {
-        // Try to extract a meaningful part from the template string
-        const match = text.match(/{{lcsz:([^}]+)}}/);
-        if (match && match[1]) {
-          // Use the part inside the template as a fallback
-          actualText = match[1].replace('t_0_', '');
-          console.log(`Extracted text from template: ${actualText}`);
-        } else {
-          // If we can't extract anything, use a default value
-          actualText = 'Edited Folder';
-          console.log(`Using default text: ${actualText}`);
-        }
-      } catch (error) {
-        console.error('Error handling template text:', error);
-        actualText = 'Edited Folder';
-      }
-    } else {
-      console.log(`Using direct text input: ${actualText}`);
-    }
-
-    // Make sure actualText is not the text area name or empty
-    if (actualText === textAreaName || !actualText || actualText.trim() === '') {
-      console.warn(`Warning: actualText equals textAreaName (${textAreaName}) or is empty, using default value`);
-      actualText = 'Edited Folder';
-    }
-
-    // Log the final text value we'll be using
-    console.log(`Final text value to be used: "${actualText}"`);
-
-    // Sanity check - if the text is 'folderName', something is wrong
-    if (actualText === 'folderName') {
-      console.error('ERROR: Text value is "folderName", which is likely incorrect. Using default value.');
-      actualText = 'Edited Folder';
-    }
 
     // Check if it's a folder-related text area
-    if ((textAreaName === 'folderName' || textAreaName.includes('folder') || textAreaName.includes('name') || textAreaName.includes('Name')) && actualText) {
+    if (textAreaName === 'folderName' || textAreaName.includes('folder') || textAreaName.includes('name') || textAreaName.includes('Name')) {
       try {
         // Get the folder ID from the shape data
         const folderId = item.shapeData.get('folderId');
-        console.log(`Text edit detected for textarea ${textAreaName}, text: ${actualText}, folderId: ${folderId}`);
+        console.log(`Text edit detected for textarea ${textAreaName}, folderId: ${folderId}`);
 
         if (folderId && typeof folderId === 'string') {
           // This is the key part: we return a callback function that will be called
           // after the text edit is complete, with the final text value
-          console.log(`Setting up callback for folder ${folderId} with text: ${actualText}`);
-          return async () => {
-            console.log(`Callback executing for folder ${folderId} with text: ${actualText}`);
+          console.log(`Setting up callback for folder ${folderId}`);
+
+          // Return a callback function that will receive the final edited text
+          return async (finalText) => {
+            console.log(`Callback executing for folder ${folderId} with final text: ${finalText}`);
             try {
               // Find the data source and collection
               const dataSource = dataProxy.dataSources.find(
@@ -104,13 +58,10 @@ export function setupTextEditHook() {
 
                       // Create an object with the field we want to update
                       // Only use lowercase 'name' as that's what's defined in the schema
-                      // Capture the current value to ensure it's not lost in closures
-                      const folderNameForCollection = actualText;
-                      console.log(`Using text for collection update: ${folderNameForCollection}`);
-
                       const updates: Record<string, any> = {
-                        name: folderNameForCollection
+                        name: finalText
                       };
+                      console.log(`Using final text for update: ${finalText}`);
 
                       changedItems.set(folderId, updates);
                       console.log('Patch updates:', updates);
@@ -130,14 +81,10 @@ export function setupTextEditHook() {
                       try {
                         console.log('Triggering data action to update folders...');
                         // Create a proper patch payload with the folder ID and name
-                        // Capture the current value of actualText to ensure it's not lost in the closure
-                        const folderNameToUpdate = actualText;
-                        console.log(`Creating patch payload with folder name: ${folderNameToUpdate}`);
-
                         const patchPayload = {
                           folderId: folderId,
                           updates: {
-                            name: folderNameToUpdate
+                            name: finalText
                           }
                         };
 
@@ -179,11 +126,8 @@ export function setupTextEditHook() {
                             try {
                               console.log('Attempting to directly set text in folderName text area');
                               if (block.textAreas) {
-                                // Capture the current value to ensure it's not lost in closures
-                                const folderNameForTextArea = actualText || text || 'Folder';
-                                console.log(`Setting text area value to: ${folderNameForTextArea}`);
-                                block.textAreas.set('folderName', folderNameForTextArea);
-                                console.log(`Successfully set text in folderName text area: ${actualText}`);
+                                block.textAreas.set('folderName', finalText || 'Folder');
+                                console.log(`Successfully set text in folderName text area: ${finalText}`);
                               }
                             } catch (textError) {
                               console.error('Error setting text directly:', textError);
