@@ -42,6 +42,21 @@ export function setupTextEditHook() {
       console.log(`Using direct text input: ${actualText}`);
     }
 
+    // Make sure actualText is not the text area name or empty
+    if (actualText === textAreaName || !actualText || actualText.trim() === '') {
+      console.warn(`Warning: actualText equals textAreaName (${textAreaName}) or is empty, using default value`);
+      actualText = 'Edited Folder';
+    }
+
+    // Log the final text value we'll be using
+    console.log(`Final text value to be used: "${actualText}"`);
+
+    // Sanity check - if the text is 'folderName', something is wrong
+    if (actualText === 'folderName') {
+      console.error('ERROR: Text value is "folderName", which is likely incorrect. Using default value.');
+      actualText = 'Edited Folder';
+    }
+
     // Check if it's a folder-related text area
     if ((textAreaName === 'folderName' || textAreaName.includes('folder') || textAreaName.includes('name') || textAreaName.includes('Name')) && actualText) {
       try {
@@ -87,13 +102,15 @@ export function setupTextEditHook() {
                       // Create a map for the changed items
                       const changedItems = new Map<string, Record<string, any>>();
 
-                      // Create an object with all the fields we want to update
-                      // We'll try both 'name' and 'Name' since we're not sure which one is used
+                      // Create an object with the field we want to update
+                      // Only use lowercase 'name' as that's what's defined in the schema
+                      // Capture the current value to ensure it's not lost in closures
+                      const folderNameForCollection = actualText;
+                      console.log(`Using text for collection update: ${folderNameForCollection}`);
+
                       const updates: Record<string, any> = {
-                        name: actualText,
-                        Name: actualText
+                        name: folderNameForCollection
                       };
-                      console.log(`Using actual text for update: ${actualText}`);
 
                       changedItems.set(folderId, updates);
                       console.log('Patch updates:', updates);
@@ -112,10 +129,22 @@ export function setupTextEditHook() {
                       // Trigger a data action to update the actual folders
                       try {
                         console.log('Triggering data action to update folders...');
+                        // Create a proper patch payload with the folder ID and name
+                        // Capture the current value of actualText to ensure it's not lost in the closure
+                        const folderNameToUpdate = actualText;
+                        console.log(`Creating patch payload with folder name: ${folderNameToUpdate}`);
+
+                        const patchPayload = {
+                          folderId: folderId,
+                          updates: {
+                            name: folderNameToUpdate
+                          }
+                        };
+
                         client.performDataAction({
                           dataConnectorName: "data-connector-1",
                           actionName: "Patch",
-                          actionData: { message: "UpdateFolders" },
+                          actionData: patchPayload,
                           asynchronous: true,
                         }).then(result => {
                           console.log('Data action result:', result);
@@ -150,7 +179,10 @@ export function setupTextEditHook() {
                             try {
                               console.log('Attempting to directly set text in folderName text area');
                               if (block.textAreas) {
-                                block.textAreas.set('folderName', actualText || text || 'Folder');
+                                // Capture the current value to ensure it's not lost in closures
+                                const folderNameForTextArea = actualText || text || 'Folder';
+                                console.log(`Setting text area value to: ${folderNameForTextArea}`);
+                                block.textAreas.set('folderName', folderNameForTextArea);
                                 console.log(`Successfully set text in folderName text area: ${actualText}`);
                               }
                             } catch (textError) {
