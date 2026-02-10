@@ -1,15 +1,16 @@
 {
-  "id": "!!REPLACE THIS WITH YOUR PACKAGE ID!!",
-  "version": "1.0.0",
+  "id": "360d6c02-b952-4e05-b18c-c4b3e18aa9c2",
+  "version": "1.0.4",
   "extensions": [
     {
-      "name": "in-a-circle",
-      "title": "In a Circle",
+      "name": "better-layouts",
+      "title": "Better Layouts",
       "products": [
         "chart",
-        "spark"
+        "spark",
+        "teamspaces"
       ],
-      "codePath": "editorextensions/in-a-circle/bin/extension.js",
+      "codePath": "editorextensions\\better-layouts\\bin\\extension.js",
       "scopes": [
         "READ",
         "WRITE",

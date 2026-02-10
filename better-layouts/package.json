@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/cli": "^17.0.8",
+    "webpack-shell-plugin-next": "^2.3.1"
+  }
+}
